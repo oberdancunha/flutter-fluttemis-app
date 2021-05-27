@@ -9,7 +9,9 @@ import '../domain/locus/locus.dart';
 class LocusRepository implements ILocusRepository {
   final ILocusDataSource locusDataSource;
 
-  LocusRepository(this.locusDataSource);
+  LocusRepository({
+    required this.locusDataSource,
+  });
 
   @override
   Future<Either<Failure, KtList<Locus>>> getLocus() => locusDataSource.getLocus();
