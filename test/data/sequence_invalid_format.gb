@@ -1,0 +1,15 @@
+##sequence-region U49845.1 1 5028
+##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=4932
+U49845.1	Genbank	region	1	5028	.	+	.	ID=U49845.1:1..5028;Dbxref=taxon:4932;Name=IX;chromosome=IX;gbkey=Src;mol_type=genomic DNA
+U49845.1	Genbank	mRNA	1	206	.	+	.	ID=rna-U49845.1:1..206;end_range=206,.;gbkey=mRNA;partial=true;product=TCP1-beta;start_range=.,1
+U49845.1	Genbank	exon	1	206	.	+	.	ID=exon-U49845.1:1..206-1;Parent=rna-U49845.1:1..206;end_range=206,.;gbkey=mRNA;partial=true;product=TCP1-beta;start_range=.,1
+U49845.1	Genbank	CDS	1	206	.	+	2	ID=cds-AAA98665.1;Parent=rna-U49845.1:1..206;Dbxref=NCBI_GP:AAA98665.1;Name=AAA98665.1;gbkey=CDS;partial=true;product=TCP1-beta;protein_id=AAA98665.1;start_range=.,1
+U49845.1	Genbank	gene	687	3158	.	+	.	ID=gene-AXL2;Name=AXL2;end_range=3158,.;gbkey=Gene;gene=AXL2;gene_biotype=protein_coding;partial=true;start_range=.,687
+U49845.1	Genbank	mRNA	687	3158	.	+	.	ID=rna-AXL2;Parent=gene-AXL2;end_range=3158,.;gbkey=mRNA;gene=AXL2;partial=true;product=Axl2p;start_range=.,687
+U49845.1	Genbank	exon	687	3158	.	+	.	ID=exon-AXL2-1;Parent=rna-AXL2;end_range=3158,.;gbkey=mRNA;gene=AXL2;partial=true;product=Axl2p;start_range=.,687
+U49845.1	Genbank	CDS	687	3158	.	+	0	ID=cds-AAA98666.1;Parent=rna-AXL2;Dbxref=NCBI_GP:AAA98666.1;Name=AAA98666.1;Note=plasma membrane glycoprotein;gbkey=CDS;gene=AXL2;product=Axl2p;protein_id=AAA98666.1
+U49845.1	Genbank	gene	3300	4037	.	-	.	ID=gene-REV7;Name=REV7;end_range=4037,.;gbkey=Gene;gene=REV7;gene_biotype=protein_coding;partial=true;start_range=.,3300
+U49845.1	Genbank	mRNA	3300	4037	.	-	.	ID=rna-REV7;Parent=gene-REV7;end_range=4037,.;gbkey=mRNA;gene=REV7;partial=true;product=Rev7p;start_range=.,3300
+U49845.1	Genbank	exon	3300	4037	.	-	.	ID=exon-REV7-1;Parent=rna-REV7;end_range=4037,.;gbkey=mRNA;gene=REV7;partial=true;product=Rev7p;start_range=.,3300
+U49845.1	Genbank	CDS	3300	4037	.	-	0	ID=cds-AAA98667.1;Parent=rna-REV7;Dbxref=NCBI_GP:AAA98667.1;Name=AAA98667.1;gbkey=CDS;gene=REV7;product=Rev7p;protein_id=AAA98667.1
+
