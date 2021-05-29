@@ -13,7 +13,11 @@ class LocusModule extends Module {
       (i) => i.args!.params['locus_data_source_instance'] as ILocusDataSource,
     ),
     Bind<ILocusRepository>((i) => LocusRepository(locusDataSource: i.get<ILocusDataSource>())),
-    Bind<LocusBloc>((i) => LocusBloc(locusRepository: i.get<ILocusRepository>()))
+    Bind<LocusBloc>(
+      (i) => LocusBloc(
+        locusRepository: i.get<ILocusRepository>(),
+      ),
+    ),
   ];
 
   @override
@@ -23,6 +27,6 @@ class LocusModule extends Module {
       child: (_, __) => LocusPage(
         locusBloc: Modular.get<LocusBloc>(),
       ),
-    )
+    ),
   ];
 }

@@ -5,14 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Fluttemis run macos",
-      "request": "launch",
+      "name": "Fluttemis run",
+      "request": "attach",
+      "vmServiceUri": "http://127.0.0.1:50300/",
+      "program": "lib/main.dart",
       "type": "dart",
-      "args": [
-        "-d",
-        "macos"
-      ]
-    }, 
+    },
     {
       "name": "Fluttemis tests",
       "request": "launch",
