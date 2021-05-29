@@ -8,10 +8,7 @@ class UploadFile extends StatelessWidget {
   Widget build(BuildContext context) => Center(
         child: GestureDetector(
           onTap: () async {
-            final result = await FilePicker.platform.pickFiles(
-              type: FileType.custom,
-              allowedExtensions: ['gb'],
-            );
+            final result = await FilePicker.platform.pickFiles();
             if (result != null) {
               final file = File(result.files.single.path!);
             }
