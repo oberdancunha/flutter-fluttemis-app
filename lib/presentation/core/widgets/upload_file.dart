@@ -1,25 +1,34 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import '../../../infrastructure/locus_data_source_genbank_file.dart';
 
 class UploadFile extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
         child: GestureDetector(
           onTap: () async {
-            final result = await FilePicker.platform.pickFiles();
+            final result = await FilePicker.platform.pickFiles().catchError(
+                  (_) => null,
+                );
             if (result != null) {
-              final file = File(result.files.single.path!);
+              final file = result.files.single.path!;
+              final dataSourceInstance = LocusDataSourceGenbankFile(genbankFile: file);
+              Modular.to.popAndPushNamed(
+                '/locus',
+                arguments: dataSourceInstance,
+                forRoot: true,
+              );
             }
           },
           child: Container(
-            width: MediaQuery.of(context).size.width * 0.4,
-            height: MediaQuery.of(context).size.height * 0.4,
+            width: 300,
+            height: 300,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: Colors.grey.shade300,
+                color: Colors.blue.shade900,
                 width: 5,
               ),
             ),
@@ -29,12 +38,12 @@ class UploadFile extends StatelessWidget {
                 Icon(
                   Icons.file_upload_rounded,
                   size: 150,
-                  color: Colors.grey.shade300,
+                  color: Colors.blue.shade900,
                 ),
-                const Text(
-                  'Open a file',
+                Text(
+                  'Open a file (gb or gbk file)',
                   style: TextStyle(
-                    color: Colors.grey,
+                    color: Colors.blue.shade900,
                     fontSize: 20,
                   ),
                 ),

@@ -16,8 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$LocusEventTearOff {
   const _$LocusEventTearOff();
 
-  _Get getLocus() {
-    return const _Get();
+  _GetLocus getLocus() {
+    return const _GetLocus();
+  }
+
+  _LocusShowed locusShowed({required String locusSearching}) {
+    return _LocusShowed(
+      locusSearching: locusSearching,
+    );
   }
 }
 
@@ -29,22 +35,26 @@ mixin _$LocusEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLocus,
+    required TResult Function(String locusSearching) locusShowed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocus,
+    TResult Function(String locusSearching)? locusShowed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Get value) getLocus,
+    required TResult Function(_GetLocus value) getLocus,
+    required TResult Function(_LocusShowed value) locusShowed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Get value)? getLocus,
+    TResult Function(_GetLocus value)? getLocus,
+    TResult Function(_LocusShowed value)? locusShowed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -67,25 +77,25 @@ class _$LocusEventCopyWithImpl<$Res> implements $LocusEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$GetCopyWith<$Res> {
-  factory _$GetCopyWith(_Get value, $Res Function(_Get) then) =
-      __$GetCopyWithImpl<$Res>;
+abstract class _$GetLocusCopyWith<$Res> {
+  factory _$GetLocusCopyWith(_GetLocus value, $Res Function(_GetLocus) then) =
+      __$GetLocusCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$GetCopyWithImpl<$Res> extends _$LocusEventCopyWithImpl<$Res>
-    implements _$GetCopyWith<$Res> {
-  __$GetCopyWithImpl(_Get _value, $Res Function(_Get) _then)
-      : super(_value, (v) => _then(v as _Get));
+class __$GetLocusCopyWithImpl<$Res> extends _$LocusEventCopyWithImpl<$Res>
+    implements _$GetLocusCopyWith<$Res> {
+  __$GetLocusCopyWithImpl(_GetLocus _value, $Res Function(_GetLocus) _then)
+      : super(_value, (v) => _then(v as _GetLocus));
 
   @override
-  _Get get _value => super._value as _Get;
+  _GetLocus get _value => super._value as _GetLocus;
 }
 
 /// @nodoc
 
-class _$_Get implements _Get {
-  const _$_Get();
+class _$_GetLocus implements _GetLocus {
+  const _$_GetLocus();
 
   @override
   String toString() {
@@ -94,7 +104,7 @@ class _$_Get implements _Get {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _Get);
+    return identical(this, other) || (other is _GetLocus);
   }
 
   @override
@@ -104,6 +114,7 @@ class _$_Get implements _Get {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLocus,
+    required TResult Function(String locusSearching) locusShowed,
   }) {
     return getLocus();
   }
@@ -112,6 +123,7 @@ class _$_Get implements _Get {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocus,
+    TResult Function(String locusSearching)? locusShowed,
     required TResult orElse(),
   }) {
     if (getLocus != null) {
@@ -123,7 +135,8 @@ class _$_Get implements _Get {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Get value) getLocus,
+    required TResult Function(_GetLocus value) getLocus,
+    required TResult Function(_LocusShowed value) locusShowed,
   }) {
     return getLocus(this);
   }
@@ -131,7 +144,8 @@ class _$_Get implements _Get {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Get value)? getLocus,
+    TResult Function(_GetLocus value)? getLocus,
+    TResult Function(_LocusShowed value)? locusShowed,
     required TResult orElse(),
   }) {
     if (getLocus != null) {
@@ -141,8 +155,125 @@ class _$_Get implements _Get {
   }
 }
 
-abstract class _Get implements LocusEvent {
-  const factory _Get() = _$_Get;
+abstract class _GetLocus implements LocusEvent {
+  const factory _GetLocus() = _$_GetLocus;
+}
+
+/// @nodoc
+abstract class _$LocusShowedCopyWith<$Res> {
+  factory _$LocusShowedCopyWith(
+          _LocusShowed value, $Res Function(_LocusShowed) then) =
+      __$LocusShowedCopyWithImpl<$Res>;
+  $Res call({String locusSearching});
+}
+
+/// @nodoc
+class __$LocusShowedCopyWithImpl<$Res> extends _$LocusEventCopyWithImpl<$Res>
+    implements _$LocusShowedCopyWith<$Res> {
+  __$LocusShowedCopyWithImpl(
+      _LocusShowed _value, $Res Function(_LocusShowed) _then)
+      : super(_value, (v) => _then(v as _LocusShowed));
+
+  @override
+  _LocusShowed get _value => super._value as _LocusShowed;
+
+  @override
+  $Res call({
+    Object? locusSearching = freezed,
+  }) {
+    return _then(_LocusShowed(
+      locusSearching: locusSearching == freezed
+          ? _value.locusSearching
+          : locusSearching // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LocusShowed implements _LocusShowed {
+  const _$_LocusShowed({required this.locusSearching});
+
+  @override
+  final String locusSearching;
+
+  @override
+  String toString() {
+    return 'LocusEvent.locusShowed(locusSearching: $locusSearching)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _LocusShowed &&
+            (identical(other.locusSearching, locusSearching) ||
+                const DeepCollectionEquality()
+                    .equals(other.locusSearching, locusSearching)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(locusSearching);
+
+  @JsonKey(ignore: true)
+  @override
+  _$LocusShowedCopyWith<_LocusShowed> get copyWith =>
+      __$LocusShowedCopyWithImpl<_LocusShowed>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getLocus,
+    required TResult Function(String locusSearching) locusShowed,
+  }) {
+    return locusShowed(locusSearching);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getLocus,
+    TResult Function(String locusSearching)? locusShowed,
+    required TResult orElse(),
+  }) {
+    if (locusShowed != null) {
+      return locusShowed(locusSearching);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetLocus value) getLocus,
+    required TResult Function(_LocusShowed value) locusShowed,
+  }) {
+    return locusShowed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetLocus value)? getLocus,
+    TResult Function(_LocusShowed value)? locusShowed,
+    required TResult orElse(),
+  }) {
+    if (locusShowed != null) {
+      return locusShowed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LocusShowed implements LocusEvent {
+  const factory _LocusShowed({required String locusSearching}) = _$_LocusShowed;
+
+  String get locusSearching => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$LocusShowedCopyWith<_LocusShowed> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -151,10 +282,14 @@ class _$LocusStateTearOff {
 
   _LocusState call(
       {required Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess,
-      required bool isSearching}) {
+      required bool isSearching,
+      required KtList<Locus> locusList,
+      required Locus locusShowed}) {
     return _LocusState(
       locusFailureOrSuccess: locusFailureOrSuccess,
       isSearching: isSearching,
+      locusList: locusList,
+      locusShowed: locusShowed,
     );
   }
 }
@@ -167,6 +302,8 @@ mixin _$LocusState {
   Option<Either<Failure, KtList<Locus>>> get locusFailureOrSuccess =>
       throw _privateConstructorUsedError;
   bool get isSearching => throw _privateConstructorUsedError;
+  KtList<Locus> get locusList => throw _privateConstructorUsedError;
+  Locus get locusShowed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LocusStateCopyWith<LocusState> get copyWith =>
@@ -180,7 +317,11 @@ abstract class $LocusStateCopyWith<$Res> {
       _$LocusStateCopyWithImpl<$Res>;
   $Res call(
       {Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess,
-      bool isSearching});
+      bool isSearching,
+      KtList<Locus> locusList,
+      Locus locusShowed});
+
+  $LocusCopyWith<$Res> get locusShowed;
 }
 
 /// @nodoc
@@ -195,6 +336,8 @@ class _$LocusStateCopyWithImpl<$Res> implements $LocusStateCopyWith<$Res> {
   $Res call({
     Object? locusFailureOrSuccess = freezed,
     Object? isSearching = freezed,
+    Object? locusList = freezed,
+    Object? locusShowed = freezed,
   }) {
     return _then(_value.copyWith(
       locusFailureOrSuccess: locusFailureOrSuccess == freezed
@@ -205,7 +348,22 @@ class _$LocusStateCopyWithImpl<$Res> implements $LocusStateCopyWith<$Res> {
           ? _value.isSearching
           : isSearching // ignore: cast_nullable_to_non_nullable
               as bool,
+      locusList: locusList == freezed
+          ? _value.locusList
+          : locusList // ignore: cast_nullable_to_non_nullable
+              as KtList<Locus>,
+      locusShowed: locusShowed == freezed
+          ? _value.locusShowed
+          : locusShowed // ignore: cast_nullable_to_non_nullable
+              as Locus,
     ));
+  }
+
+  @override
+  $LocusCopyWith<$Res> get locusShowed {
+    return $LocusCopyWith<$Res>(_value.locusShowed, (value) {
+      return _then(_value.copyWith(locusShowed: value));
+    });
   }
 }
 
@@ -217,7 +375,12 @@ abstract class _$LocusStateCopyWith<$Res> implements $LocusStateCopyWith<$Res> {
   @override
   $Res call(
       {Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess,
-      bool isSearching});
+      bool isSearching,
+      KtList<Locus> locusList,
+      Locus locusShowed});
+
+  @override
+  $LocusCopyWith<$Res> get locusShowed;
 }
 
 /// @nodoc
@@ -234,6 +397,8 @@ class __$LocusStateCopyWithImpl<$Res> extends _$LocusStateCopyWithImpl<$Res>
   $Res call({
     Object? locusFailureOrSuccess = freezed,
     Object? isSearching = freezed,
+    Object? locusList = freezed,
+    Object? locusShowed = freezed,
   }) {
     return _then(_LocusState(
       locusFailureOrSuccess: locusFailureOrSuccess == freezed
@@ -244,6 +409,14 @@ class __$LocusStateCopyWithImpl<$Res> extends _$LocusStateCopyWithImpl<$Res>
           ? _value.isSearching
           : isSearching // ignore: cast_nullable_to_non_nullable
               as bool,
+      locusList: locusList == freezed
+          ? _value.locusList
+          : locusList // ignore: cast_nullable_to_non_nullable
+              as KtList<Locus>,
+      locusShowed: locusShowed == freezed
+          ? _value.locusShowed
+          : locusShowed // ignore: cast_nullable_to_non_nullable
+              as Locus,
     ));
   }
 }
@@ -252,16 +425,23 @@ class __$LocusStateCopyWithImpl<$Res> extends _$LocusStateCopyWithImpl<$Res>
 
 class _$_LocusState implements _LocusState {
   const _$_LocusState(
-      {required this.locusFailureOrSuccess, required this.isSearching});
+      {required this.locusFailureOrSuccess,
+      required this.isSearching,
+      required this.locusList,
+      required this.locusShowed});
 
   @override
   final Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess;
   @override
   final bool isSearching;
+  @override
+  final KtList<Locus> locusList;
+  @override
+  final Locus locusShowed;
 
   @override
   String toString() {
-    return 'LocusState(locusFailureOrSuccess: $locusFailureOrSuccess, isSearching: $isSearching)';
+    return 'LocusState(locusFailureOrSuccess: $locusFailureOrSuccess, isSearching: $isSearching, locusList: $locusList, locusShowed: $locusShowed)';
   }
 
   @override
@@ -273,14 +453,22 @@ class _$_LocusState implements _LocusState {
                     other.locusFailureOrSuccess, locusFailureOrSuccess)) &&
             (identical(other.isSearching, isSearching) ||
                 const DeepCollectionEquality()
-                    .equals(other.isSearching, isSearching)));
+                    .equals(other.isSearching, isSearching)) &&
+            (identical(other.locusList, locusList) ||
+                const DeepCollectionEquality()
+                    .equals(other.locusList, locusList)) &&
+            (identical(other.locusShowed, locusShowed) ||
+                const DeepCollectionEquality()
+                    .equals(other.locusShowed, locusShowed)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(locusFailureOrSuccess) ^
-      const DeepCollectionEquality().hash(isSearching);
+      const DeepCollectionEquality().hash(isSearching) ^
+      const DeepCollectionEquality().hash(locusList) ^
+      const DeepCollectionEquality().hash(locusShowed);
 
   @JsonKey(ignore: true)
   @override
@@ -291,13 +479,19 @@ class _$_LocusState implements _LocusState {
 abstract class _LocusState implements LocusState {
   const factory _LocusState(
       {required Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess,
-      required bool isSearching}) = _$_LocusState;
+      required bool isSearching,
+      required KtList<Locus> locusList,
+      required Locus locusShowed}) = _$_LocusState;
 
   @override
   Option<Either<Failure, KtList<Locus>>> get locusFailureOrSuccess =>
       throw _privateConstructorUsedError;
   @override
   bool get isSearching => throw _privateConstructorUsedError;
+  @override
+  KtList<Locus> get locusList => throw _privateConstructorUsedError;
+  @override
+  Locus get locusShowed => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LocusStateCopyWith<_LocusState> get copyWith =>

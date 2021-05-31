@@ -18,4 +18,12 @@ class Locus with _$Locus {
     String? sequence,
     KtList<Feature>? features,
   }) = _Locus;
+
+  factory Locus.empty() => const Locus(
+        name: '',
+        length: 0,
+        type: '',
+        organism: '',
+        features: KtList.empty(),
+      );
 }

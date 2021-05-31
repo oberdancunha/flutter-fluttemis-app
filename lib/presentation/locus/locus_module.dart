@@ -10,7 +10,7 @@ class LocusModule extends Module {
   @override
   final List<Bind> binds = [
     Bind<ILocusDataSource>(
-      (i) => i.args!.params['locus_data_source_instance'] as ILocusDataSource,
+      (i) => i.args!.data as ILocusDataSource,
     ),
     Bind<ILocusRepository>((i) => LocusRepository(locusDataSource: i.get<ILocusDataSource>())),
     Bind<LocusBloc>(

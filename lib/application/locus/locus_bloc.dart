@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
@@ -25,11 +26,36 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
         yield state.copyWith(
           locusFailureOrSuccess: none(),
           isSearching: true,
+          locusList: const KtList.empty(),
+          locusShowed: Locus.empty(),
         );
         final locusFailureOrSuccess = await locusRepository.getLocus();
+        KtList<Locus> locus = const KtList.empty();
+        locusFailureOrSuccess.foldRight(
+          '',
+          (locusList, previous) => locus = locusList,
+        );
         yield state.copyWith(
           locusFailureOrSuccess: optionOf(locusFailureOrSuccess),
           isSearching: false,
+          locusList: locus,
+          locusShowed: Locus.empty(),
+        );
+      },
+      locusShowed: (e) async* {
+        yield state.copyWith(
+          isSearching: true,
+        );
+        Locus locusShowed = Locus.empty();
+        locusShowed = e.locusSearching == ''
+            ? state.locusList.first()
+            : state.locusList.asList().firstWhere(
+                  (locus) => locus.name == e.locusSearching,
+                );
+
+        yield state.copyWith(
+          isSearching: false,
+          locusShowed: locusShowed,
         );
       },
     );
