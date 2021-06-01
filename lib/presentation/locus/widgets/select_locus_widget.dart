@@ -8,6 +8,7 @@ class SelectLocusWidget extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         buildWhen: (stateA, stateB) => stateA.locusShowed != stateB.locusShowed,
         builder: (context, state) => Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text('Locus'),
             const SizedBox(width: 10),
@@ -31,7 +32,11 @@ class SelectLocusWidget extends StatelessWidget {
                 height: 2,
                 color: Colors.blue.shade900,
               ),
-              onChanged: (_) {},
+              onChanged: (locusSearching) {
+                context.read<LocusBloc>().add(
+                      LocusEvent.locusShowed(locusSearching: locusSearching!),
+                    );
+              },
             ),
           ],
         ),

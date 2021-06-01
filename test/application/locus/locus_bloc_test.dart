@@ -134,14 +134,4 @@ void main() {
       );
     },
   );
-
-  group(
-    'Locus showed | ',
-    () {
-      test(
-        'Get first locus to be show',
-        () {},
-      );
-    },
-  );
 }

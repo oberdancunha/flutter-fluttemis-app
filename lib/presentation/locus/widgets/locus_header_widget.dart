@@ -12,7 +12,13 @@ class LocusHeaderWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(state.locusShowed.organism),
+              Text(
+                state.locusShowed.organism,
+                style: const TextStyle(
+                  fontStyle: FontStyle.italic,
+                  fontSize: 20,
+                ),
+              ),
               const SizedBox(width: 40),
               SelectLocusWidget(),
             ],
