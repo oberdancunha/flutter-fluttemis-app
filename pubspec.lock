@@ -46,9 +46,11 @@ packages:
   bio:
     dependency: "direct main"
     description:
-      path: "../../Packages/bio"
-      relative: true
-    source: path
+      path: "."
+      ref: HEAD
+      resolved-ref: b72024349089f0016545debc7cc1bdc64f0ac15a
+      url: "https://github.com/oberdancunha/dart-bio-package.git"
+    source: git
     version: "0.0.1"
   bloc:
     dependency: transitive

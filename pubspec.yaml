@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   bio:
-    path: ../../Packages/bio
+    git: https://github.com/oberdancunha/dart-bio-package.git
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.2
   file_picker: ^3.0.2+2
