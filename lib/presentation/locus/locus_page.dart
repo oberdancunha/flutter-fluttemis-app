@@ -42,23 +42,13 @@ class LocusPage extends StatelessWidget {
                     fileIsEmpty: () => const Text('File is empty'),
                     fileFormatIncorrect: () => const Text('File format incorrect'),
                   ),
-                  (_) {
-                    if (state.isSearching) {
-                      return const CircularProgressIndicator();
-                    } else {
-                      context
-                          .read<LocusBloc>()
-                          .add(const LocusEvent.locusShowed(locusSearching: ''));
-
-                      return state.isSearching
-                          ? const CircularProgressIndicator()
-                          : Column(
-                              children: [
-                                LocusHeaderWidget(),
-                              ],
-                            );
-                    }
-                  },
+                  (_) => state.isSearching
+                      ? const CircularProgressIndicator()
+                      : Column(
+                          children: [
+                            LocusHeaderWidget(),
+                          ],
+                        ),
                 ),
               ),
             ),

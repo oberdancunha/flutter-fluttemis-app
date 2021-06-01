@@ -39,7 +39,7 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
           locusFailureOrSuccess: optionOf(locusFailureOrSuccess),
           isSearching: false,
           locusList: locus,
-          locusShowed: Locus.empty(),
+          locusShowed: locus.isNotEmpty() ? locus.first() : Locus.empty(),
         );
       },
       locusShowed: (e) async* {

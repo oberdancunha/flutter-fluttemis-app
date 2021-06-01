@@ -73,14 +73,14 @@ void main() {
                 LocusState(
                   locusFailureOrSuccess: none(),
                   isSearching: true,
-                  locusShowed: Locus.empty(),
                   locusList: const KtList.empty(),
+                  locusShowed: Locus.empty(),
                 ),
                 LocusState(
                   locusFailureOrSuccess: optionOf(right(mockLocus)),
                   isSearching: false,
-                  locusShowed: Locus.empty(),
                   locusList: mockLocus,
+                  locusShowed: mockLocus.first(),
                 ),
               ];
               await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
@@ -117,14 +117,14 @@ void main() {
                 LocusState(
                   locusFailureOrSuccess: none(),
                   isSearching: true,
-                  locusShowed: Locus.empty(),
                   locusList: const KtList.empty(),
+                  locusShowed: Locus.empty(),
                 ),
                 LocusState(
                   locusFailureOrSuccess: optionOf(left(const Failure.fileNotFound())),
                   isSearching: false,
-                  locusShowed: Locus.empty(),
                   locusList: const KtList.empty(),
+                  locusShowed: Locus.empty(),
                 ),
               ];
               await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
