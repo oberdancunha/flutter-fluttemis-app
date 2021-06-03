@@ -6,7 +6,7 @@ import '../../../application/locus/locus_bloc.dart';
 class SelectLocusWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
-        buildWhen: (stateA, stateB) => stateA.locusShowed != stateB.locusShowed,
+        buildWhen: (oldState, newState) => oldState.locusShowed != newState.locusShowed,
         builder: (context, state) => Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

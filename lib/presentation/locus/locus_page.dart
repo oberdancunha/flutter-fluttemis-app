@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/locus/locus_bloc.dart';
 import 'widgets/locus_header_widget.dart';
+import 'widgets/locus_scale_widget.dart';
 
 class LocusPage extends StatelessWidget {
   final LocusBloc locusBloc;
@@ -31,8 +32,8 @@ class LocusPage extends StatelessWidget {
               ),
             ),
             child: BlocBuilder<LocusBloc, LocusState>(
-              buildWhen: (stateA, stateB) =>
-                  stateA.locusFailureOrSuccess != stateB.locusFailureOrSuccess,
+              buildWhen: (oldState, newState) =>
+                  oldState.locusFailureOrSuccess != newState.locusFailureOrSuccess,
               builder: (context, state) => state.locusFailureOrSuccess.foldRight(
                 Container(),
                 (data, _) => data.fold(
@@ -47,6 +48,8 @@ class LocusPage extends StatelessWidget {
                       : Column(
                           children: [
                             LocusHeaderWidget(),
+                            const SizedBox(height: 70),
+                            LocusScaleWidget(),
                           ],
                         ),
                 ),
