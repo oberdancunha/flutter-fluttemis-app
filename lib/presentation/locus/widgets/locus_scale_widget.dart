@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/locus/locus_bloc.dart';
+import 'locus_features.dart';
 
 class LocusScaleWidget extends StatelessWidget {
   @override
@@ -12,48 +13,35 @@ class LocusScaleWidget extends StatelessWidget {
         builder: (context, state) {
           final screenSize = MediaQuery.of(context).size.width;
           final locusLength = state.locusShowed.length;
-          // final locusLength = 1234567;
-          final double? scalingFactor;
-          if (locusLength > 0 && locusLength <= 99999) {
-            scalingFactor = 2;
-          } else if (locusLength > 100000 && locusLength <= 999999) {
-            scalingFactor = 1.8;
-          } else if (locusLength > 1000000 && locusLength <= 9999999) {
-            scalingFactor = 1.7;
-          } else if (locusLength > 10000000 && locusLength <= 99999999) {
-            scalingFactor = 1.5;
-          } else if (locusLength > 100000000 && locusLength <= 999999999) {
-            scalingFactor = 1.4;
-          } else {
-            scalingFactor = 1;
-          }
-          final scaleByLocusLengthCharacters = locusLength.toString().length / scalingFactor;
-          final markingPoints = 5 * (pow(10, scaleByLocusLengthCharacters)).round();
+          final locusCharLength = locusLength.toString().length;
+          final scalingFactor = 2.0 - ((locusCharLength / 2) * 0.1);
+          final scaleByLocusLengthCharacters = locusCharLength / scalingFactor;
+          final markingPoints = 1 * (pow(10, scaleByLocusLengthCharacters)).round();
           final scale = (screenSize / locusLength) * scaleByLocusLengthCharacters;
           final screenWidthScale = locusLength * scale;
           final locusLengthScale = (locusLength * scale).round();
 
-          debugPrint(scale.toString());
-          debugPrint(scaleByLocusLengthCharacters.toString());
-          debugPrint(screenWidthScale.toString());
-          debugPrint(locusLengthScale.toString());
-          debugPrint(markingPoints.toString());
-
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Container(
-              width: screenWidthScale,
+              width: screenWidthScale + 16,
               height: 100,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
               ),
-              child: CustomPaint(
-                painter: PainterLocusScale(
-                  width: double.tryParse(locusLengthScale.toString())!,
-                  locusLength: locusLength,
-                  scale: scale,
-                  markingPoints: markingPoints,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: CustomPaint(
+                  painter: PainterLocusScale(
+                    width: double.tryParse(locusLengthScale.toString())!,
+                    locusLength: locusLength,
+                    scale: scale,
+                    markingPoints: markingPoints,
+                  ),
+                  child: LocusFeatures(
+                    scale: scale,
+                  ),
                 ),
               ),
             ),
@@ -86,12 +74,12 @@ class PainterLocusScale extends CustomPainter {
 
   void _drawLine(Canvas canvas, Paint paint) {
     final rightSizeAndAngle = Offset(width, 40);
-    const leftSizeAndAngle = Offset(10, 40);
+    const leftSizeAndAngle = Offset(1, 40);
     canvas.drawLine(rightSizeAndAngle, leftSizeAndAngle, paint);
     _paintCanvas(
       canvas: canvas,
       text: '1',
-      textAlign: 10,
+      textAlign: 1,
     );
     _paintCanvas(
       canvas: canvas,
@@ -99,9 +87,6 @@ class PainterLocusScale extends CustomPainter {
       textAlign: width - (locusLength.toString().length * 10),
     );
   }
-
-  // 254.58
-  // 83.4
 
   void _drawMarker(Canvas canvas, Paint paint) {
     for (int marker = markingPoints;
@@ -114,7 +99,7 @@ class PainterLocusScale extends CustomPainter {
       _paintCanvas(
         canvas: canvas,
         text: marker.toString(),
-        textAlign: markerScale - 20,
+        textAlign: markerScale,
       );
     }
   }
