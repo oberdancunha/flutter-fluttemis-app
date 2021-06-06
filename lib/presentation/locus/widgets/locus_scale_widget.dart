@@ -25,7 +25,7 @@ class LocusScaleWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             child: Container(
               width: screenWidthScale + 16,
-              height: 100,
+              height: 120,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -40,6 +40,7 @@ class LocusScaleWidget extends StatelessWidget {
                     markingPoints: markingPoints,
                   ),
                   child: LocusFeatures(
+                    screenWidthScale: screenWidthScale,
                     scale: scale,
                   ),
                 ),
