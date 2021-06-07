@@ -19,7 +19,8 @@ class LocusFeaturesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         buildWhen: (oldState, newState) =>
-            oldState.locusShowed.features != newState.locusShowed.features,
+            oldState.locusShowed.features != newState.locusShowed.features ||
+            oldState.locusFeatureShowed != newState.locusFeatureShowed,
         builder: (context, state) => CanvasTouchDetector(
           builder: (context) => CustomPaint(
             painter: DrawCustomFeature(
@@ -30,6 +31,8 @@ class LocusFeaturesWidget extends StatelessWidget {
                   .where((feature) => feature.type == 'CDS')
                   .toImmutableList(),
               scale: scale,
+              locusBloc: context.read<LocusBloc>(),
+              locusState: state,
             ),
           ),
         ),

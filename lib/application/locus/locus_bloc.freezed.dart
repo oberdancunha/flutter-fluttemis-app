@@ -20,9 +20,15 @@ class _$LocusEventTearOff {
     return const _GetLocus();
   }
 
-  _LocusShowed locusShowed({required String locusSearching}) {
-    return _LocusShowed(
+  _ShowLocus showLocus({required String locusSearching}) {
+    return _ShowLocus(
       locusSearching: locusSearching,
+    );
+  }
+
+  _ShowLocusFeature showLocusFeature({required Feature locusFeature}) {
+    return _ShowLocusFeature(
+      locusFeature: locusFeature,
     );
   }
 }
@@ -35,26 +41,30 @@ mixin _$LocusEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLocus,
-    required TResult Function(String locusSearching) locusShowed,
+    required TResult Function(String locusSearching) showLocus,
+    required TResult Function(Feature locusFeature) showLocusFeature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocus,
-    TResult Function(String locusSearching)? locusShowed,
+    TResult Function(String locusSearching)? showLocus,
+    TResult Function(Feature locusFeature)? showLocusFeature,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocus value) getLocus,
-    required TResult Function(_LocusShowed value) locusShowed,
+    required TResult Function(_ShowLocus value) showLocus,
+    required TResult Function(_ShowLocusFeature value) showLocusFeature,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocus value)? getLocus,
-    TResult Function(_LocusShowed value)? locusShowed,
+    TResult Function(_ShowLocus value)? showLocus,
+    TResult Function(_ShowLocusFeature value)? showLocusFeature,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,7 +124,8 @@ class _$_GetLocus implements _GetLocus {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLocus,
-    required TResult Function(String locusSearching) locusShowed,
+    required TResult Function(String locusSearching) showLocus,
+    required TResult Function(Feature locusFeature) showLocusFeature,
   }) {
     return getLocus();
   }
@@ -123,7 +134,8 @@ class _$_GetLocus implements _GetLocus {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocus,
-    TResult Function(String locusSearching)? locusShowed,
+    TResult Function(String locusSearching)? showLocus,
+    TResult Function(Feature locusFeature)? showLocusFeature,
     required TResult orElse(),
   }) {
     if (getLocus != null) {
@@ -136,7 +148,8 @@ class _$_GetLocus implements _GetLocus {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocus value) getLocus,
-    required TResult Function(_LocusShowed value) locusShowed,
+    required TResult Function(_ShowLocus value) showLocus,
+    required TResult Function(_ShowLocusFeature value) showLocusFeature,
   }) {
     return getLocus(this);
   }
@@ -145,7 +158,8 @@ class _$_GetLocus implements _GetLocus {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocus value)? getLocus,
-    TResult Function(_LocusShowed value)? locusShowed,
+    TResult Function(_ShowLocus value)? showLocus,
+    TResult Function(_ShowLocusFeature value)? showLocusFeature,
     required TResult orElse(),
   }) {
     if (getLocus != null) {
@@ -160,28 +174,27 @@ abstract class _GetLocus implements LocusEvent {
 }
 
 /// @nodoc
-abstract class _$LocusShowedCopyWith<$Res> {
-  factory _$LocusShowedCopyWith(
-          _LocusShowed value, $Res Function(_LocusShowed) then) =
-      __$LocusShowedCopyWithImpl<$Res>;
+abstract class _$ShowLocusCopyWith<$Res> {
+  factory _$ShowLocusCopyWith(
+          _ShowLocus value, $Res Function(_ShowLocus) then) =
+      __$ShowLocusCopyWithImpl<$Res>;
   $Res call({String locusSearching});
 }
 
 /// @nodoc
-class __$LocusShowedCopyWithImpl<$Res> extends _$LocusEventCopyWithImpl<$Res>
-    implements _$LocusShowedCopyWith<$Res> {
-  __$LocusShowedCopyWithImpl(
-      _LocusShowed _value, $Res Function(_LocusShowed) _then)
-      : super(_value, (v) => _then(v as _LocusShowed));
+class __$ShowLocusCopyWithImpl<$Res> extends _$LocusEventCopyWithImpl<$Res>
+    implements _$ShowLocusCopyWith<$Res> {
+  __$ShowLocusCopyWithImpl(_ShowLocus _value, $Res Function(_ShowLocus) _then)
+      : super(_value, (v) => _then(v as _ShowLocus));
 
   @override
-  _LocusShowed get _value => super._value as _LocusShowed;
+  _ShowLocus get _value => super._value as _ShowLocus;
 
   @override
   $Res call({
     Object? locusSearching = freezed,
   }) {
-    return _then(_LocusShowed(
+    return _then(_ShowLocus(
       locusSearching: locusSearching == freezed
           ? _value.locusSearching
           : locusSearching // ignore: cast_nullable_to_non_nullable
@@ -192,21 +205,21 @@ class __$LocusShowedCopyWithImpl<$Res> extends _$LocusEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LocusShowed implements _LocusShowed {
-  const _$_LocusShowed({required this.locusSearching});
+class _$_ShowLocus implements _ShowLocus {
+  const _$_ShowLocus({required this.locusSearching});
 
   @override
   final String locusSearching;
 
   @override
   String toString() {
-    return 'LocusEvent.locusShowed(locusSearching: $locusSearching)';
+    return 'LocusEvent.showLocus(locusSearching: $locusSearching)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _LocusShowed &&
+        (other is _ShowLocus &&
             (identical(other.locusSearching, locusSearching) ||
                 const DeepCollectionEquality()
                     .equals(other.locusSearching, locusSearching)));
@@ -219,27 +232,29 @@ class _$_LocusShowed implements _LocusShowed {
 
   @JsonKey(ignore: true)
   @override
-  _$LocusShowedCopyWith<_LocusShowed> get copyWith =>
-      __$LocusShowedCopyWithImpl<_LocusShowed>(this, _$identity);
+  _$ShowLocusCopyWith<_ShowLocus> get copyWith =>
+      __$ShowLocusCopyWithImpl<_ShowLocus>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getLocus,
-    required TResult Function(String locusSearching) locusShowed,
+    required TResult Function(String locusSearching) showLocus,
+    required TResult Function(Feature locusFeature) showLocusFeature,
   }) {
-    return locusShowed(locusSearching);
+    return showLocus(locusSearching);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getLocus,
-    TResult Function(String locusSearching)? locusShowed,
+    TResult Function(String locusSearching)? showLocus,
+    TResult Function(Feature locusFeature)? showLocusFeature,
     required TResult orElse(),
   }) {
-    if (locusShowed != null) {
-      return locusShowed(locusSearching);
+    if (showLocus != null) {
+      return showLocus(locusSearching);
     }
     return orElse();
   }
@@ -248,31 +263,164 @@ class _$_LocusShowed implements _LocusShowed {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_GetLocus value) getLocus,
-    required TResult Function(_LocusShowed value) locusShowed,
+    required TResult Function(_ShowLocus value) showLocus,
+    required TResult Function(_ShowLocusFeature value) showLocusFeature,
   }) {
-    return locusShowed(this);
+    return showLocus(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_GetLocus value)? getLocus,
-    TResult Function(_LocusShowed value)? locusShowed,
+    TResult Function(_ShowLocus value)? showLocus,
+    TResult Function(_ShowLocusFeature value)? showLocusFeature,
     required TResult orElse(),
   }) {
-    if (locusShowed != null) {
-      return locusShowed(this);
+    if (showLocus != null) {
+      return showLocus(this);
     }
     return orElse();
   }
 }
 
-abstract class _LocusShowed implements LocusEvent {
-  const factory _LocusShowed({required String locusSearching}) = _$_LocusShowed;
+abstract class _ShowLocus implements LocusEvent {
+  const factory _ShowLocus({required String locusSearching}) = _$_ShowLocus;
 
   String get locusSearching => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$LocusShowedCopyWith<_LocusShowed> get copyWith =>
+  _$ShowLocusCopyWith<_ShowLocus> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ShowLocusFeatureCopyWith<$Res> {
+  factory _$ShowLocusFeatureCopyWith(
+          _ShowLocusFeature value, $Res Function(_ShowLocusFeature) then) =
+      __$ShowLocusFeatureCopyWithImpl<$Res>;
+  $Res call({Feature locusFeature});
+
+  $FeatureCopyWith<$Res> get locusFeature;
+}
+
+/// @nodoc
+class __$ShowLocusFeatureCopyWithImpl<$Res>
+    extends _$LocusEventCopyWithImpl<$Res>
+    implements _$ShowLocusFeatureCopyWith<$Res> {
+  __$ShowLocusFeatureCopyWithImpl(
+      _ShowLocusFeature _value, $Res Function(_ShowLocusFeature) _then)
+      : super(_value, (v) => _then(v as _ShowLocusFeature));
+
+  @override
+  _ShowLocusFeature get _value => super._value as _ShowLocusFeature;
+
+  @override
+  $Res call({
+    Object? locusFeature = freezed,
+  }) {
+    return _then(_ShowLocusFeature(
+      locusFeature: locusFeature == freezed
+          ? _value.locusFeature
+          : locusFeature // ignore: cast_nullable_to_non_nullable
+              as Feature,
+    ));
+  }
+
+  @override
+  $FeatureCopyWith<$Res> get locusFeature {
+    return $FeatureCopyWith<$Res>(_value.locusFeature, (value) {
+      return _then(_value.copyWith(locusFeature: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$_ShowLocusFeature implements _ShowLocusFeature {
+  const _$_ShowLocusFeature({required this.locusFeature});
+
+  @override
+  final Feature locusFeature;
+
+  @override
+  String toString() {
+    return 'LocusEvent.showLocusFeature(locusFeature: $locusFeature)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ShowLocusFeature &&
+            (identical(other.locusFeature, locusFeature) ||
+                const DeepCollectionEquality()
+                    .equals(other.locusFeature, locusFeature)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(locusFeature);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ShowLocusFeatureCopyWith<_ShowLocusFeature> get copyWith =>
+      __$ShowLocusFeatureCopyWithImpl<_ShowLocusFeature>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() getLocus,
+    required TResult Function(String locusSearching) showLocus,
+    required TResult Function(Feature locusFeature) showLocusFeature,
+  }) {
+    return showLocusFeature(locusFeature);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? getLocus,
+    TResult Function(String locusSearching)? showLocus,
+    TResult Function(Feature locusFeature)? showLocusFeature,
+    required TResult orElse(),
+  }) {
+    if (showLocusFeature != null) {
+      return showLocusFeature(locusFeature);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_GetLocus value) getLocus,
+    required TResult Function(_ShowLocus value) showLocus,
+    required TResult Function(_ShowLocusFeature value) showLocusFeature,
+  }) {
+    return showLocusFeature(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_GetLocus value)? getLocus,
+    TResult Function(_ShowLocus value)? showLocus,
+    TResult Function(_ShowLocusFeature value)? showLocusFeature,
+    required TResult orElse(),
+  }) {
+    if (showLocusFeature != null) {
+      return showLocusFeature(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowLocusFeature implements LocusEvent {
+  const factory _ShowLocusFeature({required Feature locusFeature}) =
+      _$_ShowLocusFeature;
+
+  Feature get locusFeature => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ShowLocusFeatureCopyWith<_ShowLocusFeature> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -284,12 +432,14 @@ class _$LocusStateTearOff {
       {required Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess,
       required bool isSearching,
       required KtList<Locus> locusList,
-      required Locus locusShowed}) {
+      required Locus locusShowed,
+      Feature? locusFeatureShowed}) {
     return _LocusState(
       locusFailureOrSuccess: locusFailureOrSuccess,
       isSearching: isSearching,
       locusList: locusList,
       locusShowed: locusShowed,
+      locusFeatureShowed: locusFeatureShowed,
     );
   }
 }
@@ -304,6 +454,7 @@ mixin _$LocusState {
   bool get isSearching => throw _privateConstructorUsedError;
   KtList<Locus> get locusList => throw _privateConstructorUsedError;
   Locus get locusShowed => throw _privateConstructorUsedError;
+  Feature? get locusFeatureShowed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LocusStateCopyWith<LocusState> get copyWith =>
@@ -319,9 +470,11 @@ abstract class $LocusStateCopyWith<$Res> {
       {Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess,
       bool isSearching,
       KtList<Locus> locusList,
-      Locus locusShowed});
+      Locus locusShowed,
+      Feature? locusFeatureShowed});
 
   $LocusCopyWith<$Res> get locusShowed;
+  $FeatureCopyWith<$Res>? get locusFeatureShowed;
 }
 
 /// @nodoc
@@ -338,6 +491,7 @@ class _$LocusStateCopyWithImpl<$Res> implements $LocusStateCopyWith<$Res> {
     Object? isSearching = freezed,
     Object? locusList = freezed,
     Object? locusShowed = freezed,
+    Object? locusFeatureShowed = freezed,
   }) {
     return _then(_value.copyWith(
       locusFailureOrSuccess: locusFailureOrSuccess == freezed
@@ -356,6 +510,10 @@ class _$LocusStateCopyWithImpl<$Res> implements $LocusStateCopyWith<$Res> {
           ? _value.locusShowed
           : locusShowed // ignore: cast_nullable_to_non_nullable
               as Locus,
+      locusFeatureShowed: locusFeatureShowed == freezed
+          ? _value.locusFeatureShowed
+          : locusFeatureShowed // ignore: cast_nullable_to_non_nullable
+              as Feature?,
     ));
   }
 
@@ -363,6 +521,17 @@ class _$LocusStateCopyWithImpl<$Res> implements $LocusStateCopyWith<$Res> {
   $LocusCopyWith<$Res> get locusShowed {
     return $LocusCopyWith<$Res>(_value.locusShowed, (value) {
       return _then(_value.copyWith(locusShowed: value));
+    });
+  }
+
+  @override
+  $FeatureCopyWith<$Res>? get locusFeatureShowed {
+    if (_value.locusFeatureShowed == null) {
+      return null;
+    }
+
+    return $FeatureCopyWith<$Res>(_value.locusFeatureShowed!, (value) {
+      return _then(_value.copyWith(locusFeatureShowed: value));
     });
   }
 }
@@ -377,10 +546,13 @@ abstract class _$LocusStateCopyWith<$Res> implements $LocusStateCopyWith<$Res> {
       {Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess,
       bool isSearching,
       KtList<Locus> locusList,
-      Locus locusShowed});
+      Locus locusShowed,
+      Feature? locusFeatureShowed});
 
   @override
   $LocusCopyWith<$Res> get locusShowed;
+  @override
+  $FeatureCopyWith<$Res>? get locusFeatureShowed;
 }
 
 /// @nodoc
@@ -399,6 +571,7 @@ class __$LocusStateCopyWithImpl<$Res> extends _$LocusStateCopyWithImpl<$Res>
     Object? isSearching = freezed,
     Object? locusList = freezed,
     Object? locusShowed = freezed,
+    Object? locusFeatureShowed = freezed,
   }) {
     return _then(_LocusState(
       locusFailureOrSuccess: locusFailureOrSuccess == freezed
@@ -417,6 +590,10 @@ class __$LocusStateCopyWithImpl<$Res> extends _$LocusStateCopyWithImpl<$Res>
           ? _value.locusShowed
           : locusShowed // ignore: cast_nullable_to_non_nullable
               as Locus,
+      locusFeatureShowed: locusFeatureShowed == freezed
+          ? _value.locusFeatureShowed
+          : locusFeatureShowed // ignore: cast_nullable_to_non_nullable
+              as Feature?,
     ));
   }
 }
@@ -428,7 +605,8 @@ class _$_LocusState implements _LocusState {
       {required this.locusFailureOrSuccess,
       required this.isSearching,
       required this.locusList,
-      required this.locusShowed});
+      required this.locusShowed,
+      this.locusFeatureShowed});
 
   @override
   final Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess;
@@ -438,10 +616,12 @@ class _$_LocusState implements _LocusState {
   final KtList<Locus> locusList;
   @override
   final Locus locusShowed;
+  @override
+  final Feature? locusFeatureShowed;
 
   @override
   String toString() {
-    return 'LocusState(locusFailureOrSuccess: $locusFailureOrSuccess, isSearching: $isSearching, locusList: $locusList, locusShowed: $locusShowed)';
+    return 'LocusState(locusFailureOrSuccess: $locusFailureOrSuccess, isSearching: $isSearching, locusList: $locusList, locusShowed: $locusShowed, locusFeatureShowed: $locusFeatureShowed)';
   }
 
   @override
@@ -459,7 +639,10 @@ class _$_LocusState implements _LocusState {
                     .equals(other.locusList, locusList)) &&
             (identical(other.locusShowed, locusShowed) ||
                 const DeepCollectionEquality()
-                    .equals(other.locusShowed, locusShowed)));
+                    .equals(other.locusShowed, locusShowed)) &&
+            (identical(other.locusFeatureShowed, locusFeatureShowed) ||
+                const DeepCollectionEquality()
+                    .equals(other.locusFeatureShowed, locusFeatureShowed)));
   }
 
   @override
@@ -468,7 +651,8 @@ class _$_LocusState implements _LocusState {
       const DeepCollectionEquality().hash(locusFailureOrSuccess) ^
       const DeepCollectionEquality().hash(isSearching) ^
       const DeepCollectionEquality().hash(locusList) ^
-      const DeepCollectionEquality().hash(locusShowed);
+      const DeepCollectionEquality().hash(locusShowed) ^
+      const DeepCollectionEquality().hash(locusFeatureShowed);
 
   @JsonKey(ignore: true)
   @override
@@ -481,7 +665,8 @@ abstract class _LocusState implements LocusState {
       {required Option<Either<Failure, KtList<Locus>>> locusFailureOrSuccess,
       required bool isSearching,
       required KtList<Locus> locusList,
-      required Locus locusShowed}) = _$_LocusState;
+      required Locus locusShowed,
+      Feature? locusFeatureShowed}) = _$_LocusState;
 
   @override
   Option<Either<Failure, KtList<Locus>>> get locusFailureOrSuccess =>
@@ -492,6 +677,8 @@ abstract class _LocusState implements LocusState {
   KtList<Locus> get locusList => throw _privateConstructorUsedError;
   @override
   Locus get locusShowed => throw _privateConstructorUsedError;
+  @override
+  Feature? get locusFeatureShowed => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LocusStateCopyWith<_LocusState> get copyWith =>

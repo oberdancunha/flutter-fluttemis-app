@@ -34,7 +34,7 @@ class LocusSelectWidget extends StatelessWidget {
               ),
               onChanged: (locusSearching) {
                 context.read<LocusBloc>().add(
-                      LocusEvent.locusShowed(locusSearching: locusSearching!),
+                      LocusEvent.showLocus(locusSearching: locusSearching!),
                     );
               },
             ),

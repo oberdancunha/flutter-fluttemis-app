@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
 import '../../domain/core/failures.dart';
+import '../../domain/locus/feature.dart';
 import '../../domain/locus/i_locus_repository.dart';
 import '../../domain/locus/locus.dart';
 
@@ -42,7 +43,7 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
           locusShowed: locus.isNotEmpty() ? locus.first() : Locus.empty(),
         );
       },
-      locusShowed: (e) async* {
+      showLocus: (e) async* {
         yield state.copyWith(
           isSearching: true,
         );
@@ -56,6 +57,11 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
         yield state.copyWith(
           isSearching: false,
           locusShowed: locusShowed,
+        );
+      },
+      showLocusFeature: (e) async* {
+        yield state.copyWith(
+          locusFeatureShowed: e.locusFeature,
         );
       },
     );

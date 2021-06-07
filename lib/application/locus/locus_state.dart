@@ -7,6 +7,7 @@ class LocusState with _$LocusState {
     required bool isSearching,
     required KtList<Locus> locusList,
     required Locus locusShowed,
+    Feature? locusFeatureShowed,
   }) = _LocusState;
 
   factory LocusState.initial() => LocusState(
