@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/locus/locus_bloc.dart';
-import 'select_locus_widget.dart';
+import 'locus_select_widget.dart';
 
 class LocusHeaderWidget extends StatelessWidget {
   @override
@@ -20,7 +20,7 @@ class LocusHeaderWidget extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 40),
-              SelectLocusWidget(),
+              LocusSelectWidget(),
             ],
           ),
         ),
