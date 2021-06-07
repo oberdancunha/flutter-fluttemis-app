@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'feature.freezed.dart';
@@ -17,4 +18,11 @@ class Feature with _$Feature {
     String? aminoacids,
     String? note,
   }) = _Feature;
+
+  factory Feature.empty() => const Feature(
+        start: 0,
+        end: 0,
+        type: '',
+        strand: 0,
+      );
 }

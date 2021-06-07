@@ -57,6 +57,7 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
         yield state.copyWith(
           isSearching: false,
           locusShowed: locusShowed,
+          locusFeatureShowed: Feature.empty(),
         );
       },
       showLocusFeature: (e) async* {

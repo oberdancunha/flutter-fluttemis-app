@@ -67,6 +67,7 @@ class DrawCustomFeature extends CustomPainter {
     );
   }
 
+  // ignore: long-parameter-list
   void _drawLine(
     TouchyCanvas touchyCanvas,
     Paint paint, {
@@ -86,6 +87,7 @@ class DrawCustomFeature extends CustomPainter {
     );
   }
 
+  // ignore: long-parameter-list
   void _drawArrow(
     TouchyCanvas touchyCanvas,
     Paint paint, {
@@ -98,7 +100,7 @@ class DrawCustomFeature extends CustomPainter {
     const radius = 8.0;
     final radians = strand == 0 ? 0.0 : 20.0;
     const sides = 3.0;
-    final angle = (math.pi * 2) / sides;
+    const angle = (math.pi * 2) / sides;
     final center = Offset(leftOrRightPosition, topOrBottomPosition);
     final startPoint = Offset(
       radius * math.cos(radians),

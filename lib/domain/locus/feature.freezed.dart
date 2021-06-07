@@ -217,7 +217,7 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Feature extends _Feature {
+class _$_Feature extends _Feature with DiagnosticableTreeMixin {
   const _$_Feature(
       {required this.start,
       required this.end,
@@ -250,8 +250,24 @@ class _$_Feature extends _Feature {
   final String? note;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'Feature(start: $start, end: $end, type: $type, strand: $strand, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Feature'))
+      ..add(DiagnosticsProperty('start', start))
+      ..add(DiagnosticsProperty('end', end))
+      ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('strand', strand))
+      ..add(DiagnosticsProperty('name', name))
+      ..add(DiagnosticsProperty('product', product))
+      ..add(DiagnosticsProperty('nucleotides', nucleotides))
+      ..add(DiagnosticsProperty('aminoacids', aminoacids))
+      ..add(DiagnosticsProperty('note', note));
   }
 
   @override

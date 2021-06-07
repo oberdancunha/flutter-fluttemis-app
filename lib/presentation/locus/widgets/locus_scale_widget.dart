@@ -16,7 +16,7 @@ class LocusScaleWidget extends StatelessWidget {
           final scalingFactor =
               2.0 - ((locusLengthByCharacters / 2) * (locusLengthByCharacters / 10));
           final scaleByLocusLengthCharacters = locusLengthByCharacters / scalingFactor;
-          final markingPoints = 1 * (20 * scaleByLocusLengthCharacters).round();
+          final markingPoints = 1 * (scaleByLocusLengthCharacters * 20).round();
           final scale = (screenSize / locusLength) * scaleByLocusLengthCharacters;
           final screenWidthScale = locusLength * scale;
 

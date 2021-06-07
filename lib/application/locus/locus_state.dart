@@ -15,5 +15,6 @@ class LocusState with _$LocusState {
         isSearching: false,
         locusList: const KtList.empty(),
         locusShowed: Locus.empty(),
+        locusFeatureShowed: Feature.empty(),
       );
 }
