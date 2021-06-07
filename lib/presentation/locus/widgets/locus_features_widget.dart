@@ -4,13 +4,13 @@ import 'package:kt_dart/collection.dart';
 import 'package:touchable/touchable.dart';
 
 import '../../../application/locus/locus_bloc.dart';
-import '../draw/custom_draw_feature.dart';
+import '../draw/draw_custom_feature.dart';
 
-class LocusFeatures extends StatelessWidget {
+class LocusFeaturesWidget extends StatelessWidget {
   final double screenWidthScale;
   final double scale;
 
-  const LocusFeatures({
+  const LocusFeaturesWidget({
     required this.screenWidthScale,
     required this.scale,
     Key? key,
@@ -22,7 +22,7 @@ class LocusFeatures extends StatelessWidget {
             oldState.locusShowed.features != newState.locusShowed.features,
         builder: (context, state) => CanvasTouchDetector(
           builder: (context) => CustomPaint(
-            painter: CustomDrawFeature(
+            painter: DrawCustomFeature(
               screenWidthScale: screenWidthScale,
               context: context,
               features: state.locusShowed.features!

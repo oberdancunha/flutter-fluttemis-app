@@ -1,11 +1,9 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/locus/locus_bloc.dart';
-import '../draw/painter_locus_scale.dart';
-import 'locus_features.dart';
+import '../draw/draw_locus_scale.dart';
+import 'locus_features_widget.dart';
 
 class LocusScaleWidget extends StatelessWidget {
   @override
@@ -14,13 +12,13 @@ class LocusScaleWidget extends StatelessWidget {
         builder: (context, state) {
           final screenSize = MediaQuery.of(context).size.width;
           final locusLength = state.locusShowed.length;
-          final locusCharLength = locusLength.toString().length;
-          final scalingFactor = 2.0 - ((locusCharLength / 2) * 0.1);
-          final scaleByLocusLengthCharacters = locusCharLength / scalingFactor;
-          final markingPoints = 1 * (pow(10, scaleByLocusLengthCharacters)).round();
+          final locusLengthByCharacters = locusLength.toString().length;
+          final scalingFactor =
+              2.0 - ((locusLengthByCharacters / 2) * (locusLengthByCharacters / 10));
+          final scaleByLocusLengthCharacters = locusLengthByCharacters / scalingFactor;
+          final markingPoints = 1 * (20 * scaleByLocusLengthCharacters).round();
           final scale = (screenSize / locusLength) * scaleByLocusLengthCharacters;
           final screenWidthScale = locusLength * scale;
-          final locusLengthScale = (locusLength * scale).round();
 
           return SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -34,13 +32,13 @@ class LocusScaleWidget extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: CustomPaint(
-                  painter: PainterLocusScale(
-                    width: double.tryParse(locusLengthScale.toString())!,
+                  painter: DrawLocusScale(
+                    width: double.tryParse(screenWidthScale.toString())!,
                     locusLength: locusLength,
                     scale: scale,
                     markingPoints: markingPoints,
                   ),
-                  child: LocusFeatures(
+                  child: LocusFeaturesWidget(
                     screenWidthScale: screenWidthScale,
                     scale: scale,
                   ),

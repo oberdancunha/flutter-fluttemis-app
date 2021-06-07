@@ -9,19 +9,22 @@ class LocusHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         builder: (_, state) => Padding(
           padding: const EdgeInsets.all(8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                state.locusShowed.organism,
-                style: const TextStyle(
-                  fontStyle: FontStyle.italic,
-                  fontSize: 20,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  state.locusShowed.organism,
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 40),
-              LocusSelectWidget(),
-            ],
+                const SizedBox(width: 40),
+                LocusSelectWidget(),
+              ],
+            ),
           ),
         ),
       );

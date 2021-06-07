@@ -6,13 +6,13 @@ import 'package:touchable/touchable.dart';
 
 import '../../../domain/locus/feature.dart';
 
-class CustomDrawFeature extends CustomPainter {
+class DrawCustomFeature extends CustomPainter {
   final double screenWidthScale;
   final BuildContext context;
   final KtList<Feature> features;
   final double scale;
 
-  CustomDrawFeature({
+  DrawCustomFeature({
     required this.screenWidthScale,
     required this.context,
     required this.features,
@@ -30,7 +30,10 @@ class CustomDrawFeature extends CustomPainter {
       (feature) {
         final featureStart = feature.start * scale;
         final featureEnd = feature.end * scale;
-        final Function(TapUpDetails) tapAction = (_) {};
+        final Function(TapUpDetails) tapAction = (_) {
+          debugPrint(feature.start.toString());
+          debugPrint(feature.end.toString());
+        };
         _drawLine(
           touchyCanvas,
           paint,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class PainterLocusScale extends CustomPainter {
+class DrawLocusScale extends CustomPainter {
   final double width;
   final int locusLength;
   final double scale;
   final int markingPoints;
 
-  PainterLocusScale({
+  DrawLocusScale({
     required this.width,
     required this.locusLength,
     required this.scale,
@@ -40,7 +40,7 @@ class PainterLocusScale extends CustomPainter {
 
   void _drawMarker(Canvas canvas, Paint paint) {
     for (int marker = markingPoints;
-        marker < (locusLength - markingPoints);
+        (marker + markingPoints) < (locusLength - markingPoints);
         marker += markingPoints) {
       final markerScale = marker * scale;
       final topMarker = Offset(markerScale, 35);
