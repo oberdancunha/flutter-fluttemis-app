@@ -1,5 +1,7 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../utils/constants.dart';
 
 part 'feature.freezed.dart';
 
@@ -12,6 +14,7 @@ class Feature with _$Feature {
     required int end,
     required String type,
     required int strand,
+    required Color color,
     String? name,
     String? product,
     String? nucleotides,
@@ -24,5 +27,6 @@ class Feature with _$Feature {
         end: 0,
         type: '',
         strand: 0,
+        color: colorLocusFeatureNotProduct,
       );
 }

@@ -1,5 +1,6 @@
 import 'package:fluttemis/domain/locus/feature.dart';
 import 'package:fluttemis/domain/locus/locus.dart';
+import 'package:fluttemis/utils/constants.dart';
 import 'package:kt_dart/kt.dart';
 
 KtList<Locus> getLocus() => KtList.of(
@@ -21,6 +22,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         end: 5028,
         type: 'source',
         strand: 0,
+        color: colorLocusFeatureNotProduct,
       ),
       const Feature(
         start: 1,
@@ -28,6 +30,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         type: 'mRNA',
         strand: 0,
         product: 'TCP1-beta',
+        color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
         start: 1,
@@ -36,6 +39,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         strand: 0,
         product: 'TCP1-beta',
         aminoacids: 'SSIYNGISTSGLDLNNGTIADMRQLGIVESYKLKRAVVSSASEAAEVLLRVDNIIRARPRTANRQHM',
+        color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
         start: 687,
@@ -43,6 +47,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         type: 'gene',
         strand: 0,
         name: 'AXL2',
+        color: colorLocusFeatureNotProduct,
       ),
       const Feature(
         start: 687,
@@ -51,6 +56,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         strand: 0,
         product: 'Axl2p',
         name: 'AXL2',
+        color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
         start: 687,
@@ -62,6 +68,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         note: 'plasma membrane glycoprotein',
         aminoacids:
             'MTQLQISLLLTATISLLHLVVATPYEAYPIGKQYPPVARVNESFTFQISNDTYKSSVDKTAQITYNCFDLPSWLSFDSSSRTFSGEPSSDLLSDANTTLYFNVILEGTDSADSTSLNNTYQFVVTNRPSISLSSDFNLLALLKNYGYTNGKNALKLDPNEVFNVTFDRSMFTNEESIVSYYGRSQLYNAPLPNWLFFDSGELKFTGTAPVINSAIAPETSYSFVIIATDIEGFSAVEVEFELVIGAHQLTTSIQNSLIINVTDTGNVSYDLPLNYVYLDDDPISSDKLGSINLLDAPDWVALDNATISGSVPDELLGKNSNPANFSVSIYDTYGDVIYFNFEVVSTTDLFAISSLPNINATRGEWFSYYFLPSQFTDYVNTNVSLEFTNSSQDHDWVKFQSSNLTLAGEVPKNFDKLSLGLKANQGSQSQELYFNIIGMDSKITHSNHSANATSTRSSHHSTSTSSYTSSTYTAKISSTSAAATSSAPAALPAANKTSSHNKKAVAIACGVAIPLGVILVALICFLIFWRRRRENPDDENLPHAISGPDLNNPANKPNQENATPLNNPFDDDASSYDDTSIARRLAALNTLKLDNHSATESDISSVDEKRDSLSGMNTYNDQFQSQSKEELLAKPPVQPPESPFFDPQNRSSSVYMDSEPAVNKSWRYTGNLSPVSDIVRDSYGSQKTVDTEKLFDLEAPEKEKRTSRDVTMSSLDPWNSNISPSPVRKSVTPSPYNVTKHRNRHLQNIQDSQSGKNGITPTTMSTSSSDDFVPVKDGENFCWVHSMEPDRRPSKKRLVDFSNKSNVNVGQVKDIHGRIPEML',
+        color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
         start: 3300,
@@ -69,6 +76,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         type: 'gene',
         strand: 1,
         name: 'REV7',
+        color: colorLocusFeatureNotProduct,
       ),
       const Feature(
         start: 3300,
@@ -77,6 +85,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         strand: 1,
         product: 'Rev7p',
         name: 'REV7',
+        color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
         start: 3300,
@@ -87,6 +96,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         name: 'REV7',
         aminoacids:
             'MNRWVEKWLRVYLKCYINLILFYRNVYPPQSFDYTTYQSFNLPQFVPINRHPALIDYIEELILDVLSKLTHVYRFSICIINKKNDLCIEKYVLDFSELQHVDKDDQIITETEVFDEFRSSLNSLIMHLEKLPKVNDDTITFEAVINAIELELGHKLDRNRRVDSLEEKAEIERDSNWVKCQEDENLPDNNGFQPPKIKLTSLVGSDVGPLIIHQFSEKLISGDDKILNGVYSQYEEGESIFGSLF',
+        color: colorLocusFeatureKnownProduct,
       ),
     );
 

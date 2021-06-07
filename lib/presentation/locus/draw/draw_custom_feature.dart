@@ -29,7 +29,7 @@ class DrawCustomFeature extends CustomPainter {
     final touchyCanvas = TouchyCanvas(context, canvas);
     features.forEach(
       (feature) {
-        var paint = Paint()..color = Colors.green;
+        var paint = Paint()..color = feature.color;
         final featureStart = feature.start * scale;
         final featureEnd = feature.end * scale;
         var adjustArrow = 1;

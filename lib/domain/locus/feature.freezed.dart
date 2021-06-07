@@ -21,6 +21,7 @@ class _$FeatureTearOff {
       required int end,
       required String type,
       required int strand,
+      required Color color,
       String? name,
       String? product,
       String? nucleotides,
@@ -31,6 +32,7 @@ class _$FeatureTearOff {
       end: end,
       type: type,
       strand: strand,
+      color: color,
       name: name,
       product: product,
       nucleotides: nucleotides,
@@ -49,6 +51,7 @@ mixin _$Feature {
   int get end => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   int get strand => throw _privateConstructorUsedError;
+  Color get color => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get product => throw _privateConstructorUsedError;
   String? get nucleotides => throw _privateConstructorUsedError;
@@ -68,6 +71,7 @@ abstract class $FeatureCopyWith<$Res> {
       int end,
       String type,
       int strand,
+      Color color,
       String? name,
       String? product,
       String? nucleotides,
@@ -89,6 +93,7 @@ class _$FeatureCopyWithImpl<$Res> implements $FeatureCopyWith<$Res> {
     Object? end = freezed,
     Object? type = freezed,
     Object? strand = freezed,
+    Object? color = freezed,
     Object? name = freezed,
     Object? product = freezed,
     Object? nucleotides = freezed,
@@ -112,6 +117,10 @@ class _$FeatureCopyWithImpl<$Res> implements $FeatureCopyWith<$Res> {
           ? _value.strand
           : strand // ignore: cast_nullable_to_non_nullable
               as int,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -146,6 +155,7 @@ abstract class _$FeatureCopyWith<$Res> implements $FeatureCopyWith<$Res> {
       int end,
       String type,
       int strand,
+      Color color,
       String? name,
       String? product,
       String? nucleotides,
@@ -168,6 +178,7 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
     Object? end = freezed,
     Object? type = freezed,
     Object? strand = freezed,
+    Object? color = freezed,
     Object? name = freezed,
     Object? product = freezed,
     Object? nucleotides = freezed,
@@ -191,6 +202,10 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
           ? _value.strand
           : strand // ignore: cast_nullable_to_non_nullable
               as int,
+      color: color == freezed
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -217,12 +232,13 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Feature extends _Feature with DiagnosticableTreeMixin {
+class _$_Feature extends _Feature {
   const _$_Feature(
       {required this.start,
       required this.end,
       required this.type,
       required this.strand,
+      required this.color,
       this.name,
       this.product,
       this.nucleotides,
@@ -239,6 +255,8 @@ class _$_Feature extends _Feature with DiagnosticableTreeMixin {
   @override
   final int strand;
   @override
+  final Color color;
+  @override
   final String? name;
   @override
   final String? product;
@@ -250,24 +268,8 @@ class _$_Feature extends _Feature with DiagnosticableTreeMixin {
   final String? note;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Feature(start: $start, end: $end, type: $type, strand: $strand, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'Feature'))
-      ..add(DiagnosticsProperty('start', start))
-      ..add(DiagnosticsProperty('end', end))
-      ..add(DiagnosticsProperty('type', type))
-      ..add(DiagnosticsProperty('strand', strand))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('product', product))
-      ..add(DiagnosticsProperty('nucleotides', nucleotides))
-      ..add(DiagnosticsProperty('aminoacids', aminoacids))
-      ..add(DiagnosticsProperty('note', note));
+  String toString() {
+    return 'Feature(start: $start, end: $end, type: $type, strand: $strand, color: $color, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
   }
 
   @override
@@ -282,6 +284,8 @@ class _$_Feature extends _Feature with DiagnosticableTreeMixin {
                 const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.strand, strand) ||
                 const DeepCollectionEquality().equals(other.strand, strand)) &&
+            (identical(other.color, color) ||
+                const DeepCollectionEquality().equals(other.color, color)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.product, product) ||
@@ -304,6 +308,7 @@ class _$_Feature extends _Feature with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(end) ^
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(strand) ^
+      const DeepCollectionEquality().hash(color) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(product) ^
       const DeepCollectionEquality().hash(nucleotides) ^
@@ -322,6 +327,7 @@ abstract class _Feature extends Feature {
       required int end,
       required String type,
       required int strand,
+      required Color color,
       String? name,
       String? product,
       String? nucleotides,
@@ -337,6 +343,8 @@ abstract class _Feature extends Feature {
   String get type => throw _privateConstructorUsedError;
   @override
   int get strand => throw _privateConstructorUsedError;
+  @override
+  Color get color => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
   @override

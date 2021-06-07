@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../domain/core/value_transformer.dart';
 import '../domain/locus/feature.dart';
 
 part 'feature_dto.freezed.dart';
@@ -18,6 +20,7 @@ class FeatureDto with _$FeatureDto {
     String? nucleotides,
     String? aminoacids,
     String? note,
+    Color? color,
   }) = _FeatureDto;
 
   Feature toDomain() => Feature(
@@ -29,5 +32,6 @@ class FeatureDto with _$FeatureDto {
         name: name,
         note: note,
         product: product,
+        color: colorLocusFeatureByProduct(product ?? ''),
       );
 }

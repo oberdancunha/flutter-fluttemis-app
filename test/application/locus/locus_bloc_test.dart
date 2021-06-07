@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:fluttemis/application/locus/locus_bloc.dart';
 import 'package:fluttemis/domain/core/failures.dart';
+import 'package:fluttemis/domain/locus/feature.dart';
 import 'package:fluttemis/domain/locus/i_locus_repository.dart';
 import 'package:fluttemis/domain/locus/locus.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -75,12 +76,14 @@ void main() {
                   isSearching: true,
                   locusList: const KtList.empty(),
                   locusShowed: Locus.empty(),
+                  locusFeatureShowed: Feature.empty(),
                 ),
                 LocusState(
                   locusFailureOrSuccess: optionOf(right(mockLocus)),
                   isSearching: false,
                   locusList: mockLocus,
                   locusShowed: mockLocus.first(),
+                  locusFeatureShowed: Feature.empty(),
                 ),
               ];
               await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
@@ -119,12 +122,14 @@ void main() {
                   isSearching: true,
                   locusList: const KtList.empty(),
                   locusShowed: Locus.empty(),
+                  locusFeatureShowed: Feature.empty(),
                 ),
                 LocusState(
                   locusFailureOrSuccess: optionOf(left(const Failure.fileNotFound())),
                   isSearching: false,
                   locusList: const KtList.empty(),
                   locusShowed: Locus.empty(),
+                  locusFeatureShowed: Feature.empty(),
                 ),
               ];
               await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
