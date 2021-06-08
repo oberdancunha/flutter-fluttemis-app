@@ -34,9 +34,10 @@ class DrawCustomFeature extends CustomPainter {
         final featureEnd = feature.end * scale;
         var adjustArrow = 1;
         if (locusState.locusFeatureShowed != null) {
-          if (feature.start == locusState.locusFeatureShowed!.start &&
+          final featureChoosed = feature.start == locusState.locusFeatureShowed!.start &&
               feature.end == locusState.locusFeatureShowed!.end &&
-              feature.strand == locusState.locusFeatureShowed!.strand) {
+              feature.strand == locusState.locusFeatureShowed!.strand;
+          if (featureChoosed) {
             paint = paint
               ..strokeWidth = 2
               ..style = PaintingStyle.stroke;
@@ -67,7 +68,6 @@ class DrawCustomFeature extends CustomPainter {
     );
   }
 
-  // ignore: long-parameter-list
   void _drawLine(
     TouchyCanvas touchyCanvas,
     Paint paint, {
@@ -87,7 +87,6 @@ class DrawCustomFeature extends CustomPainter {
     );
   }
 
-  // ignore: long-parameter-list
   void _drawArrow(
     TouchyCanvas touchyCanvas,
     Paint paint, {
@@ -107,9 +106,9 @@ class DrawCustomFeature extends CustomPainter {
       radius * math.sin(radians),
     );
     path.moveTo(startPoint.dx + center.dx, startPoint.dy + center.dy);
-    for (int i = 1; i <= sides; i++) {
-      final x = radius * math.cos(radians + angle * i) + center.dx;
-      final y = radius * math.sin(radians + angle * i) + center.dy;
+    for (int edge = 1; edge <= sides; edge++) {
+      final x = radius * math.cos(radians + angle * edge) + center.dx;
+      final y = radius * math.sin(radians + angle * edge) + center.dy;
       path.lineTo(x, y);
     }
     path.close();

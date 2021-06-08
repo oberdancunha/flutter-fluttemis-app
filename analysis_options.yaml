@@ -16,6 +16,9 @@ analyzer:
     avoid_function_literals_in_foreach_calls: ignore
     sort_pub_dependencies: ignore
     redirect_to_invalid_function_type: ignore
+    prefer_function_declarations_over_variables: ignore
+    overridden_fields: ignore
+    implementation_imports: ignore
 
 dart_code_metrics:
   anti-patterns:

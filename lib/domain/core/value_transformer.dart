@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 import '../../utils/constants.dart';
+import '../../utils/product_dictionary.dart';
 
 Color colorLocusFeatureByProduct(String product) {
-  product = product.toLowerCase();
   if (product.isEmpty) {
     return colorLocusFeatureNotProduct;
-  } else if (product.contains('unknown') || product.contains('uncharacterized')) {
-    return colorLocusFeatureUnknownProduct;
-  } else if (product.contains('hypothetical')) {
-    return colorLocusFeatureHypotheticalProduct;
-  } else {
-    return colorLocusFeatureKnownProduct;
   }
+  final productColor = productDictionary.keys.firstWhere(
+    (termColor) => productDictionary[termColor]!
+        .where(
+          (term) => product.toLowerCase().contains(term),
+        )
+        .isNotEmpty,
+    orElse: () => colorLocusFeatureKnownProduct,
+  );
+
+  return productColor;
 }
