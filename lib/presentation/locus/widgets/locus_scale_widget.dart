@@ -10,14 +10,17 @@ class LocusScaleWidget extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         buildWhen: (oldState, newState) => oldState.locusShowed != newState.locusShowed,
         builder: (context, state) {
-          final screenSize = MediaQuery.of(context).size.width;
+          final screenWidth = MediaQuery.of(context).size.width;
           final locusLength = state.locusShowed.length;
-          final locusLengthByCharacters = locusLength.toString().length;
-          final scalingFactor =
-              2.0 - ((locusLengthByCharacters / 2) * (locusLengthByCharacters / 10));
-          final scaleByLocusLengthCharacters = locusLengthByCharacters / scalingFactor;
-          final markingPoints = 1 * (scaleByLocusLengthCharacters * 20).round();
-          final scale = (screenSize / locusLength) * scaleByLocusLengthCharacters;
+          final maxCharacterToMarker = locusLength.toString().length;
+          const minPixelsPerCharacter = 10;
+          var pixelsPerCharacter = ((locusLength / screenWidth) / maxCharacterToMarker).round();
+          if (pixelsPerCharacter < minPixelsPerCharacter) {
+            pixelsPerCharacter = minPixelsPerCharacter;
+          }
+          final maxWidthPerMarker = pixelsPerCharacter * maxCharacterToMarker;
+          final markingPoints = (locusLength / maxWidthPerMarker).round();
+          final scale = (screenWidth / locusLength) * (pixelsPerCharacter / 3);
           final screenWidthScale = locusLength * scale;
 
           return SingleChildScrollView(
