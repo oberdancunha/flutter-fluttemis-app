@@ -49,7 +49,7 @@ class LocusPage extends StatelessWidget {
                       : Column(
                           children: const [
                             LocusHeaderWidget(),
-                            SizedBox(height: 70),
+                            SizedBox(height: 40),
                             LocusDrawWidget(),
                             LocusFeaturesDetails(),
                           ],

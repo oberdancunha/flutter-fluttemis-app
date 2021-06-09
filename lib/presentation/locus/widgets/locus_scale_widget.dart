@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/locus/locus_bloc.dart';
+import '../../../domain/locus/feature.dart';
 import '../draw/draw_locus_scale.dart';
 import 'locus_features_widget.dart';
 
@@ -12,7 +14,6 @@ class LocusScaleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
-        buildWhen: (oldState, newState) => oldState.locusShowed != newState.locusShowed,
         builder: (context, state) {
           final screenWidth = MediaQuery.of(context).size.width;
           final locusLength = state.locusShowed.length;
@@ -27,28 +28,40 @@ class LocusScaleWidget extends StatelessWidget {
           final scale = (screenWidth / locusLength) * (pixelsPerCharacter / 3);
           final screenWidthScale = locusLength * scale;
 
-          return Scrollbar(
-            isAlwaysShown: true,
-            controller: _scrollController,
-            showTrackOnHover: true,
-            interactive: true,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
+          return NotificationListener<ScrollNotification>(
+            onNotification: (scrollNotification) {
+              final isFeatureDetailsToBeHide = scrollNotification is ScrollUpdateNotification &&
+                  state.locusFeatureShowed!.id != '';
+              if (isFeatureDetailsToBeHide) {
+                context
+                    .read<LocusBloc>()
+                    .add(LocusEvent.showLocusFeature(locusFeature: Feature.empty()));
+              }
+              return true;
+            },
+            child: Scrollbar(
+              isAlwaysShown: true,
               controller: _scrollController,
-              child: SizedBox(
-                width: screenWidthScale,
-                height: 120,
-                child: CustomPaint(
-                  painter: DrawLocusScale(
-                    width: double.tryParse(screenWidthScale.toString())!,
-                    locusLength: locusLength,
-                    scale: scale,
-                    markingPoints: markingPoints,
-                    locusLengthByCharacters: locusLengthByCharacters,
-                  ),
-                  child: LocusFeaturesWidget(
-                    screenWidthScale: screenWidthScale,
-                    scale: scale,
+              showTrackOnHover: true,
+              interactive: true,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                controller: _scrollController,
+                child: SizedBox(
+                  width: screenWidthScale,
+                  height: 120,
+                  child: CustomPaint(
+                    painter: DrawLocusScale(
+                      width: double.tryParse(screenWidthScale.toString())!,
+                      locusLength: locusLength,
+                      scale: scale,
+                      markingPoints: markingPoints,
+                      locusLengthByCharacters: locusLengthByCharacters,
+                    ),
+                    child: LocusFeaturesWidget(
+                      screenWidthScale: screenWidthScale,
+                      scale: scale,
+                    ),
                   ),
                 ),
               ),
