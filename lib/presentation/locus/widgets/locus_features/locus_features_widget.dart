@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:touchable/touchable.dart';
 
-import '../../../application/locus/locus_bloc.dart';
-import '../draw/draw_custom_feature.dart';
+import '../../../../application/locus/locus_bloc.dart';
+import '../../draw/draw_locus_feature.dart';
 
 class LocusFeaturesWidget extends StatelessWidget {
   final double screenWidthScale;
@@ -23,7 +23,7 @@ class LocusFeaturesWidget extends StatelessWidget {
             oldState.locusFeatureShowed != newState.locusFeatureShowed,
         builder: (context, state) => CanvasTouchDetector(
           builder: (context) => CustomPaint(
-            painter: DrawCustomFeature(
+            painter: DrawLocusFeature(
               screenWidthScale: screenWidthScale,
               context: context,
               features: state.locusShowed.features!

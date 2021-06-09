@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../application/locus/locus_bloc.dart';
+import '../../../../application/locus/locus_bloc.dart';
 
 class LocusFeaturesDetails extends StatelessWidget {
   const LocusFeaturesDetails({Key? key}) : super(key: key);

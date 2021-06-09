@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'locus_features_colors_labels.dart';
-import 'locus_scale_widget.dart';
+import 'locus_features_scale_widget.dart';
 
-class LocusDrawWidget extends StatelessWidget {
-  const LocusDrawWidget({Key? key}) : super(key: key);
+class LocusFeaturesBodyWidget extends StatelessWidget {
+  const LocusFeaturesBodyWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(
@@ -29,7 +29,7 @@ class LocusDrawWidget extends StatelessWidget {
               const SizedBox(height: 10),
               const LocusFeaturesColorsLabels(),
               const SizedBox(height: 15),
-              LocusScaleWidget(),
+              LocusFeaturesScaleWidget(),
             ],
           ),
         ),

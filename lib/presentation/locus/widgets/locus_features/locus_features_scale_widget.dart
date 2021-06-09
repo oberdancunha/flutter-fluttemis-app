@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../application/locus/locus_bloc.dart';
-import '../../../domain/locus/feature.dart';
-import '../draw/draw_locus_scale.dart';
+import '../../../../application/locus/locus_bloc.dart';
+import '../../../../domain/locus/feature.dart';
+import '../../draw/draw_locus_scale.dart';
 import 'locus_features_widget.dart';
 
-class LocusScaleWidget extends StatelessWidget {
+class LocusFeaturesScaleWidget extends StatelessWidget {
   final _scrollController = ScrollController();
 
-  LocusScaleWidget({Key? key}) : super(key: key);
+  LocusFeaturesScaleWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
@@ -37,6 +37,7 @@ class LocusScaleWidget extends StatelessWidget {
                     .read<LocusBloc>()
                     .add(LocusEvent.showLocusFeature(locusFeature: Feature.empty()));
               }
+
               return true;
             },
             child: Scrollbar(
