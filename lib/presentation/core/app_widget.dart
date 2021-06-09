@@ -8,6 +8,7 @@ class AppWidget extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: 'Roboto',
         ),
         initialRoute: '/',
       ).modular();

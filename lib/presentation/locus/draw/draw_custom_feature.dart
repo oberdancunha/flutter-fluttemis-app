@@ -33,20 +33,29 @@ class DrawCustomFeature extends CustomPainter {
         final featureStart = feature.start * scale;
         final featureEnd = feature.end * scale;
         var adjustArrow = 1;
-        if (locusState.locusFeatureShowed != null) {
+        Function(TapUpDetails) tapAction;
+        if (locusState.locusFeatureShowed!.start > 0) {
           final featureChoosed = feature.start == locusState.locusFeatureShowed!.start &&
               feature.end == locusState.locusFeatureShowed!.end &&
               feature.strand == locusState.locusFeatureShowed!.strand;
           if (featureChoosed) {
             paint = paint
-              ..strokeWidth = 2
+              ..strokeWidth = 4
               ..style = PaintingStyle.stroke;
             adjustArrow = 0;
+            tapAction = (_) {
+              locusBloc.add(LocusEvent.showLocusFeature(locusFeature: Feature.empty()));
+            };
+          } else {
+            tapAction = (_) {
+              locusBloc.add(LocusEvent.showLocusFeature(locusFeature: feature));
+            };
           }
+        } else {
+          tapAction = (_) {
+            locusBloc.add(LocusEvent.showLocusFeature(locusFeature: feature));
+          };
         }
-        final Function(TapUpDetails) tapAction = (_) {
-          locusBloc.add(LocusEvent.showLocusFeature(locusFeature: feature));
-        };
         _drawLine(
           touchyCanvas,
           paint,
@@ -77,7 +86,7 @@ class DrawCustomFeature extends CustomPainter {
     required double bottom,
     required Function(TapUpDetails) tapAction,
   }) {
-    final borderRadius = BorderRadius.circular(0);
+    final borderRadius = BorderRadius.circular(5);
     final rect = Rect.fromLTRB(left, top, right, bottom);
     final rrect = borderRadius.toRRect(rect);
     touchyCanvas.drawRRect(

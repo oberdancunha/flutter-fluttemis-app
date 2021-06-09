@@ -27,8 +27,8 @@ class LocusPage extends StatelessWidget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.orange.shade100,
-                  Colors.blue.shade100,
+                  Colors.grey.shade100,
+                  Colors.blueGrey.shade100,
                 ],
               ),
             ),
