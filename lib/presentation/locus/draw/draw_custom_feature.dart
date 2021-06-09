@@ -29,28 +29,20 @@ class DrawCustomFeature extends CustomPainter {
     final touchyCanvas = TouchyCanvas(context, canvas);
     features.forEach(
       (feature) {
-        var paint = Paint()..color = feature.color;
         final featureStart = feature.start * scale;
         final featureEnd = feature.end * scale;
+        final isFeatureSelected = feature.id == locusState.locusFeatureShowed!.id;
+        var paint = Paint()..color = feature.color;
         var adjustArrow = 1;
         Function(TapUpDetails) tapAction;
-        if (locusState.locusFeatureShowed!.start > 0) {
-          final featureChoosed = feature.start == locusState.locusFeatureShowed!.start &&
-              feature.end == locusState.locusFeatureShowed!.end &&
-              feature.strand == locusState.locusFeatureShowed!.strand;
-          if (featureChoosed) {
-            paint = paint
-              ..strokeWidth = 4
-              ..style = PaintingStyle.stroke;
-            adjustArrow = 0;
-            tapAction = (_) {
-              locusBloc.add(LocusEvent.showLocusFeature(locusFeature: Feature.empty()));
-            };
-          } else {
-            tapAction = (_) {
-              locusBloc.add(LocusEvent.showLocusFeature(locusFeature: feature));
-            };
-          }
+        if (isFeatureSelected) {
+          paint = paint
+            ..strokeWidth = 4
+            ..style = PaintingStyle.stroke;
+          adjustArrow = 0;
+          tapAction = (_) {
+            locusBloc.add(LocusEvent.showLocusFeature(locusFeature: Feature.empty()));
+          };
         } else {
           tapAction = (_) {
             locusBloc.add(LocusEvent.showLocusFeature(locusFeature: feature));
@@ -106,9 +98,9 @@ class DrawCustomFeature extends CustomPainter {
   }) {
     final path = Path();
     const radius = 8.0;
-    final radians = strand == 0 ? 0.0 : 20.0;
     const sides = 3.0;
     const angle = (math.pi * 2) / sides;
+    final radians = strand == 0 ? 0.0 : 20.0;
     final center = Offset(leftOrRightPosition, topOrBottomPosition);
     final startPoint = Offset(
       radius * math.cos(radians),

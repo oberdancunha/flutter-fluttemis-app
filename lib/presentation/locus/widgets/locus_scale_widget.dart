@@ -16,13 +16,13 @@ class LocusScaleWidget extends StatelessWidget {
         builder: (context, state) {
           final screenWidth = MediaQuery.of(context).size.width;
           final locusLength = state.locusShowed.length;
-          final maxCharacterToMarker = locusLength.toString().length;
+          final locusLengthByCharacters = locusLength.toString().length;
           const minPixelsPerCharacter = 10;
-          var pixelsPerCharacter = ((locusLength / screenWidth) / maxCharacterToMarker).round();
+          var pixelsPerCharacter = ((locusLength / screenWidth) / locusLengthByCharacters).round();
           if (pixelsPerCharacter < minPixelsPerCharacter) {
             pixelsPerCharacter = minPixelsPerCharacter;
           }
-          final maxWidthPerMarker = pixelsPerCharacter * maxCharacterToMarker;
+          final maxWidthPerMarker = pixelsPerCharacter * locusLengthByCharacters;
           final markingPoints = (locusLength / maxWidthPerMarker).round();
           final scale = (screenWidth / locusLength) * (pixelsPerCharacter / 3);
           final screenWidthScale = locusLength * scale;
@@ -44,6 +44,7 @@ class LocusScaleWidget extends StatelessWidget {
                     locusLength: locusLength,
                     scale: scale,
                     markingPoints: markingPoints,
+                    locusLengthByCharacters: locusLengthByCharacters,
                   ),
                   child: LocusFeaturesWidget(
                     screenWidthScale: screenWidthScale,

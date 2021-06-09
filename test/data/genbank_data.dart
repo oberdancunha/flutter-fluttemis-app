@@ -18,6 +18,7 @@ KtList<Locus> getLocus() => KtList.of(
 
 KtList<Feature> getLocusFeatures() => KtList.of(
       const Feature(
+        id: '150280source',
         start: 1,
         end: 5028,
         type: 'source',
@@ -25,6 +26,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         color: colorLocusFeatureNotProduct,
       ),
       const Feature(
+        id: '12060mRNA',
         start: 1,
         end: 206,
         type: 'mRNA',
@@ -33,6 +35,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
+        id: '12060CDS',
         start: 1,
         end: 206,
         type: 'CDS',
@@ -42,6 +45,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
+        id: '68731580gene',
         start: 687,
         end: 3158,
         type: 'gene',
@@ -50,6 +54,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         color: colorLocusFeatureNotProduct,
       ),
       const Feature(
+        id: '68731580mRNA',
         start: 687,
         end: 3158,
         type: 'mRNA',
@@ -59,6 +64,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
+        id: '68731580CDS',
         start: 687,
         end: 3158,
         type: 'CDS',
@@ -71,6 +77,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
+        id: '330040371gene',
         start: 3300,
         end: 4037,
         type: 'gene',
@@ -79,6 +86,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         color: colorLocusFeatureNotProduct,
       ),
       const Feature(
+        id: '330040371mRNA',
         start: 3300,
         end: 4037,
         type: 'mRNA',
@@ -88,6 +96,7 @@ KtList<Feature> getLocusFeatures() => KtList.of(
         color: colorLocusFeatureKnownProduct,
       ),
       const Feature(
+        id: '330040371CDS',
         start: 3300,
         end: 4037,
         type: 'CDS',

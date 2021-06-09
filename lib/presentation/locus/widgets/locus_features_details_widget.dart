@@ -10,7 +10,7 @@ class LocusFeaturesDetails extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         buildWhen: (oldState, newState) =>
             oldState.locusFeatureShowed != newState.locusFeatureShowed,
-        builder: (context, state) => state.locusFeatureShowed!.start != 0
+        builder: (context, state) => state.locusFeatureShowed!.id != ''
             ? Container(
                 width: MediaQuery.of(context).size.width / 2,
                 height: 230,

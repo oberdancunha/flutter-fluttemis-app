@@ -17,7 +17,8 @@ class _$FeatureTearOff {
   const _$FeatureTearOff();
 
   _Feature call(
-      {required int start,
+      {required String id,
+      required int start,
       required int end,
       required String type,
       required int strand,
@@ -28,6 +29,7 @@ class _$FeatureTearOff {
       String? aminoacids,
       String? note}) {
     return _Feature(
+      id: id,
       start: start,
       end: end,
       type: type,
@@ -47,6 +49,7 @@ const $Feature = _$FeatureTearOff();
 
 /// @nodoc
 mixin _$Feature {
+  String get id => throw _privateConstructorUsedError;
   int get start => throw _privateConstructorUsedError;
   int get end => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
@@ -67,7 +70,8 @@ abstract class $FeatureCopyWith<$Res> {
   factory $FeatureCopyWith(Feature value, $Res Function(Feature) then) =
       _$FeatureCopyWithImpl<$Res>;
   $Res call(
-      {int start,
+      {String id,
+      int start,
       int end,
       String type,
       int strand,
@@ -89,6 +93,7 @@ class _$FeatureCopyWithImpl<$Res> implements $FeatureCopyWith<$Res> {
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? start = freezed,
     Object? end = freezed,
     Object? type = freezed,
@@ -101,6 +106,10 @@ class _$FeatureCopyWithImpl<$Res> implements $FeatureCopyWith<$Res> {
     Object? note = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       start: start == freezed
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -151,7 +160,8 @@ abstract class _$FeatureCopyWith<$Res> implements $FeatureCopyWith<$Res> {
       __$FeatureCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int start,
+      {String id,
+      int start,
       int end,
       String type,
       int strand,
@@ -174,6 +184,7 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? start = freezed,
     Object? end = freezed,
     Object? type = freezed,
@@ -186,6 +197,10 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
     Object? note = freezed,
   }) {
     return _then(_Feature(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       start: start == freezed
           ? _value.start
           : start // ignore: cast_nullable_to_non_nullable
@@ -234,7 +249,8 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
 
 class _$_Feature extends _Feature {
   const _$_Feature(
-      {required this.start,
+      {required this.id,
+      required this.start,
       required this.end,
       required this.type,
       required this.strand,
@@ -246,6 +262,8 @@ class _$_Feature extends _Feature {
       this.note})
       : super._();
 
+  @override
+  final String id;
   @override
   final int start;
   @override
@@ -269,13 +287,15 @@ class _$_Feature extends _Feature {
 
   @override
   String toString() {
-    return 'Feature(start: $start, end: $end, type: $type, strand: $strand, color: $color, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
+    return 'Feature(id: $id, start: $start, end: $end, type: $type, strand: $strand, color: $color, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Feature &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.start, start) ||
                 const DeepCollectionEquality().equals(other.start, start)) &&
             (identical(other.end, end) ||
@@ -304,6 +324,7 @@ class _$_Feature extends _Feature {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(start) ^
       const DeepCollectionEquality().hash(end) ^
       const DeepCollectionEquality().hash(type) ^
@@ -323,7 +344,8 @@ class _$_Feature extends _Feature {
 
 abstract class _Feature extends Feature {
   const factory _Feature(
-      {required int start,
+      {required String id,
+      required int start,
       required int end,
       required String type,
       required int strand,
@@ -335,6 +357,8 @@ abstract class _Feature extends Feature {
       String? note}) = _$_Feature;
   const _Feature._() : super._();
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   int get start => throw _privateConstructorUsedError;
   @override

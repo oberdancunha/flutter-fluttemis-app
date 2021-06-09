@@ -5,12 +5,14 @@ class DrawLocusScale extends CustomPainter {
   final int locusLength;
   final double scale;
   final int markingPoints;
+  final int locusLengthByCharacters;
 
   DrawLocusScale({
     required this.width,
     required this.locusLength,
     required this.scale,
     required this.markingPoints,
+    required this.locusLengthByCharacters,
   });
 
   @override
@@ -23,18 +25,21 @@ class DrawLocusScale extends CustomPainter {
   }
 
   void _drawLine(Canvas canvas, Paint paint) {
-    final rightSizeAndAngle = Offset(width, 40);
-    const leftSizeAndAngle = Offset(1, 40);
+    const factorToAdjustAngle = 40.0;
+    final rightSizeAndAngle = Offset(width, factorToAdjustAngle);
+    const leftSizeAndAngle = Offset(1, factorToAdjustAngle);
     canvas.drawLine(rightSizeAndAngle, leftSizeAndAngle, paint);
-    _paintCanvas(
+    _printMarker(
       canvas: canvas,
       text: '1',
       textAlign: 1,
     );
-    _paintCanvas(
+    final factorToAjustAlign = locusLengthByCharacters * 10;
+    final finalMarkerInLine = width - factorToAjustAlign;
+    _printMarker(
       canvas: canvas,
       text: locusLength.toString(),
-      textAlign: width - (locusLength.toString().length * 10),
+      textAlign: finalMarkerInLine,
     );
   }
 
@@ -42,11 +47,13 @@ class DrawLocusScale extends CustomPainter {
     for (int marker = markingPoints;
         marker < (locusLength - markingPoints);
         marker += markingPoints) {
+      const markerTopPosition = 35.0;
+      const markerBottomPosition = 45.0;
       final markerScale = marker * scale;
-      final topMarker = Offset(markerScale, 35);
-      final bottomMarker = Offset(markerScale, 45);
-      canvas.drawLine(topMarker, bottomMarker, paint);
-      _paintCanvas(
+      final markerTop = Offset(markerScale, markerTopPosition);
+      final markerBottom = Offset(markerScale, markerBottomPosition);
+      canvas.drawLine(markerTop, markerBottom, paint);
+      _printMarker(
         canvas: canvas,
         text: marker.toString(),
         textAlign: markerScale,
@@ -57,7 +64,7 @@ class DrawLocusScale extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 
-  void _paintCanvas({
+  void _printMarker({
     required Canvas canvas,
     required String text,
     required double textAlign,
@@ -69,6 +76,7 @@ class DrawLocusScale extends CustomPainter {
       ),
       text: text,
     );
+    const textHeight = 10.0;
     TextPainter(
       text: span,
       textDirection: TextDirection.rtl,
@@ -76,7 +84,7 @@ class DrawLocusScale extends CustomPainter {
       ..layout()
       ..paint(
         canvas,
-        Offset(textAlign, 10),
+        Offset(textAlign, textHeight),
       );
   }
 }

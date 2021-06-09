@@ -10,6 +10,7 @@ class Feature with _$Feature {
   const Feature._();
 
   const factory Feature({
+    required String id,
     required int start,
     required int end,
     required String type,
@@ -23,6 +24,7 @@ class Feature with _$Feature {
   }) = _Feature;
 
   factory Feature.empty() => const Feature(
+        id: '',
         start: 0,
         end: 0,
         type: '',
