@@ -47,11 +47,11 @@ class LocusPage extends StatelessWidget {
                   (_) => state.isSearching
                       ? const CircularProgressIndicator()
                       : Column(
-                          children: [
+                          children: const [
                             LocusHeaderWidget(),
-                            const SizedBox(height: 70),
+                            SizedBox(height: 70),
                             LocusDrawWidget(),
-                            const LocusFeaturesDetails(),
+                            LocusFeaturesDetails(),
                           ],
                         ),
                 ),

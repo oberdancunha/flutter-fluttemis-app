@@ -11,7 +11,7 @@ class AppModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       '/',
-      child: (_, __) => AppPage(),
+      child: (_, __) => const AppPage(),
     ),
     ModuleRoute('/locus', module: LocusModule()),
   ];

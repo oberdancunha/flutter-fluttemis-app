@@ -18,7 +18,7 @@ class AppPage extends StatelessWidget {
               ],
             ),
           ),
-          child: UploadFile(),
+          child: const UploadFile(),
         ),
       );
 }

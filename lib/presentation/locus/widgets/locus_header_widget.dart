@@ -24,7 +24,7 @@ class LocusHeaderWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 40),
-                LocusSelectWidget(),
+                const LocusSelectWidget(),
               ],
             ),
           ),
