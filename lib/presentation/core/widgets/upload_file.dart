@@ -5,6 +5,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../infrastructure/locus_data_source_genbank_file.dart';
 
 class UploadFile extends StatelessWidget {
+  const UploadFile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => Center(
         child: GestureDetector(

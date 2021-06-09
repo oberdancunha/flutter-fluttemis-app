@@ -8,6 +8,8 @@ import 'locus_features_widget.dart';
 class LocusScaleWidget extends StatelessWidget {
   final _scrollController = ScrollController();
 
+  LocusScaleWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         buildWhen: (oldState, newState) => oldState.locusShowed != newState.locusShowed,
@@ -25,48 +27,27 @@ class LocusScaleWidget extends StatelessWidget {
           final scale = (screenWidth / locusLength) * (pixelsPerCharacter / 3);
           final screenWidthScale = locusLength * scale;
 
-          return Container(
-            width: MediaQuery.of(context).size.width - 16,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 1,
-                  blurRadius: 1,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Scrollbar(
-                isAlwaysShown: true,
-                controller: _scrollController,
-                showTrackOnHover: true,
-                interactive: true,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  controller: _scrollController,
-                  child: SizedBox(
-                    width: screenWidthScale + 16,
-                    height: 120,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: CustomPaint(
-                        painter: DrawLocusScale(
-                          width: double.tryParse(screenWidthScale.toString())!,
-                          locusLength: locusLength,
-                          scale: scale,
-                          markingPoints: markingPoints,
-                        ),
-                        child: LocusFeaturesWidget(
-                          screenWidthScale: screenWidthScale,
-                          scale: scale,
-                        ),
-                      ),
-                    ),
+          return Scrollbar(
+            isAlwaysShown: true,
+            controller: _scrollController,
+            showTrackOnHover: true,
+            interactive: true,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              controller: _scrollController,
+              child: SizedBox(
+                width: screenWidthScale,
+                height: 120,
+                child: CustomPaint(
+                  painter: DrawLocusScale(
+                    width: double.tryParse(screenWidthScale.toString())!,
+                    locusLength: locusLength,
+                    scale: scale,
+                    markingPoints: markingPoints,
+                  ),
+                  child: LocusFeaturesWidget(
+                    screenWidthScale: screenWidthScale,
+                    scale: scale,
                   ),
                 ),
               ),

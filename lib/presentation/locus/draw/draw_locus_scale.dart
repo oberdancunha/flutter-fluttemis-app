@@ -40,7 +40,7 @@ class DrawLocusScale extends CustomPainter {
 
   void _drawMarker(Canvas canvas, Paint paint) {
     for (int marker = markingPoints;
-        (marker + markingPoints) < (locusLength - markingPoints);
+        marker < (locusLength - markingPoints);
         marker += markingPoints) {
       final markerScale = marker * scale;
       final topMarker = Offset(markerScale, 35);

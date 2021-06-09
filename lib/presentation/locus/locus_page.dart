@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/locus/locus_bloc.dart';
+import 'widgets/locus_draw_widget.dart';
 import 'widgets/locus_features_details_widget.dart';
 import 'widgets/locus_header_widget.dart';
-import 'widgets/locus_scale_widget.dart';
 
 class LocusPage extends StatelessWidget {
   final LocusBloc locusBloc;
@@ -50,7 +50,7 @@ class LocusPage extends StatelessWidget {
                           children: [
                             LocusHeaderWidget(),
                             const SizedBox(height: 70),
-                            LocusScaleWidget(),
+                            LocusDrawWidget(),
                             const LocusFeaturesDetails(),
                           ],
                         ),

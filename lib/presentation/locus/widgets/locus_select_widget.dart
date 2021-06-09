@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../application/locus/locus_bloc.dart';
 
 class LocusSelectWidget extends StatelessWidget {
+  const LocusSelectWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         buildWhen: (oldState, newState) => oldState.locusShowed != newState.locusShowed,

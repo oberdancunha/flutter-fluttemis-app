@@ -5,6 +5,8 @@ import '../../../application/locus/locus_bloc.dart';
 import 'locus_select_widget.dart';
 
 class LocusHeaderWidget extends StatelessWidget {
+  const LocusHeaderWidget({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         builder: (_, state) => Padding(
