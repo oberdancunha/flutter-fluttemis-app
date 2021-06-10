@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'locus_features_colors_labels.dart';
+import 'locus_features_colors_labels_widget.dart';
 import 'locus_features_scale_widget.dart';
 
 class LocusFeaturesBodyWidget extends StatelessWidget {
@@ -27,7 +27,7 @@ class LocusFeaturesBodyWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 10),
-              const LocusFeaturesColorsLabels(),
+              const LocusFeaturesColorsLabelsWidget(),
               const SizedBox(height: 15),
               LocusFeaturesScaleWidget(),
             ],

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../utils/constants.dart';
 
-class LocusFeaturesColorsLabels extends StatelessWidget {
-  const LocusFeaturesColorsLabels({Key? key}) : super(key: key);
+class LocusFeaturesColorsLabelsWidget extends StatelessWidget {
+  const LocusFeaturesColorsLabelsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
