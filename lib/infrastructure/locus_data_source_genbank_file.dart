@@ -35,6 +35,7 @@ class LocusDataSourceGenbankFile implements ILocusDataSource {
                 name: data.locus.name,
                 length: data.locus.length,
                 type: data.locus.type,
+                shape: data.locus.shape,
                 organism: data.locusDetails.source!,
                 releaseDate: data.locus.releaseDate,
                 sequence: data.locus.sequence,

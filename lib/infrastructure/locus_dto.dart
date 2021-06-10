@@ -15,6 +15,7 @@ abstract class LocusDto with _$LocusDto {
     required int length,
     required String type,
     required String organism,
+    String? shape,
     String? releaseDate,
     String? sequence,
     List<FeatureDto>? features,
@@ -25,6 +26,7 @@ abstract class LocusDto with _$LocusDto {
         length: length,
         organism: organism,
         type: type,
+        shape: shape,
         releaseDate: releaseDate,
         sequence: sequence,
         features: features!

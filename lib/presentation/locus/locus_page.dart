@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/locus/locus_bloc.dart';
+import 'widgets/locus_body_widget.dart';
 import 'widgets/locus_features/locus_features_body_widget.dart';
-import 'widgets/locus_features/locus_features_details_widget.dart';
 import 'widgets/locus_header_widget.dart';
 
 class LocusPage extends StatelessWidget {
@@ -46,13 +46,17 @@ class LocusPage extends StatelessWidget {
                   ),
                   (_) => state.isSearching
                       ? const CircularProgressIndicator()
-                      : Column(
-                          children: const [
-                            LocusHeaderWidget(),
-                            SizedBox(height: 40),
-                            LocusFeaturesBodyWidget(),
-                            LocusFeaturesDetails(),
-                          ],
+                      : Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            children: const [
+                              LocusHeaderWidget(),
+                              SizedBox(height: 40),
+                              LocusFeaturesBodyWidget(),
+                              SizedBox(height: 15),
+                              LocusBodyWidget(),
+                            ],
+                          ),
                         ),
                 ),
               ),

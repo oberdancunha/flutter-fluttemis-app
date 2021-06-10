@@ -14,36 +14,53 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
             ? Container(
                 width: MediaQuery.of(context).size.width / 2,
                 height: 230,
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border(
+                    top: BorderSide(color: state.locusFeatureShowed!.color),
+                    left: BorderSide(color: state.locusFeatureShowed!.color),
+                    right: BorderSide(color: state.locusFeatureShowed!.color),
+                    bottom: BorderSide(color: state.locusFeatureShowed!.color),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: state.locusFeatureShowed!.color.withOpacity(0.3),
+                      spreadRadius: 5,
+                      blurRadius: 5,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       _printFeatureDetail(
-                        label: 'Start:',
+                        label: 'Start',
                         value: state.locusFeatureShowed!.start,
                       ),
                       const SizedBox(height: 10),
                       _printFeatureDetail(
-                        label: 'End:',
+                        label: 'End',
                         value: state.locusFeatureShowed!.end,
                       ),
                       const SizedBox(height: 10),
                       _printFeatureDetail(
-                        label: 'Strand:',
+                        label: 'Strand',
                         value: state.locusFeatureShowed!.strand == 0 ? '+' : '-',
                       ),
                       const SizedBox(height: 10),
                       _printFeatureDetail(
-                        label: 'Gene:',
+                        label: 'Gene',
                         value: state.locusFeatureShowed!.name ?? 'Not assigned',
                       ),
                       const SizedBox(height: 10),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: _printFeatureDetail(
-                          label: 'Product:',
+                          label: 'Product',
                           value: state.locusFeatureShowed!.product,
                         ),
                       ),
@@ -51,7 +68,7 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: _printFeatureDetail(
-                          label: 'Note:',
+                          label: 'Note',
                           value: state.locusFeatureShowed!.note ?? '_',
                         ),
                       ),
@@ -59,7 +76,7 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: _printFeatureDetail(
-                          label: 'Aminoácids:',
+                          label: 'Aminoácids',
                           value: state.locusFeatureShowed!.aminoacids,
                         ),
                       ),
@@ -79,7 +96,7 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
     return Row(
       children: [
         Text(
-          label,
+          '$label:',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: fontSize,

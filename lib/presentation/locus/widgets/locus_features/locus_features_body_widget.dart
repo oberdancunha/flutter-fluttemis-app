@@ -8,7 +8,7 @@ class LocusFeaturesBodyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-        width: MediaQuery.of(context).size.width - 16,
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),

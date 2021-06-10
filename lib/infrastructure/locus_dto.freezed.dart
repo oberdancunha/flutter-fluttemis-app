@@ -21,6 +21,7 @@ class _$LocusDtoTearOff {
       required int length,
       required String type,
       required String organism,
+      String? shape,
       String? releaseDate,
       String? sequence,
       List<FeatureDto>? features}) {
@@ -29,6 +30,7 @@ class _$LocusDtoTearOff {
       length: length,
       type: type,
       organism: organism,
+      shape: shape,
       releaseDate: releaseDate,
       sequence: sequence,
       features: features,
@@ -45,6 +47,7 @@ mixin _$LocusDto {
   int get length => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get organism => throw _privateConstructorUsedError;
+  String? get shape => throw _privateConstructorUsedError;
   String? get releaseDate => throw _privateConstructorUsedError;
   String? get sequence => throw _privateConstructorUsedError;
   List<FeatureDto>? get features => throw _privateConstructorUsedError;
@@ -63,6 +66,7 @@ abstract class $LocusDtoCopyWith<$Res> {
       int length,
       String type,
       String organism,
+      String? shape,
       String? releaseDate,
       String? sequence,
       List<FeatureDto>? features});
@@ -82,6 +86,7 @@ class _$LocusDtoCopyWithImpl<$Res> implements $LocusDtoCopyWith<$Res> {
     Object? length = freezed,
     Object? type = freezed,
     Object? organism = freezed,
+    Object? shape = freezed,
     Object? releaseDate = freezed,
     Object? sequence = freezed,
     Object? features = freezed,
@@ -103,6 +108,10 @@ class _$LocusDtoCopyWithImpl<$Res> implements $LocusDtoCopyWith<$Res> {
           ? _value.organism
           : organism // ignore: cast_nullable_to_non_nullable
               as String,
+      shape: shape == freezed
+          ? _value.shape
+          : shape // ignore: cast_nullable_to_non_nullable
+              as String?,
       releaseDate: releaseDate == freezed
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -129,6 +138,7 @@ abstract class _$LocusDtoCopyWith<$Res> implements $LocusDtoCopyWith<$Res> {
       int length,
       String type,
       String organism,
+      String? shape,
       String? releaseDate,
       String? sequence,
       List<FeatureDto>? features});
@@ -149,6 +159,7 @@ class __$LocusDtoCopyWithImpl<$Res> extends _$LocusDtoCopyWithImpl<$Res>
     Object? length = freezed,
     Object? type = freezed,
     Object? organism = freezed,
+    Object? shape = freezed,
     Object? releaseDate = freezed,
     Object? sequence = freezed,
     Object? features = freezed,
@@ -170,6 +181,10 @@ class __$LocusDtoCopyWithImpl<$Res> extends _$LocusDtoCopyWithImpl<$Res>
           ? _value.organism
           : organism // ignore: cast_nullable_to_non_nullable
               as String,
+      shape: shape == freezed
+          ? _value.shape
+          : shape // ignore: cast_nullable_to_non_nullable
+              as String?,
       releaseDate: releaseDate == freezed
           ? _value.releaseDate
           : releaseDate // ignore: cast_nullable_to_non_nullable
@@ -194,6 +209,7 @@ class _$_LocusDto extends _LocusDto {
       required this.length,
       required this.type,
       required this.organism,
+      this.shape,
       this.releaseDate,
       this.sequence,
       this.features})
@@ -208,6 +224,8 @@ class _$_LocusDto extends _LocusDto {
   @override
   final String organism;
   @override
+  final String? shape;
+  @override
   final String? releaseDate;
   @override
   final String? sequence;
@@ -216,7 +234,7 @@ class _$_LocusDto extends _LocusDto {
 
   @override
   String toString() {
-    return 'LocusDto(name: $name, length: $length, type: $type, organism: $organism, releaseDate: $releaseDate, sequence: $sequence, features: $features)';
+    return 'LocusDto(name: $name, length: $length, type: $type, organism: $organism, shape: $shape, releaseDate: $releaseDate, sequence: $sequence, features: $features)';
   }
 
   @override
@@ -232,6 +250,8 @@ class _$_LocusDto extends _LocusDto {
             (identical(other.organism, organism) ||
                 const DeepCollectionEquality()
                     .equals(other.organism, organism)) &&
+            (identical(other.shape, shape) ||
+                const DeepCollectionEquality().equals(other.shape, shape)) &&
             (identical(other.releaseDate, releaseDate) ||
                 const DeepCollectionEquality()
                     .equals(other.releaseDate, releaseDate)) &&
@@ -250,6 +270,7 @@ class _$_LocusDto extends _LocusDto {
       const DeepCollectionEquality().hash(length) ^
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(organism) ^
+      const DeepCollectionEquality().hash(shape) ^
       const DeepCollectionEquality().hash(releaseDate) ^
       const DeepCollectionEquality().hash(sequence) ^
       const DeepCollectionEquality().hash(features);
@@ -266,6 +287,7 @@ abstract class _LocusDto extends LocusDto {
       required int length,
       required String type,
       required String organism,
+      String? shape,
       String? releaseDate,
       String? sequence,
       List<FeatureDto>? features}) = _$_LocusDto;
@@ -279,6 +301,8 @@ abstract class _LocusDto extends LocusDto {
   String get type => throw _privateConstructorUsedError;
   @override
   String get organism => throw _privateConstructorUsedError;
+  @override
+  String? get shape => throw _privateConstructorUsedError;
   @override
   String? get releaseDate => throw _privateConstructorUsedError;
   @override

@@ -14,6 +14,7 @@ class Locus with _$Locus {
     required int length,
     required String type,
     required String organism,
+    String? shape,
     String? releaseDate,
     String? sequence,
     KtList<Feature>? features,
