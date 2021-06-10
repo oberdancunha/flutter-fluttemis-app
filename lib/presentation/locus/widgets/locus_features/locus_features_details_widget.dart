@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../application/locus/locus_bloc.dart';
 
-class LocusFeaturesDetails extends StatelessWidget {
-  const LocusFeaturesDetails({Key? key}) : super(key: key);
+class LocusFeaturesDetailsWidget extends StatelessWidget {
+  const LocusFeaturesDetailsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
