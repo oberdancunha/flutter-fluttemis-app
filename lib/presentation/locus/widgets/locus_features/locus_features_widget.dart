@@ -26,7 +26,7 @@ class LocusFeaturesWidget extends StatelessWidget {
             painter: DrawLocusFeature(
               screenWidthScale: screenWidthScale,
               context: context,
-              features: state.locusShowed.features!
+              features: state.locusShowed.features
                   .asList()
                   .where((feature) => feature.type == 'CDS')
                   .toImmutableList(),

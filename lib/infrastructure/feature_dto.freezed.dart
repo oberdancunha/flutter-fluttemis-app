@@ -25,8 +25,7 @@ class _$FeatureDtoTearOff {
       String? product,
       String? nucleotides,
       String? aminoacids,
-      String? note,
-      Color? color}) {
+      String? note}) {
     return _FeatureDto(
       start: start,
       end: end,
@@ -37,7 +36,6 @@ class _$FeatureDtoTearOff {
       nucleotides: nucleotides,
       aminoacids: aminoacids,
       note: note,
-      color: color,
     );
   }
 }
@@ -56,7 +54,6 @@ mixin _$FeatureDto {
   String? get nucleotides => throw _privateConstructorUsedError;
   String? get aminoacids => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
-  Color? get color => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureDtoCopyWith<FeatureDto> get copyWith =>
@@ -77,8 +74,7 @@ abstract class $FeatureDtoCopyWith<$Res> {
       String? product,
       String? nucleotides,
       String? aminoacids,
-      String? note,
-      Color? color});
+      String? note});
 }
 
 /// @nodoc
@@ -100,7 +96,6 @@ class _$FeatureDtoCopyWithImpl<$Res> implements $FeatureDtoCopyWith<$Res> {
     Object? nucleotides = freezed,
     Object? aminoacids = freezed,
     Object? note = freezed,
-    Object? color = freezed,
   }) {
     return _then(_value.copyWith(
       start: start == freezed
@@ -139,10 +134,6 @@ class _$FeatureDtoCopyWithImpl<$Res> implements $FeatureDtoCopyWith<$Res> {
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
-      color: color == freezed
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color?,
     ));
   }
 }
@@ -162,8 +153,7 @@ abstract class _$FeatureDtoCopyWith<$Res> implements $FeatureDtoCopyWith<$Res> {
       String? product,
       String? nucleotides,
       String? aminoacids,
-      String? note,
-      Color? color});
+      String? note});
 }
 
 /// @nodoc
@@ -187,7 +177,6 @@ class __$FeatureDtoCopyWithImpl<$Res> extends _$FeatureDtoCopyWithImpl<$Res>
     Object? nucleotides = freezed,
     Object? aminoacids = freezed,
     Object? note = freezed,
-    Object? color = freezed,
   }) {
     return _then(_FeatureDto(
       start: start == freezed
@@ -226,10 +215,6 @@ class __$FeatureDtoCopyWithImpl<$Res> extends _$FeatureDtoCopyWithImpl<$Res>
           ? _value.note
           : note // ignore: cast_nullable_to_non_nullable
               as String?,
-      color: color == freezed
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color?,
     ));
   }
 }
@@ -246,8 +231,7 @@ class _$_FeatureDto extends _FeatureDto {
       this.product,
       this.nucleotides,
       this.aminoacids,
-      this.note,
-      this.color})
+      this.note})
       : super._();
 
   @override
@@ -268,12 +252,10 @@ class _$_FeatureDto extends _FeatureDto {
   final String? aminoacids;
   @override
   final String? note;
-  @override
-  final Color? color;
 
   @override
   String toString() {
-    return 'FeatureDto(start: $start, end: $end, type: $type, strand: $strand, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note, color: $color)';
+    return 'FeatureDto(start: $start, end: $end, type: $type, strand: $strand, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
   }
 
   @override
@@ -300,9 +282,7 @@ class _$_FeatureDto extends _FeatureDto {
                 const DeepCollectionEquality()
                     .equals(other.aminoacids, aminoacids)) &&
             (identical(other.note, note) ||
-                const DeepCollectionEquality().equals(other.note, note)) &&
-            (identical(other.color, color) ||
-                const DeepCollectionEquality().equals(other.color, color)));
+                const DeepCollectionEquality().equals(other.note, note)));
   }
 
   @override
@@ -316,8 +296,7 @@ class _$_FeatureDto extends _FeatureDto {
       const DeepCollectionEquality().hash(product) ^
       const DeepCollectionEquality().hash(nucleotides) ^
       const DeepCollectionEquality().hash(aminoacids) ^
-      const DeepCollectionEquality().hash(note) ^
-      const DeepCollectionEquality().hash(color);
+      const DeepCollectionEquality().hash(note);
 
   @JsonKey(ignore: true)
   @override
@@ -335,8 +314,7 @@ abstract class _FeatureDto extends FeatureDto {
       String? product,
       String? nucleotides,
       String? aminoacids,
-      String? note,
-      Color? color}) = _$_FeatureDto;
+      String? note}) = _$_FeatureDto;
   const _FeatureDto._() : super._();
 
   @override
@@ -357,8 +335,6 @@ abstract class _FeatureDto extends FeatureDto {
   String? get aminoacids => throw _privateConstructorUsedError;
   @override
   String? get note => throw _privateConstructorUsedError;
-  @override
-  Color? get color => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$FeatureDtoCopyWith<_FeatureDto> get copyWith =>

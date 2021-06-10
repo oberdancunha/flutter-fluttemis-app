@@ -1,8 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
+import '../../domain/locus/feature.dart';
+import '../../utils/product_dictionary.dart';
 import '../domain/locus/locus.dart';
-import 'feature_dto.dart';
 
 part 'locus_dto.freezed.dart';
 
@@ -15,10 +16,10 @@ abstract class LocusDto with _$LocusDto {
     required int length,
     required String type,
     required String organism,
+    required List<Feature> features,
     String? shape,
     String? releaseDate,
     String? sequence,
-    List<FeatureDto>? features,
   }) = _LocusDto;
 
   Locus toDomain() => Locus(
@@ -29,10 +30,21 @@ abstract class LocusDto with _$LocusDto {
         shape: shape,
         releaseDate: releaseDate,
         sequence: sequence,
-        features: features!
+        features: features.toImmutableList(),
+        featuresTypesOverview: features.groupSetsBy((feature) => feature.type).map(
+              (featureType, featureTypesData) => MapEntry(
+                featureType,
+                featureTypesData.length,
+              ),
+            ),
+        featuresTypesProductsOverview: features
+            .where((feature) => feature.type == 'CDS')
+            .groupSetsBy((feature) => feature.color)
             .map(
-              (feature) => feature.toDomain(),
-            )
-            .toImmutableList(),
+              (featureColor, featureColorData) => MapEntry(
+                productDictionaryLabel[featureColor].toString(),
+                featureColorData.length,
+              ),
+            ),
       );
 }

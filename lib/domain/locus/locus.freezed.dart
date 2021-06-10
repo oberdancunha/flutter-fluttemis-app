@@ -21,19 +21,23 @@ class _$LocusTearOff {
       required int length,
       required String type,
       required String organism,
+      required KtList<Feature> features,
+      required Map<String, int> featuresTypesOverview,
+      required Map<String, int> featuresTypesProductsOverview,
       String? shape,
       String? releaseDate,
-      String? sequence,
-      KtList<Feature>? features}) {
+      String? sequence}) {
     return _Locus(
       name: name,
       length: length,
       type: type,
       organism: organism,
+      features: features,
+      featuresTypesOverview: featuresTypesOverview,
+      featuresTypesProductsOverview: featuresTypesProductsOverview,
       shape: shape,
       releaseDate: releaseDate,
       sequence: sequence,
-      features: features,
     );
   }
 }
@@ -47,10 +51,14 @@ mixin _$Locus {
   int get length => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get organism => throw _privateConstructorUsedError;
+  KtList<Feature> get features => throw _privateConstructorUsedError;
+  Map<String, int> get featuresTypesOverview =>
+      throw _privateConstructorUsedError;
+  Map<String, int> get featuresTypesProductsOverview =>
+      throw _privateConstructorUsedError;
   String? get shape => throw _privateConstructorUsedError;
   String? get releaseDate => throw _privateConstructorUsedError;
   String? get sequence => throw _privateConstructorUsedError;
-  KtList<Feature>? get features => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LocusCopyWith<Locus> get copyWith => throw _privateConstructorUsedError;
@@ -65,10 +73,12 @@ abstract class $LocusCopyWith<$Res> {
       int length,
       String type,
       String organism,
+      KtList<Feature> features,
+      Map<String, int> featuresTypesOverview,
+      Map<String, int> featuresTypesProductsOverview,
       String? shape,
       String? releaseDate,
-      String? sequence,
-      KtList<Feature>? features});
+      String? sequence});
 }
 
 /// @nodoc
@@ -85,10 +95,12 @@ class _$LocusCopyWithImpl<$Res> implements $LocusCopyWith<$Res> {
     Object? length = freezed,
     Object? type = freezed,
     Object? organism = freezed,
+    Object? features = freezed,
+    Object? featuresTypesOverview = freezed,
+    Object? featuresTypesProductsOverview = freezed,
     Object? shape = freezed,
     Object? releaseDate = freezed,
     Object? sequence = freezed,
-    Object? features = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -107,6 +119,18 @@ class _$LocusCopyWithImpl<$Res> implements $LocusCopyWith<$Res> {
           ? _value.organism
           : organism // ignore: cast_nullable_to_non_nullable
               as String,
+      features: features == freezed
+          ? _value.features
+          : features // ignore: cast_nullable_to_non_nullable
+              as KtList<Feature>,
+      featuresTypesOverview: featuresTypesOverview == freezed
+          ? _value.featuresTypesOverview
+          : featuresTypesOverview // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
+      featuresTypesProductsOverview: featuresTypesProductsOverview == freezed
+          ? _value.featuresTypesProductsOverview
+          : featuresTypesProductsOverview // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
       shape: shape == freezed
           ? _value.shape
           : shape // ignore: cast_nullable_to_non_nullable
@@ -119,10 +143,6 @@ class _$LocusCopyWithImpl<$Res> implements $LocusCopyWith<$Res> {
           ? _value.sequence
           : sequence // ignore: cast_nullable_to_non_nullable
               as String?,
-      features: features == freezed
-          ? _value.features
-          : features // ignore: cast_nullable_to_non_nullable
-              as KtList<Feature>?,
     ));
   }
 }
@@ -137,10 +157,12 @@ abstract class _$LocusCopyWith<$Res> implements $LocusCopyWith<$Res> {
       int length,
       String type,
       String organism,
+      KtList<Feature> features,
+      Map<String, int> featuresTypesOverview,
+      Map<String, int> featuresTypesProductsOverview,
       String? shape,
       String? releaseDate,
-      String? sequence,
-      KtList<Feature>? features});
+      String? sequence});
 }
 
 /// @nodoc
@@ -158,10 +180,12 @@ class __$LocusCopyWithImpl<$Res> extends _$LocusCopyWithImpl<$Res>
     Object? length = freezed,
     Object? type = freezed,
     Object? organism = freezed,
+    Object? features = freezed,
+    Object? featuresTypesOverview = freezed,
+    Object? featuresTypesProductsOverview = freezed,
     Object? shape = freezed,
     Object? releaseDate = freezed,
     Object? sequence = freezed,
-    Object? features = freezed,
   }) {
     return _then(_Locus(
       name: name == freezed
@@ -180,6 +204,18 @@ class __$LocusCopyWithImpl<$Res> extends _$LocusCopyWithImpl<$Res>
           ? _value.organism
           : organism // ignore: cast_nullable_to_non_nullable
               as String,
+      features: features == freezed
+          ? _value.features
+          : features // ignore: cast_nullable_to_non_nullable
+              as KtList<Feature>,
+      featuresTypesOverview: featuresTypesOverview == freezed
+          ? _value.featuresTypesOverview
+          : featuresTypesOverview // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
+      featuresTypesProductsOverview: featuresTypesProductsOverview == freezed
+          ? _value.featuresTypesProductsOverview
+          : featuresTypesProductsOverview // ignore: cast_nullable_to_non_nullable
+              as Map<String, int>,
       shape: shape == freezed
           ? _value.shape
           : shape // ignore: cast_nullable_to_non_nullable
@@ -192,10 +228,6 @@ class __$LocusCopyWithImpl<$Res> extends _$LocusCopyWithImpl<$Res>
           ? _value.sequence
           : sequence // ignore: cast_nullable_to_non_nullable
               as String?,
-      features: features == freezed
-          ? _value.features
-          : features // ignore: cast_nullable_to_non_nullable
-              as KtList<Feature>?,
     ));
   }
 }
@@ -208,10 +240,12 @@ class _$_Locus extends _Locus {
       required this.length,
       required this.type,
       required this.organism,
+      required this.features,
+      required this.featuresTypesOverview,
+      required this.featuresTypesProductsOverview,
       this.shape,
       this.releaseDate,
-      this.sequence,
-      this.features})
+      this.sequence})
       : super._();
 
   @override
@@ -223,17 +257,21 @@ class _$_Locus extends _Locus {
   @override
   final String organism;
   @override
+  final KtList<Feature> features;
+  @override
+  final Map<String, int> featuresTypesOverview;
+  @override
+  final Map<String, int> featuresTypesProductsOverview;
+  @override
   final String? shape;
   @override
   final String? releaseDate;
   @override
   final String? sequence;
-  @override
-  final KtList<Feature>? features;
 
   @override
   String toString() {
-    return 'Locus(name: $name, length: $length, type: $type, organism: $organism, shape: $shape, releaseDate: $releaseDate, sequence: $sequence, features: $features)';
+    return 'Locus(name: $name, length: $length, type: $type, organism: $organism, features: $features, featuresTypesOverview: $featuresTypesOverview, featuresTypesProductsOverview: $featuresTypesProductsOverview, shape: $shape, releaseDate: $releaseDate, sequence: $sequence)';
   }
 
   @override
@@ -249,6 +287,17 @@ class _$_Locus extends _Locus {
             (identical(other.organism, organism) ||
                 const DeepCollectionEquality()
                     .equals(other.organism, organism)) &&
+            (identical(other.features, features) ||
+                const DeepCollectionEquality()
+                    .equals(other.features, features)) &&
+            (identical(other.featuresTypesOverview, featuresTypesOverview) ||
+                const DeepCollectionEquality().equals(
+                    other.featuresTypesOverview, featuresTypesOverview)) &&
+            (identical(other.featuresTypesProductsOverview,
+                    featuresTypesProductsOverview) ||
+                const DeepCollectionEquality().equals(
+                    other.featuresTypesProductsOverview,
+                    featuresTypesProductsOverview)) &&
             (identical(other.shape, shape) ||
                 const DeepCollectionEquality().equals(other.shape, shape)) &&
             (identical(other.releaseDate, releaseDate) ||
@@ -256,10 +305,7 @@ class _$_Locus extends _Locus {
                     .equals(other.releaseDate, releaseDate)) &&
             (identical(other.sequence, sequence) ||
                 const DeepCollectionEquality()
-                    .equals(other.sequence, sequence)) &&
-            (identical(other.features, features) ||
-                const DeepCollectionEquality()
-                    .equals(other.features, features)));
+                    .equals(other.sequence, sequence)));
   }
 
   @override
@@ -269,10 +315,12 @@ class _$_Locus extends _Locus {
       const DeepCollectionEquality().hash(length) ^
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(organism) ^
+      const DeepCollectionEquality().hash(features) ^
+      const DeepCollectionEquality().hash(featuresTypesOverview) ^
+      const DeepCollectionEquality().hash(featuresTypesProductsOverview) ^
       const DeepCollectionEquality().hash(shape) ^
       const DeepCollectionEquality().hash(releaseDate) ^
-      const DeepCollectionEquality().hash(sequence) ^
-      const DeepCollectionEquality().hash(features);
+      const DeepCollectionEquality().hash(sequence);
 
   @JsonKey(ignore: true)
   @override
@@ -286,10 +334,12 @@ abstract class _Locus extends Locus {
       required int length,
       required String type,
       required String organism,
+      required KtList<Feature> features,
+      required Map<String, int> featuresTypesOverview,
+      required Map<String, int> featuresTypesProductsOverview,
       String? shape,
       String? releaseDate,
-      String? sequence,
-      KtList<Feature>? features}) = _$_Locus;
+      String? sequence}) = _$_Locus;
   const _Locus._() : super._();
 
   @override
@@ -301,13 +351,19 @@ abstract class _Locus extends Locus {
   @override
   String get organism => throw _privateConstructorUsedError;
   @override
+  KtList<Feature> get features => throw _privateConstructorUsedError;
+  @override
+  Map<String, int> get featuresTypesOverview =>
+      throw _privateConstructorUsedError;
+  @override
+  Map<String, int> get featuresTypesProductsOverview =>
+      throw _privateConstructorUsedError;
+  @override
   String? get shape => throw _privateConstructorUsedError;
   @override
   String? get releaseDate => throw _privateConstructorUsedError;
   @override
   String? get sequence => throw _privateConstructorUsedError;
-  @override
-  KtList<Feature>? get features => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$LocusCopyWith<_Locus> get copyWith => throw _privateConstructorUsedError;

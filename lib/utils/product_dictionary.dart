@@ -15,3 +15,10 @@ Map<Color, List<String>> productDictionary = {
     'uncharacterized',
   ],
 };
+
+Map<Color, String> productDictionaryLabel = {
+  colorLocusFeatureKnownProduct: 'Known',
+  colorLocusFeatureHypotheticalProduct: 'Hypothetical',
+  colorLocusFeaturePutativeProduct: 'Putative',
+  colorLocusFeatureUnknownProduct: 'Uncharacterized',
+};

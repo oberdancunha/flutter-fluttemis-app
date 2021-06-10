@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/core/value_transformer.dart';
@@ -20,7 +19,6 @@ class FeatureDto with _$FeatureDto {
     String? nucleotides,
     String? aminoacids,
     String? note,
-    Color? color,
   }) = _FeatureDto;
 
   Feature toDomain() => Feature(

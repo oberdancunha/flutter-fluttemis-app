@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../application/locus/locus_bloc.dart';
+import '../../../utils/product_dictionary.dart';
+import '../../core/templates/container_box_template.dart';
 
 class LocusDetailsWidget extends StatelessWidget {
   const LocusDetailsWidget({Key? key}) : super(key: key);
@@ -9,21 +11,9 @@ class LocusDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
         buildWhen: (oldState, newState) => oldState.locusShowed != newState.locusShowed,
-        builder: (context, state) => Container(
-          width: MediaQuery.of(context).size.width / 2 - 25,
-          height: 300,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.3),
-                spreadRadius: 1,
-                blurRadius: 1,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
+        builder: (context, state) => ContainerBoxTemplate(
+          width: MediaQuery.of(context).size.width / 2.04,
+          height: 230,
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
@@ -37,14 +27,47 @@ class LocusDetailsWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     _buildOverview(label: 'Length', value: state.locusShowed.length),
-                    const SizedBox(width: 20),
+                    _buildOverview(label: 'Features', value: state.locusShowed.features.size),
                     _buildOverview(label: 'Type', value: state.locusShowed.type),
-                    const SizedBox(width: 20),
                     _buildOverview(label: 'Shape', value: state.locusShowed.shape),
-                    const SizedBox(width: 20),
                     _buildOverview(label: 'Release', value: state.locusShowed.releaseDate),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      children: [
+                        _buildOverview(
+                          label: 'Features types',
+                          value: state.locusShowed.featuresTypesOverview.length,
+                        ),
+                        const SizedBox(height: 10),
+                        _buildFeaturesList(
+                          context: context,
+                          featuresList: state.locusShowed.featuresTypesOverview,
+                          colorText: false,
+                        ),
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        _buildOverview(
+                          label: 'Products types',
+                          value: state.locusShowed.featuresTypesProductsOverview.length,
+                        ),
+                        const SizedBox(height: 10),
+                        _buildFeaturesList(
+                          context: context,
+                          featuresList: state.locusShowed.featuresTypesProductsOverview,
+                          colorText: true,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ],
@@ -56,6 +79,7 @@ class LocusDetailsWidget extends StatelessWidget {
   Widget _buildOverview({
     required String label,
     required value,
+    Color textColor = Colors.black,
   }) {
     const fontSize = 15.0;
 
@@ -63,17 +87,61 @@ class LocusDetailsWidget extends StatelessWidget {
       children: [
         Text(
           '$label:',
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: fontSize,
             fontWeight: FontWeight.w500,
+            color: textColor,
           ),
         ),
         const SizedBox(width: 5),
         Text(
           value.toString(),
-          style: const TextStyle(fontSize: fontSize),
-        )
+          style: TextStyle(
+            fontSize: fontSize,
+            color: textColor,
+          ),
+        ),
       ],
+    );
+  }
+
+  Widget _buildFeaturesList({
+    required BuildContext context,
+    required Map<String, int> featuresList,
+    required bool colorText,
+  }) {
+    final scrollController = ScrollController();
+
+    return ContainerBoxTemplate(
+      height: 100,
+      width: MediaQuery.of(context).size.width / 7,
+      child: Scrollbar(
+        isAlwaysShown: true,
+        showTrackOnHover: true,
+        interactive: true,
+        controller: scrollController,
+        child: SingleChildScrollView(
+          controller: scrollController,
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                for (String featureType in featuresList.keys)
+                  _buildOverview(
+                    label: featureType,
+                    value: featuresList[featureType],
+                    textColor: colorText
+                        ? productDictionaryLabel.keys.firstWhere(
+                            (color) => productDictionaryLabel[color] == featureType,
+                          )
+                        : Colors.black,
+                  ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

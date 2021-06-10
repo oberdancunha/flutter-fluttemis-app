@@ -14,10 +14,12 @@ class Locus with _$Locus {
     required int length,
     required String type,
     required String organism,
+    required KtList<Feature> features,
+    required Map<String, int> featuresTypesOverview,
+    required Map<String, int> featuresTypesProductsOverview,
     String? shape,
     String? releaseDate,
     String? sequence,
-    KtList<Feature>? features,
   }) = _Locus;
 
   factory Locus.empty() => const Locus(
@@ -26,5 +28,7 @@ class Locus with _$Locus {
         type: '',
         organism: '',
         features: KtList.empty(),
+        featuresTypesOverview: {},
+        featuresTypesProductsOverview: {},
       );
 }

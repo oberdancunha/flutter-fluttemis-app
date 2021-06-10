@@ -51,7 +51,7 @@ class LocusDataSourceGenbankFile implements ILocusDataSource {
                         name: feature.name,
                         note: feature.note,
                         product: feature.product,
-                      ),
+                      ).toDomain(),
                     )
                     .toList(),
               ).toDomain(),

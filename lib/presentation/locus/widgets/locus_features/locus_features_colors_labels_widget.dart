@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/constants.dart';
+import '../../../../utils/product_dictionary.dart';
 
 class LocusFeaturesColorsLabelsWidget extends StatelessWidget {
   const LocusFeaturesColorsLabelsWidget({Key? key}) : super(key: key);
@@ -18,38 +19,22 @@ class LocusFeaturesColorsLabelsWidget extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              _printLabel(
-                backgroundColor: colorLocusFeatureKnownProduct,
-                label: 'Known product',
-              ),
+              _printLabel(backgroundColor: colorLocusFeatureKnownProduct),
               const SizedBox(width: 15),
-              _printLabel(
-                backgroundColor: colorLocusFeatureHypotheticalProduct,
-                label: 'Hypothetical product',
-              ),
+              _printLabel(backgroundColor: colorLocusFeatureHypotheticalProduct),
               const SizedBox(width: 15),
-              _printLabel(
-                backgroundColor: colorLocusFeaturePutativeProduct,
-                label: 'Putative product',
-              ),
+              _printLabel(backgroundColor: colorLocusFeaturePutativeProduct),
               const SizedBox(width: 15),
-              _printLabel(
-                backgroundColor: colorLocusFeatureUnknownProduct,
-                label: 'Uncharacterized product',
-              ),
+              _printLabel(backgroundColor: colorLocusFeatureUnknownProduct),
             ],
           ),
         ],
       );
 
-  Widget _printLabel({
-    required Color backgroundColor,
-    required String label,
-  }) =>
-      Column(
+  Widget _printLabel({required Color backgroundColor}) => Column(
         children: [
           Text(
-            label,
+            '${productDictionaryLabel[backgroundColor]} product',
             style: const TextStyle(fontSize: 13),
           ),
           const SizedBox(height: 5),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../application/locus/locus_bloc.dart';
+import '../../../core/templates/container_box_template.dart';
 
 class LocusFeaturesDetailsWidget extends StatelessWidget {
   const LocusFeaturesDetailsWidget({Key? key}) : super(key: key);
@@ -11,26 +12,12 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
         buildWhen: (oldState, newState) =>
             oldState.locusFeatureShowed != newState.locusFeatureShowed,
         builder: (context, state) => state.locusFeatureShowed!.id != ''
-            ? Container(
-                width: MediaQuery.of(context).size.width / 2,
-                height: 230,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border(
-                    top: BorderSide(color: state.locusFeatureShowed!.color),
-                    left: BorderSide(color: state.locusFeatureShowed!.color),
-                    right: BorderSide(color: state.locusFeatureShowed!.color),
-                    bottom: BorderSide(color: state.locusFeatureShowed!.color),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: state.locusFeatureShowed!.color.withOpacity(0.3),
-                      spreadRadius: 5,
-                      blurRadius: 5,
-                      offset: const Offset(0, 3),
-                    ),
-                  ],
+            ? ContainerBoxTemplate(
+                width: MediaQuery.of(context).size.width / 2.04,
+                height: MediaQuery.of(context).size.height / 3.2,
+                boxShadowColor: state.locusFeatureShowed!.color,
+                border: Border.all(
+                  color: state.locusFeatureShowed!.color,
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(20),
