@@ -17,6 +17,7 @@ class LocusDetailsWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   'Locus overview',

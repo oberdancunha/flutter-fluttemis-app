@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:kt_dart/collection.dart';
 import 'package:touchable/touchable.dart';
 
 import '../../../../application/locus/locus_bloc.dart';
@@ -26,10 +25,7 @@ class LocusFeaturesWidget extends StatelessWidget {
             painter: DrawLocusFeature(
               screenWidthScale: screenWidthScale,
               context: context,
-              features: state.locusShowed.features
-                  .asList()
-                  .where((feature) => feature.type == 'CDS')
-                  .toImmutableList(),
+              features: state.featuresListToShow,
               scale: scale,
               locusBloc: context.read<LocusBloc>(),
               locusState: state,

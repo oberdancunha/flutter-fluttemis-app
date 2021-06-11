@@ -16,6 +16,7 @@ class Feature with _$Feature {
     required String type,
     required int strand,
     required Color color,
+    required bool show,
     String? name,
     String? product,
     String? nucleotides,
@@ -30,5 +31,6 @@ class Feature with _$Feature {
         type: '',
         strand: 0,
         color: colorLocusFeatureNotProduct,
+        show: false,
       );
 }

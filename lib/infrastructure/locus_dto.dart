@@ -38,13 +38,12 @@ abstract class LocusDto with _$LocusDto {
               ),
             ),
         featuresTypesProductsOverview: features
-            .where((feature) => feature.type == 'CDS')
+            .where(
+                (feature) => feature.show && feature.product != null && feature.product!.isNotEmpty)
             .groupSetsBy((feature) => feature.color)
-            .map(
-              (featureColor, featureColorData) => MapEntry(
-                productDictionaryLabel[featureColor].toString(),
-                featureColorData.length,
-              ),
-            ),
+            .map((featureColor, featureColorData) => MapEntry(
+                  productDictionaryLabel[featureColor].toString(),
+                  featureColorData.length,
+                )),
       );
 }

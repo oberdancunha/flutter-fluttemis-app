@@ -32,5 +32,8 @@ class FeatureDto with _$FeatureDto {
         note: note,
         product: product,
         color: colorLocusFeatureByProduct(product ?? ''),
+        show: type.toLowerCase() != 'source' &&
+            type.toLowerCase() != 'gene' &&
+            type.toLowerCase() != 'mrna',
       );
 }

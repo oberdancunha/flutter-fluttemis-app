@@ -28,6 +28,7 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
           locusFailureOrSuccess: none(),
           isSearching: true,
           locusList: const KtList.empty(),
+          featuresListToShow: const KtList.empty(),
           locusShowed: Locus.empty(),
         );
         final locusFailureOrSuccess = await locusRepository.getLocus();
@@ -40,6 +41,9 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
           locusFailureOrSuccess: optionOf(locusFailureOrSuccess),
           isSearching: false,
           locusList: locus,
+          featuresListToShow: locus.isEmpty()
+              ? const KtList.empty()
+              : locus.first().features.asList().where((feature) => feature.show).toImmutableList(),
           locusShowed: locus.isNotEmpty() ? locus.first() : Locus.empty(),
         );
       },
@@ -57,6 +61,12 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
         yield state.copyWith(
           isSearching: false,
           locusShowed: locusShowed,
+          featuresListToShow: locusShowed.features
+              .asList()
+              .where(
+                (feature) => feature.show,
+              )
+              .toImmutableList(),
           locusFeatureShowed: Feature.empty(),
         );
       },

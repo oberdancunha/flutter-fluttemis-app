@@ -23,6 +23,7 @@ class _$FeatureTearOff {
       required String type,
       required int strand,
       required Color color,
+      required bool show,
       String? name,
       String? product,
       String? nucleotides,
@@ -35,6 +36,7 @@ class _$FeatureTearOff {
       type: type,
       strand: strand,
       color: color,
+      show: show,
       name: name,
       product: product,
       nucleotides: nucleotides,
@@ -55,6 +57,7 @@ mixin _$Feature {
   String get type => throw _privateConstructorUsedError;
   int get strand => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
+  bool get show => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get product => throw _privateConstructorUsedError;
   String? get nucleotides => throw _privateConstructorUsedError;
@@ -76,6 +79,7 @@ abstract class $FeatureCopyWith<$Res> {
       String type,
       int strand,
       Color color,
+      bool show,
       String? name,
       String? product,
       String? nucleotides,
@@ -99,6 +103,7 @@ class _$FeatureCopyWithImpl<$Res> implements $FeatureCopyWith<$Res> {
     Object? type = freezed,
     Object? strand = freezed,
     Object? color = freezed,
+    Object? show = freezed,
     Object? name = freezed,
     Object? product = freezed,
     Object? nucleotides = freezed,
@@ -130,6 +135,10 @@ class _$FeatureCopyWithImpl<$Res> implements $FeatureCopyWith<$Res> {
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
+      show: show == freezed
+          ? _value.show
+          : show // ignore: cast_nullable_to_non_nullable
+              as bool,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -166,6 +175,7 @@ abstract class _$FeatureCopyWith<$Res> implements $FeatureCopyWith<$Res> {
       String type,
       int strand,
       Color color,
+      bool show,
       String? name,
       String? product,
       String? nucleotides,
@@ -190,6 +200,7 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
     Object? type = freezed,
     Object? strand = freezed,
     Object? color = freezed,
+    Object? show = freezed,
     Object? name = freezed,
     Object? product = freezed,
     Object? nucleotides = freezed,
@@ -221,6 +232,10 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as Color,
+      show: show == freezed
+          ? _value.show
+          : show // ignore: cast_nullable_to_non_nullable
+              as bool,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -255,6 +270,7 @@ class _$_Feature extends _Feature {
       required this.type,
       required this.strand,
       required this.color,
+      required this.show,
       this.name,
       this.product,
       this.nucleotides,
@@ -275,6 +291,8 @@ class _$_Feature extends _Feature {
   @override
   final Color color;
   @override
+  final bool show;
+  @override
   final String? name;
   @override
   final String? product;
@@ -287,7 +305,7 @@ class _$_Feature extends _Feature {
 
   @override
   String toString() {
-    return 'Feature(id: $id, start: $start, end: $end, type: $type, strand: $strand, color: $color, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
+    return 'Feature(id: $id, start: $start, end: $end, type: $type, strand: $strand, color: $color, show: $show, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
   }
 
   @override
@@ -306,6 +324,8 @@ class _$_Feature extends _Feature {
                 const DeepCollectionEquality().equals(other.strand, strand)) &&
             (identical(other.color, color) ||
                 const DeepCollectionEquality().equals(other.color, color)) &&
+            (identical(other.show, show) ||
+                const DeepCollectionEquality().equals(other.show, show)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.product, product) ||
@@ -330,6 +350,7 @@ class _$_Feature extends _Feature {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(strand) ^
       const DeepCollectionEquality().hash(color) ^
+      const DeepCollectionEquality().hash(show) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(product) ^
       const DeepCollectionEquality().hash(nucleotides) ^
@@ -350,6 +371,7 @@ abstract class _Feature extends Feature {
       required String type,
       required int strand,
       required Color color,
+      required bool show,
       String? name,
       String? product,
       String? nucleotides,
@@ -369,6 +391,8 @@ abstract class _Feature extends Feature {
   int get strand => throw _privateConstructorUsedError;
   @override
   Color get color => throw _privateConstructorUsedError;
+  @override
+  bool get show => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
   @override
