@@ -80,7 +80,7 @@ class DrawLocusFeature extends CustomPainter {
           );
         },
       );
-      nextLine = nextLine + 20.0;
+      nextLine = nextLine + 30.0;
     }
   }
 

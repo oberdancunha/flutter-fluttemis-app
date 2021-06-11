@@ -28,9 +28,20 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
           final markingPoints = (locusLength / maxWidthPerMarker).round();
           final scale = (screenWidth / locusLength) * (pixelsPerCharacter / 3);
           final screenWidthScale = locusLength * scale;
-          final featuresTypes = state.featuresListToShow.asList().groupListsBy(
-                (feature) => feature.type,
-              );
+          final featuresTypes = Map.fromEntries(
+            state.featuresListToShow
+                .asList()
+                .groupListsBy(
+                  (feature) => feature.type,
+                )
+                .entries
+                .toList()
+                .sorted(
+                  (a, b) => b.value.length.compareTo(a.value.length),
+                ),
+          );
+          final maxHeight = MediaQuery.of(context).size.height / 2.5;
+          final height = 100 + double.tryParse((featuresTypes.keys.length * 28).toString())!;
 
           return NotificationListener<ScrollNotification>(
             onNotification: (scrollNotification) {
@@ -56,7 +67,7 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   child: SizedBox(
                     width: screenWidthScale,
-                    height: 150 + double.tryParse((featuresTypes.keys.length * 10).toString())!,
+                    height: height > maxHeight ? maxHeight : height,
                     child: CustomPaint(
                       painter: DrawLocusScale(
                         width: double.tryParse(screenWidthScale.toString())!,
