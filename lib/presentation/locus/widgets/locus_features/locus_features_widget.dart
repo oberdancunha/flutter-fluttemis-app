@@ -3,13 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:touchable/touchable.dart';
 
 import '../../../../application/locus/locus_bloc.dart';
+import '../../../../domain/locus/feature.dart';
 import '../../draw/draw_locus_feature.dart';
 
 class LocusFeaturesWidget extends StatelessWidget {
+  final Map<String, List<Feature>> featuresTypes;
   final double screenWidthScale;
   final double scale;
 
   const LocusFeaturesWidget({
+    required this.featuresTypes,
     required this.screenWidthScale,
     required this.scale,
     Key? key,
@@ -25,7 +28,7 @@ class LocusFeaturesWidget extends StatelessWidget {
             painter: DrawLocusFeature(
               screenWidthScale: screenWidthScale,
               context: context,
-              features: state.featuresListToShow,
+              featuresTypes: featuresTypes,
               scale: scale,
               locusBloc: context.read<LocusBloc>(),
               locusState: state,

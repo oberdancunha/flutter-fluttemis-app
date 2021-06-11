@@ -51,7 +51,7 @@ class LocusPage extends StatelessWidget {
                           child: Column(
                             children: const [
                               LocusHeaderWidget(),
-                              SizedBox(height: 40),
+                              SizedBox(height: 15),
                               LocusFeaturesBodyWidget(),
                               SizedBox(height: 15),
                               LocusBodyWidget(),

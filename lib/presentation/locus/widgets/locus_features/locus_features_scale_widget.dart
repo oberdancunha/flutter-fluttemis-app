@@ -1,3 +1,4 @@
+import 'package:collection/src/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,6 +28,9 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
           final markingPoints = (locusLength / maxWidthPerMarker).round();
           final scale = (screenWidth / locusLength) * (pixelsPerCharacter / 3);
           final screenWidthScale = locusLength * scale;
+          final featuresTypes = state.featuresListToShow.asList().groupListsBy(
+                (feature) => feature.type,
+              );
 
           return NotificationListener<ScrollNotification>(
             onNotification: (scrollNotification) {
@@ -48,20 +52,24 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 controller: _scrollController,
-                child: SizedBox(
-                  width: screenWidthScale,
-                  height: 120,
-                  child: CustomPaint(
-                    painter: DrawLocusScale(
-                      width: double.tryParse(screenWidthScale.toString())!,
-                      locusLength: locusLength,
-                      scale: scale,
-                      markingPoints: markingPoints,
-                      locusLengthByCharacters: locusLengthByCharacters,
-                    ),
-                    child: LocusFeaturesWidget(
-                      screenWidthScale: screenWidthScale,
-                      scale: scale,
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: SizedBox(
+                    width: screenWidthScale,
+                    height: 150 + double.tryParse((featuresTypes.keys.length * 10).toString())!,
+                    child: CustomPaint(
+                      painter: DrawLocusScale(
+                        width: double.tryParse(screenWidthScale.toString())!,
+                        locusLength: locusLength,
+                        scale: scale,
+                        markingPoints: markingPoints,
+                        locusLengthByCharacters: locusLengthByCharacters,
+                      ),
+                      child: LocusFeaturesWidget(
+                        featuresTypes: featuresTypes,
+                        screenWidthScale: screenWidthScale,
+                        scale: scale,
+                      ),
                     ),
                   ),
                 ),
