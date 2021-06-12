@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../application/locus/locus_bloc.dart';
 import '../../../../domain/locus/feature.dart';
-import '../../draw/draw_locus_scale.dart';
-import 'locus_features_widget.dart';
+import 'locus_features_draw_widget.dart';
 
 class LocusFeaturesScaleWidget extends StatelessWidget {
   final _scrollController = ScrollController();
@@ -24,8 +23,6 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
           if (pixelsPerCharacter < minPixelsPerCharacter) {
             pixelsPerCharacter = minPixelsPerCharacter;
           }
-          final maxWidthPerMarker = pixelsPerCharacter * locusLengthByCharacters;
-          final markingPoints = (locusLength / maxWidthPerMarker).round();
           final scale = (screenWidth / locusLength) * (pixelsPerCharacter / 3);
           final screenWidthScale = locusLength * scale;
           final featuresTypes = Map.fromEntries(
@@ -68,19 +65,12 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
                   child: SizedBox(
                     width: screenWidthScale,
                     height: height > maxHeight ? maxHeight : height,
-                    child: CustomPaint(
-                      painter: DrawLocusScale(
-                        width: double.tryParse(screenWidthScale.toString())!,
-                        locusLength: locusLength,
-                        scale: scale,
-                        markingPoints: markingPoints,
-                        locusLengthByCharacters: locusLengthByCharacters,
-                      ),
-                      child: LocusFeaturesWidget(
-                        featuresTypes: featuresTypes,
-                        screenWidthScale: screenWidthScale,
-                        scale: scale,
-                      ),
+                    child: LocusFeaturesDrawWidget(
+                      featuresTypes: featuresTypes,
+                      screenWidthScale: screenWidthScale,
+                      scale: scale,
+                      pixelsPerCharacter: pixelsPerCharacter,
+                      locusLengthByCharacters: locusLengthByCharacters,
                     ),
                   ),
                 ),

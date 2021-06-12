@@ -13,6 +13,7 @@ class DrawLocusFeature extends CustomPainter {
   final double scale;
   final LocusBloc locusBloc;
   final LocusState locusState;
+  final minimalLengthToDrawAdjust = 12;
 
   DrawLocusFeature({
     required this.screenWidthScale,
@@ -27,37 +28,25 @@ class DrawLocusFeature extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final touchyCanvas = TouchyCanvas(context, canvas);
     var nextLine = 0.0;
-    List<Feature> features;
+    const distanceToNextFeature = 40;
     for (final featureType in featuresTypes.keys) {
-      features = featuresTypes[featureType]!;
-      final span = TextSpan(
-        style: const TextStyle(
-          color: Colors.black,
-          fontSize: 11,
-        ),
-        text: '$featureType (${features.length})',
+      final features = featuresTypes[featureType]!;
+      _printFeatureType(
+        canvas,
+        featureType: featureType,
+        featuresLength: features.length,
+        verticalPosition: nextLine,
       );
-      TextPainter(
-        text: span,
-        textDirection: TextDirection.rtl,
-      )
-        ..layout()
-        ..paint(
-          canvas,
-          Offset(0, nextLine + 50),
-        );
       nextLine += 10;
+      Function(TapUpDetails) tapAction;
       features.forEach(
         (feature) {
-          final featureStart = feature.start * scale;
-          final featureEnd = feature.end * scale;
-          final isFeatureSelected = feature.id == locusState.locusFeatureShowed!.id;
           var paint = Paint()..color = feature.color;
           var adjustToArrowLigature = 1;
-          Function(TapUpDetails) tapAction;
+          final isFeatureSelected = feature.id == locusState.locusFeatureShowed!.id;
           if (isFeatureSelected) {
             paint = paint
-              ..strokeWidth = 4
+              ..strokeWidth = 3
               ..style = PaintingStyle.stroke;
             adjustToArrowLigature = 0;
             tapAction = (_) {
@@ -68,65 +57,102 @@ class DrawLocusFeature extends CustomPainter {
               locusBloc.add(LocusEvent.showLocusFeature(locusFeature: feature));
             };
           }
-          var adjustLineLengthToDraw = 12;
-          var adjustArrowLengthToDraw = 8;
-          if ((feature.end - feature.start) + 1 <= 12) {
-            adjustLineLengthToDraw = 10;
-            adjustArrowLengthToDraw = 6;
-          }
+          final featureStart = feature.start * scale;
+          final featureEnd = feature.end * scale;
           _drawLine(
             touchyCanvas,
             paint,
-            left: feature.strand == 0
-                ? featureStart
-                : featureStart + adjustLineLengthToDraw - adjustToArrowLigature,
-            top: nextLine + 71,
-            right: feature.strand == 0
-                ? featureEnd - adjustLineLengthToDraw + adjustToArrowLigature
-                : featureEnd,
-            bottom: nextLine + 77,
+            featureStart: featureStart,
+            featureEnd: featureEnd,
+            featureStrand: feature.strand,
+            adjustToArrowLigature: adjustToArrowLigature,
+            linePosition: nextLine,
             tapAction: tapAction,
           );
           _drawArrow(
             touchyCanvas,
             paint,
-            leftOrRightPosition: feature.strand == 0
-                ? featureEnd - adjustArrowLengthToDraw
-                : featureStart + adjustArrowLengthToDraw,
-            topOrBottomPosition: nextLine + 74,
+            featureStart: featureStart,
+            featureEnd: featureEnd,
+            featureStrand: feature.strand,
+            topOrBottomPosition: nextLine,
             strand: feature.strand,
             tapAction: tapAction,
           );
         },
       );
-      nextLine = nextLine + 40.0;
+      nextLine = nextLine + distanceToNextFeature;
     }
+  }
+
+  void _printFeatureType(
+    Canvas canvas, {
+    required String featureType,
+    required int featuresLength,
+    required double verticalPosition,
+  }) {
+    const baseVerticalPosition = 50.0;
+    final span = TextSpan(
+      style: const TextStyle(
+        color: Colors.black,
+        fontSize: 11,
+      ),
+      text: '$featureType ($featuresLength)',
+    );
+    TextPainter(
+      text: span,
+      textDirection: TextDirection.rtl,
+    )
+      ..layout()
+      ..paint(
+        canvas,
+        Offset(0, verticalPosition + baseVerticalPosition),
+      );
   }
 
   void _drawLine(
     TouchyCanvas touchyCanvas,
     Paint paint, {
-    required double left,
-    required double top,
-    required double right,
-    required double bottom,
+    required double featureStart,
+    required double featureEnd,
+    required int featureStrand,
+    required int adjustToArrowLigature,
+    required double linePosition,
     required Function(TapUpDetails) tapAction,
   }) {
     final borderRadius = BorderRadius.circular(5);
-    final rect = Rect.fromLTRB(left, top, right, bottom);
+    const topBasePosition = 71;
+    const bottomBasePosition = 77;
+    var adjustLineLengthToDraw = 12;
+    if ((featureEnd - featureStart) + 1 <= minimalLengthToDrawAdjust) {
+      adjustLineLengthToDraw = 10;
+    }
+    final left = featureStrand == 0
+        ? featureStart
+        : featureStart + adjustLineLengthToDraw - adjustToArrowLigature;
+    final right = featureStrand == 0
+        ? featureEnd - adjustLineLengthToDraw + adjustToArrowLigature
+        : featureEnd;
+    final rect = Rect.fromLTRB(
+      left,
+      topBasePosition + linePosition,
+      right,
+      bottomBasePosition + linePosition,
+    );
     final rrect = borderRadius.toRRect(rect);
     touchyCanvas.drawRRect(
       rrect,
       paint,
       onTapUp: tapAction,
-      onPanUpdate: (_) => debugPrint('CLicou'),
     );
   }
 
   void _drawArrow(
     TouchyCanvas touchyCanvas,
     Paint paint, {
-    required double leftOrRightPosition,
+    required double featureStart,
+    required double featureEnd,
+    required int featureStrand,
     required double topOrBottomPosition,
     required int strand,
     required Function(TapUpDetails) tapAction,
@@ -136,7 +162,15 @@ class DrawLocusFeature extends CustomPainter {
     const sides = 3.0;
     const angle = (math.pi * 2) / sides;
     final radians = strand == 0 ? 0.0 : 20.0;
-    final center = Offset(leftOrRightPosition, topOrBottomPosition);
+    var adjustArrowLengthToDraw = 8;
+    if ((featureEnd - featureStart) + 1 <= minimalLengthToDrawAdjust) {
+      adjustArrowLengthToDraw = 6;
+    }
+    const topOrBottomBasePosition = 74;
+    final leftOrRightPosition = featureStrand == 0
+        ? featureEnd - adjustArrowLengthToDraw
+        : featureStart + adjustArrowLengthToDraw;
+    final center = Offset(leftOrRightPosition, topOrBottomPosition + topOrBottomBasePosition);
     final startPoint = Offset(
       radius * math.cos(radians),
       radius * math.sin(radians),
