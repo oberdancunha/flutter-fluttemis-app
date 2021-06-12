@@ -53,7 +53,7 @@ class LocusPage extends StatelessWidget {
                               LocusHeaderWidget(),
                               SizedBox(height: 15),
                               LocusFeaturesBodyWidget(),
-                              SizedBox(height: 15),
+                              SizedBox(height: 10),
                               LocusBodyWidget(),
                             ],
                           ),

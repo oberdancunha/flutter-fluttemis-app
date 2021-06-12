@@ -27,7 +27,26 @@ class DrawLocusFeature extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final touchyCanvas = TouchyCanvas(context, canvas);
     var nextLine = 0.0;
-    for (final features in featuresTypes.values) {
+    List<Feature> features;
+    for (final featureType in featuresTypes.keys) {
+      features = featuresTypes[featureType]!;
+      final span = TextSpan(
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 11,
+        ),
+        text: '$featureType (${features.length})',
+      );
+      TextPainter(
+        text: span,
+        textDirection: TextDirection.rtl,
+      )
+        ..layout()
+        ..paint(
+          canvas,
+          Offset(0, nextLine + 50),
+        );
+      nextLine += 10;
       features.forEach(
         (feature) {
           final featureStart = feature.start * scale;
@@ -80,7 +99,7 @@ class DrawLocusFeature extends CustomPainter {
           );
         },
       );
-      nextLine = nextLine + 30.0;
+      nextLine = nextLine + 40.0;
     }
   }
 
