@@ -64,12 +64,17 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
                   (a, b) => b.value.length.compareTo(a.value.length),
                 ),
           );
+          const minHeight = 80.0;
           final maxHeight = MediaQuery.of(context).size.height / 3;
           final labelTypesHeight = double.tryParse((featuresTypes.keys.length * 40).toString())!;
-          final height = double.tryParse((featuresTypes.keys.length * 80).toString())!;
+          final height = double.tryParse((featuresTypes.keys.length * 50).toString())!;
 
           return SizedBox(
-            height: height > maxHeight ? maxHeight : height,
+            height: height > maxHeight
+                ? maxHeight
+                : height > minHeight
+                    ? height
+                    : minHeight,
             width: screenWidthScale,
             child: Stack(
               children: [

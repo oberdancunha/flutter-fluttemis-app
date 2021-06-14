@@ -12,7 +12,7 @@ class LocusFeaturesTypesListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const position = 16.0;
+    const position = -51;
     var nextLine = 30.0;
 
     return SizedBox(
@@ -20,7 +20,7 @@ class LocusFeaturesTypesListWidget extends StatelessWidget {
         children: [
           for (var featuresType in featuresTypes.keys)
             Positioned(
-              top: position + double.tryParse((nextLine += 40).toString())! - 67,
+              top: position + double.tryParse((nextLine += 40).toString())!,
               bottom: 0,
               left: 0,
               right: 0,

@@ -24,14 +24,14 @@ class LocusFeaturesDrawWidget extends StatelessWidget {
             oldState.locusShowed.features != newState.locusShowed.features ||
             oldState.locusFeatureShowed != newState.locusFeatureShowed,
         builder: (context, state) {
-          const position = 60.0;
+          const position = -7;
           var nextLine = -40.0;
 
           return Stack(
             children: [
               for (var featuresType in featuresTypes.keys)
                 Positioned(
-                  top: position + double.tryParse((nextLine += 40).toString())! - 67,
+                  top: position + double.tryParse((nextLine += 40).toString())!,
                   bottom: 0,
                   left: 0,
                   right: 0,
