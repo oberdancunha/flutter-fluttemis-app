@@ -32,6 +32,7 @@ dependencies:
   flutter_modular: ^3.2.2+1
   freezed_annotation: ^0.14.2
   kt_dart: ^0.9.0
+  linked_scroll_controller: ^0.2.0
   touchable: ^1.0.0
 
 dev_dependencies:

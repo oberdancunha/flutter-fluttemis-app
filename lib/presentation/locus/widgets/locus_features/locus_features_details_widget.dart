@@ -14,13 +14,13 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
         builder: (context, state) => state.locusFeatureShowed!.id != ''
             ? ContainerBoxTemplate(
                 width: MediaQuery.of(context).size.width / 2.04,
-                height: 230,
+                height: 250,
                 boxShadowColor: state.locusFeatureShowed!.color,
                 border: Border.all(
                   color: state.locusFeatureShowed!.color,
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,

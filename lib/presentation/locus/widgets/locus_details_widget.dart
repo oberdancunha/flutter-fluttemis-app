@@ -13,9 +13,9 @@ class LocusDetailsWidget extends StatelessWidget {
         buildWhen: (oldState, newState) => oldState.locusShowed != newState.locusShowed,
         builder: (context, state) => ContainerBoxTemplate(
           width: MediaQuery.of(context).size.width / 2.04,
-          height: 230,
+          height: 250,
           child: Padding(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.all(15),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -81,30 +81,28 @@ class LocusDetailsWidget extends StatelessWidget {
     required String label,
     required value,
     Color textColor = Colors.black,
-  }) {
-    const fontSize = 15.0;
-
-    return Row(
-      children: [
-        Text(
-          '$label:',
-          style: TextStyle(
-            fontSize: fontSize,
-            fontWeight: FontWeight.w500,
-            color: textColor,
+    double fontSize = 15.0,
+  }) =>
+      Row(
+        children: [
+          Text(
+            '$label:',
+            style: TextStyle(
+              fontSize: fontSize,
+              fontWeight: FontWeight.w500,
+              color: textColor,
+            ),
           ),
-        ),
-        const SizedBox(width: 5),
-        Text(
-          value.toString(),
-          style: TextStyle(
-            fontSize: fontSize,
-            color: textColor,
+          const SizedBox(width: 5),
+          Text(
+            value.toString(),
+            style: TextStyle(
+              fontSize: fontSize,
+              color: textColor,
+            ),
           ),
-        ),
-      ],
-    );
-  }
+        ],
+      );
 
   Widget _buildFeaturesList({
     required BuildContext context,
@@ -132,6 +130,7 @@ class LocusDetailsWidget extends StatelessWidget {
                   _buildOverview(
                     label: featureType,
                     value: featuresList[featureType],
+                    fontSize: 13,
                     textColor: colorText
                         ? productDictionaryLabel.keys.firstWhere(
                             (color) => productDictionaryLabel[color] == featureType,

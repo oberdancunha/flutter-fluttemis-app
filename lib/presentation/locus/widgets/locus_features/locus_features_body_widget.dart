@@ -15,10 +15,10 @@ class LocusFeaturesBodyWidget extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 10),
-              const LocusFeaturesColorsLabelsWidget(),
-              const SizedBox(height: 15),
+            children: const [
+              SizedBox(height: 10),
+              LocusFeaturesColorsLabelsWidget(),
+              SizedBox(height: 15),
               LocusFeaturesScaleWidget(),
             ],
           ),
