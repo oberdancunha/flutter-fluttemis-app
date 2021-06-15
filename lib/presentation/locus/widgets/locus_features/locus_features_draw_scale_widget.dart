@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../draw/draw_locus_scale.dart';
 
-class LocusFeaturesDrawScale extends StatelessWidget {
+class LocusFeaturesDrawScaleWidget extends StatelessWidget {
   final int locusLength;
   final double screenWidthScale;
   final double scale;
   final int pixelsPerCharacter;
   final int locusLengthByCharacters;
 
-  const LocusFeaturesDrawScale({
+  const LocusFeaturesDrawScaleWidget({
     required this.screenWidthScale,
     required this.locusLength,
     required this.scale,

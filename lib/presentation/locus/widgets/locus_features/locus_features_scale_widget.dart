@@ -7,7 +7,7 @@ import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import '../../../../application/locus/locus_bloc.dart';
 import '../../../../domain/locus/feature.dart';
 import '../../widgets/locus_features/locus_features_types_list_widget.dart';
-import 'locus_features_draw_scale.dart';
+import 'locus_features_draw_scale_widget.dart';
 import 'locus_features_draw_widget.dart';
 
 class LocusFeaturesScaleWidget extends StatefulWidget {
@@ -117,7 +117,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
           scrollDirection: Axis.horizontal,
           child: SizedBox(
             width: screenWidthScale,
-            child: LocusFeaturesDrawScale(
+            child: LocusFeaturesDrawScaleWidget(
               screenWidthScale: screenWidthScale,
               locusLength: locusLength,
               scale: scale,
