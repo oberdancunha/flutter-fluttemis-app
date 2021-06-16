@@ -12,27 +12,22 @@ class LocusFeaturesTypesListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const position = -51;
-    var nextLine = 30.0;
+    var nextLine = -25.0;
 
-    return SizedBox(
-      child: Stack(
-        children: [
-          for (var featuresType in featuresTypes.keys)
-            Positioned(
-              top: position + double.tryParse((nextLine += 40).toString())!,
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: SizedBox(
-                child: Text(
-                  '$featuresType (${featuresTypes[featuresType]!.length})',
-                  style: const TextStyle(fontSize: 12),
-                ),
-              ),
+    return Stack(
+      children: [
+        for (var featuresType in featuresTypes.keys)
+          Positioned(
+            top: double.tryParse((nextLine += 40).toString()),
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Text(
+              '$featuresType (${featuresTypes[featuresType]!.length})',
+              style: const TextStyle(fontSize: 12),
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 }

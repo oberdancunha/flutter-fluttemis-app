@@ -80,8 +80,8 @@ class DrawLocusFeature extends CustomPainter {
     required Function(TapUpDetails) tapAction,
   }) {
     final borderRadius = BorderRadius.circular(5);
-    const topBasePosition = 31.0;
-    const bottomBasePosition = 37.0;
+    const topBasePosition = 0.0;
+    const bottomBasePosition = 7.0;
     var adjustLineLengthToDraw = 12;
     if ((featureEnd - featureStart) + 1 <= minimalLengthToDrawAdjust) {
       adjustLineLengthToDraw = 10;
@@ -124,7 +124,7 @@ class DrawLocusFeature extends CustomPainter {
     if ((featureEnd - featureStart) + 1 <= minimalLengthToDrawAdjust) {
       adjustArrowLengthToDraw = 6;
     }
-    const topOrBottomBasePosition = 34.0;
+    const topOrBottomBasePosition = 3.0;
     final leftOrRightPosition = featureStrand == 0
         ? featureEnd - adjustArrowLengthToDraw
         : featureStart + adjustArrowLengthToDraw;

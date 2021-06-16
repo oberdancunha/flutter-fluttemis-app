@@ -10,34 +10,8 @@ import '../../widgets/locus_features/locus_features_types_list_widget.dart';
 import 'locus_features_draw_scale_widget.dart';
 import 'locus_features_draw_widget.dart';
 
-class LocusFeaturesScaleWidget extends StatefulWidget {
+class LocusFeaturesScaleWidget extends StatelessWidget {
   const LocusFeaturesScaleWidget({Key? key}) : super(key: key);
-
-  @override
-  _LocusFeaturesScaleWidgetState createState() => _LocusFeaturesScaleWidgetState();
-}
-
-class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
-  late LinkedScrollControllerGroup _controllers;
-  late ScrollController _controllerScale;
-  late ScrollController _controllerPosition;
-  late ScrollController _controllerLabel;
-  @override
-  void initState() {
-    super.initState();
-    _controllers = LinkedScrollControllerGroup();
-    _controllerScale = _controllers.addAndGet();
-    _controllerPosition = _controllers.addAndGet();
-    _controllerLabel = ScrollController();
-  }
-
-  @override
-  void dispose() {
-    _controllerScale.dispose();
-    _controllerPosition.dispose();
-    _controllerLabel.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
@@ -64,34 +38,60 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
                   (a, b) => b.value.length.compareTo(a.value.length),
                 ),
           );
-          const minHeight = 80.0;
+          const minHeight = 100.0;
           final maxHeight = MediaQuery.of(context).size.height / 3;
-          final labelTypesHeight = double.tryParse((featuresTypes.keys.length * 40).toString())!;
-          final height = double.tryParse((featuresTypes.keys.length * 50).toString())!;
+          final typesHeight = double.tryParse((featuresTypes.keys.length * 40).toString())!;
+          final totalTypesHeight = double.tryParse((featuresTypes.keys.length * 55).toString())!;
+          final height = totalTypesHeight >= maxHeight
+              ? maxHeight
+              : totalTypesHeight >= minHeight
+                  ? totalTypesHeight
+                  : minHeight;
+
+          final _controllersScalePosition = LinkedScrollControllerGroup();
+          final _controllersLabelsFeatures = LinkedScrollControllerGroup();
+          final _controllerScale = _controllersScalePosition.addAndGet();
+          final _controllerPosition = _controllersScalePosition.addAndGet();
+          final _controllerLabels = _controllersLabelsFeatures.addAndGet();
+          final _controllerFeatures = _controllersLabelsFeatures.addAndGet();
+
+          final _positionsKey = Key('position_${state.locusShowed.name}_${DateTime.now()}');
+          final _typesKey = Key('types_${state.locusShowed.name}_${DateTime.now()}');
 
           return SizedBox(
-            height: height > maxHeight
-                ? maxHeight
-                : height > minHeight
-                    ? height
-                    : minHeight,
+            height: height,
             width: screenWidthScale,
             child: Stack(
               children: [
                 _buildLocusScale(
                   screenWidthScale: screenWidthScale,
-                  height: height > maxHeight ? maxHeight : height,
+                  height: height,
                   locusLength: locusLength,
                   scale: scale,
                   pixelsPerCharacter: pixelsPerCharacter,
                   locusLengthByCharacters: locusLengthByCharacters,
+                  positionsKey: _positionsKey,
+                  controllerScale: _controllerScale,
                 ),
-                _buildLabelsAndFeatures(
-                  labelTypesHeight: labelTypesHeight,
+                _buildLocusFeaturesTypes(
+                  context: context,
+                  featuresTypes: featuresTypes,
+                  typesHeight: typesHeight,
+                  state: state,
+                  typesKey: _typesKey,
+                  controllerLabels: _controllerLabels,
+                ),
+                _buildLocusFeatures(
+                  context: context,
                   state: state,
                   screenWidthScale: screenWidthScale,
+                  typesHeight: typesHeight,
                   featuresTypes: featuresTypes,
                   scale: scale,
+                  positionsKey: _positionsKey,
+                  typesKey: _typesKey,
+                  controllerFeatures: _controllerFeatures,
+                  controllerPosition: _controllerPosition,
                 ),
               ],
             ),
@@ -106,14 +106,17 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
     required double scale,
     required int pixelsPerCharacter,
     required int locusLengthByCharacters,
+    required Key positionsKey,
+    required ScrollController controllerScale,
   }) =>
       Positioned(
-        left: 120,
+        left: 125,
         bottom: height - 40,
         top: 0,
-        right: 0,
+        right: 20,
         child: SingleChildScrollView(
-          controller: _controllerScale,
+          key: positionsKey,
+          controller: controllerScale,
           scrollDirection: Axis.horizontal,
           child: SizedBox(
             width: screenWidthScale,
@@ -128,49 +131,81 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
         ),
       );
 
-  Widget _buildLabelsAndFeatures({
-    required double labelTypesHeight,
-    required LocusState state,
-    required double screenWidthScale,
+  Widget _buildLocusFeaturesTypes({
+    required BuildContext context,
     required Map<String, List<Feature>> featuresTypes,
-    required double scale,
+    required double typesHeight,
+    required LocusState state,
+    required Key typesKey,
+    required ScrollController controllerLabels,
   }) =>
       Positioned(
         left: 0,
-        bottom: 0,
+        bottom: 20,
         top: 40,
         right: 0,
-        child: Scrollbar(
-          isAlwaysShown: true,
-          controller: _controllerLabel,
-          showTrackOnHover: true,
-          interactive: true,
-          child: NotificationListener<ScrollNotification>(
-            onNotification: (scrollNotification) {
-              final isFeatureDetailsToBeHide = scrollNotification is ScrollUpdateNotification &&
-                  state.locusFeatureShowed!.id != '';
-              if (isFeatureDetailsToBeHide) {
-                context
-                    .read<LocusBloc>()
-                    .add(LocusEvent.showLocusFeature(locusFeature: Feature.empty()));
-              }
-
-              return true;
-            },
+        child: _hideFeatureDetailsShown(
+          context: context,
+          state: state,
+          child: Scrollbar(
+            key: typesKey,
+            isAlwaysShown: true,
+            controller: controllerLabels,
             child: SingleChildScrollView(
-              controller: _controllerLabel,
+              key: typesKey,
+              controller: controllerLabels,
               child: SizedBox(
-                height: labelTypesHeight,
-                child: Stack(
-                  children: [
-                    _buildLocusFeaturesTypes(featuresTypes: featuresTypes),
-                    _buildLocusFeatures(
-                      state: state,
-                      screenWidthScale: screenWidthScale,
+                height: typesHeight + 0.1,
+                child: LocusFeaturesTypesListWidget(featuresTypes: featuresTypes),
+              ),
+            ),
+          ),
+        ),
+      );
+
+  Widget _buildLocusFeatures({
+    required BuildContext context,
+    required LocusState state,
+    required double screenWidthScale,
+    required double typesHeight,
+    required Map<String, List<Feature>> featuresTypes,
+    required double scale,
+    required Key positionsKey,
+    required Key typesKey,
+    required ScrollController controllerPosition,
+    required ScrollController controllerFeatures,
+  }) =>
+      Positioned(
+        left: 125,
+        bottom: 0,
+        top: 40,
+        right: 20,
+        child: _hideFeatureDetailsShown(
+          context: context,
+          state: state,
+          child: Scrollbar(
+            key: positionsKey,
+            isAlwaysShown: true,
+            interactive: true,
+            controller: controllerPosition,
+            child: SingleChildScrollView(
+              key: positionsKey,
+              scrollDirection: Axis.horizontal,
+              controller: controllerPosition,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: SingleChildScrollView(
+                  key: typesKey,
+                  controller: controllerFeatures,
+                  child: SizedBox(
+                    width: screenWidthScale,
+                    height: typesHeight + 0.1,
+                    child: LocusFeaturesDrawWidget(
                       featuresTypes: featuresTypes,
+                      screenWidthScale: screenWidthScale,
                       scale: scale,
                     ),
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -178,52 +213,23 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
         ),
       );
 
-  Widget _buildLocusFeaturesTypes({
-    required Map<String, List<Feature>> featuresTypes,
-  }) =>
-      Positioned(
-        left: 0,
-        bottom: 0,
-        top: 0,
-        right: 0,
-        child: LocusFeaturesTypesListWidget(featuresTypes: featuresTypes),
-      );
-
-  Widget _buildLocusFeatures({
+  Widget _hideFeatureDetailsShown({
+    required BuildContext context,
+    required Widget child,
     required LocusState state,
-    required double screenWidthScale,
-    required Map<String, List<Feature>> featuresTypes,
-    required double scale,
   }) =>
-      Positioned(
-        left: 120,
-        bottom: 0,
-        top: 0,
-        right: 0,
-        child: NotificationListener<ScrollNotification>(
-          onNotification: (scrollNotification) {
-            final isFeatureDetailsToBeHide = scrollNotification is ScrollUpdateNotification &&
-                state.locusFeatureShowed!.id != '';
-            if (isFeatureDetailsToBeHide) {
-              context
-                  .read<LocusBloc>()
-                  .add(LocusEvent.showLocusFeature(locusFeature: Feature.empty()));
-            }
+      NotificationListener<ScrollNotification>(
+        onNotification: (scrollNotification) {
+          final isFeatureDetailsToBeHide =
+              scrollNotification is ScrollUpdateNotification && state.locusFeatureShowed!.id != '';
+          if (isFeatureDetailsToBeHide) {
+            context
+                .read<LocusBloc>()
+                .add(LocusEvent.showLocusFeature(locusFeature: Feature.empty()));
+          }
 
-            return true;
-          },
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            controller: _controllerPosition,
-            child: SizedBox(
-              width: screenWidthScale,
-              child: LocusFeaturesDrawWidget(
-                featuresTypes: featuresTypes,
-                screenWidthScale: screenWidthScale,
-                scale: scale,
-              ),
-            ),
-          ),
-        ),
+          return true;
+        },
+        child: child,
       );
 }
