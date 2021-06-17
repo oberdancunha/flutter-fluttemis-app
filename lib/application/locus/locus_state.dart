@@ -7,7 +7,6 @@ class LocusState with _$LocusState {
     required bool isSearching,
     required KtList<Locus> locusList,
     required Locus locusShowed,
-    required KtList<Feature> featuresListToShow,
     Feature? locusFeatureShowed,
   }) = _LocusState;
 
@@ -16,7 +15,6 @@ class LocusState with _$LocusState {
         isSearching: false,
         locusList: const KtList.empty(),
         locusShowed: Locus.empty(),
-        featuresListToShow: const KtList.empty(),
         locusFeatureShowed: Feature.empty(),
       );
 }

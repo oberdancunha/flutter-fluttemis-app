@@ -39,7 +39,6 @@ void main() {
         'Get success | ',
         () {
           final mockLocus = getLocus();
-          final mockFeaturesToShow = getFeaturesToShow();
 
           void setUpMockGetSuccess() {
             when(() => mockLocusRepository.getLocus()).thenAnswer((_) async => right(mockLocus));
@@ -77,7 +76,6 @@ void main() {
                   isSearching: true,
                   locusList: const KtList.empty(),
                   locusShowed: Locus.empty(),
-                  featuresListToShow: const KtList.empty(),
                   locusFeatureShowed: Feature.empty(),
                 ),
                 LocusState(
@@ -85,7 +83,6 @@ void main() {
                   isSearching: false,
                   locusList: mockLocus,
                   locusShowed: mockLocus.first(),
-                  featuresListToShow: mockFeaturesToShow,
                   locusFeatureShowed: Feature.empty(),
                 ),
               ];
@@ -125,7 +122,6 @@ void main() {
                   isSearching: true,
                   locusList: const KtList.empty(),
                   locusShowed: Locus.empty(),
-                  featuresListToShow: const KtList.empty(),
                   locusFeatureShowed: Feature.empty(),
                 ),
                 LocusState(
@@ -133,7 +129,6 @@ void main() {
                   isSearching: false,
                   locusList: const KtList.empty(),
                   locusShowed: Locus.empty(),
-                  featuresListToShow: const KtList.empty(),
                   locusFeatureShowed: Feature.empty(),
                 ),
               ];

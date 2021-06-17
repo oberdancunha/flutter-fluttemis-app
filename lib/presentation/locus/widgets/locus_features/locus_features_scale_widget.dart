@@ -1,4 +1,3 @@
-import 'package:collection/src/iterable_extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
@@ -54,22 +53,12 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
           }
           final scale = (screenWidth / locusLength) * (pixelsPerCharacter / 3);
           final screenWidthScale = locusLength * scale;
-          final featuresTypes = Map.fromEntries(
-            state.featuresListToShow
-                .asList()
-                .groupListsBy(
-                  (feature) => feature.type,
-                )
-                .entries
-                .toList()
-                .sorted(
-                  (a, b) => b.value.length.compareTo(a.value.length),
-                ),
-          );
           const minHeight = 100.0;
           final maxHeight = MediaQuery.of(context).size.height / 3;
-          final typesHeight = double.tryParse((featuresTypes.keys.length * 40).toString())!;
-          final totalTypesHeight = double.tryParse((featuresTypes.keys.length * 55).toString())!;
+          final typesHeight =
+              double.tryParse((state.locusShowed.featuresTypesList.keys.length * 40).toString())!;
+          final totalTypesHeight =
+              double.tryParse((state.locusShowed.featuresTypesList.keys.length * 55).toString())!;
           final height = totalTypesHeight >= maxHeight
               ? maxHeight
               : totalTypesHeight >= minHeight
@@ -86,7 +75,6 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
                 _buildLocusScale(
                   screenWidthScale: screenWidthScale,
                   height: height,
-                  locusLength: locusLength,
                   scale: scale,
                   pixelsPerCharacter: pixelsPerCharacter,
                   locusLengthByCharacters: locusLengthByCharacters,
@@ -94,7 +82,6 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
                 ),
                 _buildLocusFeaturesTypes(
                   context: context,
-                  featuresTypes: featuresTypes,
                   typesHeight: typesHeight,
                   state: state,
                 ),
@@ -103,7 +90,6 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
                   state: state,
                   screenWidthScale: screenWidthScale,
                   typesHeight: typesHeight,
-                  featuresTypes: featuresTypes,
                   scale: scale,
                 ),
               ],
@@ -115,7 +101,6 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
   Widget _buildLocusScale({
     required double screenWidthScale,
     required double height,
-    required int locusLength,
     required double scale,
     required int pixelsPerCharacter,
     required int locusLengthByCharacters,
@@ -134,7 +119,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
             width: screenWidthScale,
             child: LocusFeaturesDrawScaleWidget(
               screenWidthScale: screenWidthScale,
-              locusLength: locusLength,
+              locusLength: state.locusShowed.length,
               scale: scale,
               pixelsPerCharacter: pixelsPerCharacter,
               locusLengthByCharacters: locusLengthByCharacters,
@@ -145,7 +130,6 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
 
   Widget _buildLocusFeaturesTypes({
     required BuildContext context,
-    required Map<String, List<Feature>> featuresTypes,
     required double typesHeight,
     required LocusState state,
   }) =>
@@ -166,7 +150,9 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
               controller: _controllerLabels,
               child: SizedBox(
                 height: typesHeight + 0.1,
-                child: LocusFeaturesTypesListWidget(featuresTypes: featuresTypes),
+                child: LocusFeaturesTypesListWidget(
+                  featuresTypes: state.locusShowed.featuresTypesList,
+                ),
               ),
             ),
           ),
@@ -178,7 +164,6 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
     required LocusState state,
     required double screenWidthScale,
     required double typesHeight,
-    required Map<String, List<Feature>> featuresTypes,
     required double scale,
   }) =>
       Positioned(
@@ -207,7 +192,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
                     width: screenWidthScale,
                     height: typesHeight + 0.1,
                     child: LocusFeaturesDrawWidget(
-                      featuresTypes: featuresTypes,
+                      featuresTypes: state.locusShowed.featuresTypesList,
                       screenWidthScale: screenWidthScale,
                       scale: scale,
                       state: state,

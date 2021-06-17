@@ -15,6 +15,8 @@ class Locus with _$Locus {
     required String type,
     required String organism,
     required KtList<Feature> features,
+    required KtList<Feature> featuresToShow,
+    required Map<String, List<Feature>> featuresTypesList,
     required Map<String, int> featuresTypesOverview,
     required Map<String, int> featuresTypesProductsOverview,
     String? shape,
@@ -28,6 +30,8 @@ class Locus with _$Locus {
         type: '',
         organism: '',
         features: KtList.empty(),
+        featuresToShow: KtList.empty(),
+        featuresTypesList: {},
         featuresTypesOverview: {},
         featuresTypesProductsOverview: {},
       );

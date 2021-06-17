@@ -433,14 +433,12 @@ class _$LocusStateTearOff {
       required bool isSearching,
       required KtList<Locus> locusList,
       required Locus locusShowed,
-      required KtList<Feature> featuresListToShow,
       Feature? locusFeatureShowed}) {
     return _LocusState(
       locusFailureOrSuccess: locusFailureOrSuccess,
       isSearching: isSearching,
       locusList: locusList,
       locusShowed: locusShowed,
-      featuresListToShow: featuresListToShow,
       locusFeatureShowed: locusFeatureShowed,
     );
   }
@@ -456,7 +454,6 @@ mixin _$LocusState {
   bool get isSearching => throw _privateConstructorUsedError;
   KtList<Locus> get locusList => throw _privateConstructorUsedError;
   Locus get locusShowed => throw _privateConstructorUsedError;
-  KtList<Feature> get featuresListToShow => throw _privateConstructorUsedError;
   Feature? get locusFeatureShowed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -474,7 +471,6 @@ abstract class $LocusStateCopyWith<$Res> {
       bool isSearching,
       KtList<Locus> locusList,
       Locus locusShowed,
-      KtList<Feature> featuresListToShow,
       Feature? locusFeatureShowed});
 
   $LocusCopyWith<$Res> get locusShowed;
@@ -495,7 +491,6 @@ class _$LocusStateCopyWithImpl<$Res> implements $LocusStateCopyWith<$Res> {
     Object? isSearching = freezed,
     Object? locusList = freezed,
     Object? locusShowed = freezed,
-    Object? featuresListToShow = freezed,
     Object? locusFeatureShowed = freezed,
   }) {
     return _then(_value.copyWith(
@@ -515,10 +510,6 @@ class _$LocusStateCopyWithImpl<$Res> implements $LocusStateCopyWith<$Res> {
           ? _value.locusShowed
           : locusShowed // ignore: cast_nullable_to_non_nullable
               as Locus,
-      featuresListToShow: featuresListToShow == freezed
-          ? _value.featuresListToShow
-          : featuresListToShow // ignore: cast_nullable_to_non_nullable
-              as KtList<Feature>,
       locusFeatureShowed: locusFeatureShowed == freezed
           ? _value.locusFeatureShowed
           : locusFeatureShowed // ignore: cast_nullable_to_non_nullable
@@ -556,7 +547,6 @@ abstract class _$LocusStateCopyWith<$Res> implements $LocusStateCopyWith<$Res> {
       bool isSearching,
       KtList<Locus> locusList,
       Locus locusShowed,
-      KtList<Feature> featuresListToShow,
       Feature? locusFeatureShowed});
 
   @override
@@ -581,7 +571,6 @@ class __$LocusStateCopyWithImpl<$Res> extends _$LocusStateCopyWithImpl<$Res>
     Object? isSearching = freezed,
     Object? locusList = freezed,
     Object? locusShowed = freezed,
-    Object? featuresListToShow = freezed,
     Object? locusFeatureShowed = freezed,
   }) {
     return _then(_LocusState(
@@ -601,10 +590,6 @@ class __$LocusStateCopyWithImpl<$Res> extends _$LocusStateCopyWithImpl<$Res>
           ? _value.locusShowed
           : locusShowed // ignore: cast_nullable_to_non_nullable
               as Locus,
-      featuresListToShow: featuresListToShow == freezed
-          ? _value.featuresListToShow
-          : featuresListToShow // ignore: cast_nullable_to_non_nullable
-              as KtList<Feature>,
       locusFeatureShowed: locusFeatureShowed == freezed
           ? _value.locusFeatureShowed
           : locusFeatureShowed // ignore: cast_nullable_to_non_nullable
@@ -621,7 +606,6 @@ class _$_LocusState implements _LocusState {
       required this.isSearching,
       required this.locusList,
       required this.locusShowed,
-      required this.featuresListToShow,
       this.locusFeatureShowed});
 
   @override
@@ -633,13 +617,11 @@ class _$_LocusState implements _LocusState {
   @override
   final Locus locusShowed;
   @override
-  final KtList<Feature> featuresListToShow;
-  @override
   final Feature? locusFeatureShowed;
 
   @override
   String toString() {
-    return 'LocusState(locusFailureOrSuccess: $locusFailureOrSuccess, isSearching: $isSearching, locusList: $locusList, locusShowed: $locusShowed, featuresListToShow: $featuresListToShow, locusFeatureShowed: $locusFeatureShowed)';
+    return 'LocusState(locusFailureOrSuccess: $locusFailureOrSuccess, isSearching: $isSearching, locusList: $locusList, locusShowed: $locusShowed, locusFeatureShowed: $locusFeatureShowed)';
   }
 
   @override
@@ -658,9 +640,6 @@ class _$_LocusState implements _LocusState {
             (identical(other.locusShowed, locusShowed) ||
                 const DeepCollectionEquality()
                     .equals(other.locusShowed, locusShowed)) &&
-            (identical(other.featuresListToShow, featuresListToShow) ||
-                const DeepCollectionEquality()
-                    .equals(other.featuresListToShow, featuresListToShow)) &&
             (identical(other.locusFeatureShowed, locusFeatureShowed) ||
                 const DeepCollectionEquality()
                     .equals(other.locusFeatureShowed, locusFeatureShowed)));
@@ -673,7 +652,6 @@ class _$_LocusState implements _LocusState {
       const DeepCollectionEquality().hash(isSearching) ^
       const DeepCollectionEquality().hash(locusList) ^
       const DeepCollectionEquality().hash(locusShowed) ^
-      const DeepCollectionEquality().hash(featuresListToShow) ^
       const DeepCollectionEquality().hash(locusFeatureShowed);
 
   @JsonKey(ignore: true)
@@ -688,7 +666,6 @@ abstract class _LocusState implements LocusState {
       required bool isSearching,
       required KtList<Locus> locusList,
       required Locus locusShowed,
-      required KtList<Feature> featuresListToShow,
       Feature? locusFeatureShowed}) = _$_LocusState;
 
   @override
@@ -700,8 +677,6 @@ abstract class _LocusState implements LocusState {
   KtList<Locus> get locusList => throw _privateConstructorUsedError;
   @override
   Locus get locusShowed => throw _privateConstructorUsedError;
-  @override
-  KtList<Feature> get featuresListToShow => throw _privateConstructorUsedError;
   @override
   Feature? get locusFeatureShowed => throw _privateConstructorUsedError;
   @override
