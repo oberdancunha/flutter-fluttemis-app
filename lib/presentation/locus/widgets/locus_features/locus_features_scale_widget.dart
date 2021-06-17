@@ -1,20 +1,48 @@
 import 'package:collection/src/iterable_extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 
 import '../../../../application/locus/locus_bloc.dart';
 import '../../../../domain/locus/feature.dart';
-import '../../widgets/locus_features/locus_features_types_list_widget.dart';
+import '../../../../domain/locus/locus.dart';
 import 'locus_features_draw_scale_widget.dart';
 import 'locus_features_draw_widget.dart';
+import 'locus_features_types_list_widget.dart';
 
-class LocusFeaturesScaleWidget extends StatelessWidget {
+class LocusFeaturesScaleWidget extends StatefulWidget {
   const LocusFeaturesScaleWidget({Key? key}) : super(key: key);
 
   @override
+  _LocusFeaturesScaleWidgetState createState() => _LocusFeaturesScaleWidgetState();
+}
+
+class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
+  late Map<Locus, List<ScrollController>> _mapControllers = {};
+  late ScrollController _controllerScale;
+  late ScrollController _controllerPosition;
+  late ScrollController _controllerLabels;
+  late ScrollController _controllerFeatures;
+
+  @override
+  void dispose() {
+    _controllerScale.dispose();
+    _controllerPosition.dispose();
+    _controllerLabels.dispose();
+    _controllerFeatures.dispose();
+    _mapControllers.forEach(
+      (key, controllers) => controllers.map(
+        (controller) => controller.dispose(),
+      ),
+    );
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
+        buildWhen: (oldState, newState) =>
+            oldState.locusShowed != newState.locusShowed ||
+            oldState.locusFeatureShowed != newState.locusFeatureShowed,
         builder: (context, state) {
           final screenWidth = MediaQuery.of(context).size.width;
           final locusLength = state.locusShowed.length;
@@ -47,18 +75,10 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
               : totalTypesHeight >= minHeight
                   ? totalTypesHeight
                   : minHeight;
-
-          final _controllersScalePosition = LinkedScrollControllerGroup();
-          final _controllersLabelsFeatures = LinkedScrollControllerGroup();
-          final _controllerScale = _controllersScalePosition.addAndGet();
-          final _controllerPosition = _controllersScalePosition.addAndGet();
-          final _controllerLabels = _controllersLabelsFeatures.addAndGet();
-          final _controllerFeatures = _controllersLabelsFeatures.addAndGet();
-
-          final _positionsKey = Key('position_${state.locusShowed.name}_${DateTime.now()}');
-          final _typesKey = Key('types_${state.locusShowed.name}_${DateTime.now()}');
+          _setScrollControllers(locus: state.locusShowed);
 
           return SizedBox(
+            key: ObjectKey(state.locusShowed),
             height: height,
             width: screenWidthScale,
             child: Stack(
@@ -70,16 +90,13 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
                   scale: scale,
                   pixelsPerCharacter: pixelsPerCharacter,
                   locusLengthByCharacters: locusLengthByCharacters,
-                  positionsKey: _positionsKey,
-                  controllerScale: _controllerScale,
+                  state: state,
                 ),
                 _buildLocusFeaturesTypes(
                   context: context,
                   featuresTypes: featuresTypes,
                   typesHeight: typesHeight,
                   state: state,
-                  typesKey: _typesKey,
-                  controllerLabels: _controllerLabels,
                 ),
                 _buildLocusFeatures(
                   context: context,
@@ -88,10 +105,6 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
                   typesHeight: typesHeight,
                   featuresTypes: featuresTypes,
                   scale: scale,
-                  positionsKey: _positionsKey,
-                  typesKey: _typesKey,
-                  controllerFeatures: _controllerFeatures,
-                  controllerPosition: _controllerPosition,
                 ),
               ],
             ),
@@ -106,8 +119,7 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
     required double scale,
     required int pixelsPerCharacter,
     required int locusLengthByCharacters,
-    required Key positionsKey,
-    required ScrollController controllerScale,
+    required LocusState state,
   }) =>
       Positioned(
         left: 125,
@@ -115,8 +127,8 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
         top: 0,
         right: 20,
         child: SingleChildScrollView(
-          key: positionsKey,
-          controller: controllerScale,
+          key: ObjectKey(state.locusShowed),
+          controller: _controllerScale,
           scrollDirection: Axis.horizontal,
           child: SizedBox(
             width: screenWidthScale,
@@ -136,8 +148,6 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
     required Map<String, List<Feature>> featuresTypes,
     required double typesHeight,
     required LocusState state,
-    required Key typesKey,
-    required ScrollController controllerLabels,
   }) =>
       Positioned(
         left: 0,
@@ -148,12 +158,12 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
           context: context,
           state: state,
           child: Scrollbar(
-            key: typesKey,
+            key: ObjectKey(state.locusShowed),
             isAlwaysShown: true,
-            controller: controllerLabels,
+            controller: _controllerLabels,
             child: SingleChildScrollView(
-              key: typesKey,
-              controller: controllerLabels,
+              key: ObjectKey(state.locusShowed),
+              controller: _controllerLabels,
               child: SizedBox(
                 height: typesHeight + 0.1,
                 child: LocusFeaturesTypesListWidget(featuresTypes: featuresTypes),
@@ -170,10 +180,6 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
     required double typesHeight,
     required Map<String, List<Feature>> featuresTypes,
     required double scale,
-    required Key positionsKey,
-    required Key typesKey,
-    required ScrollController controllerPosition,
-    required ScrollController controllerFeatures,
   }) =>
       Positioned(
         left: 125,
@@ -184,19 +190,19 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
           context: context,
           state: state,
           child: Scrollbar(
-            key: positionsKey,
+            key: ObjectKey(state.locusShowed),
             isAlwaysShown: true,
             interactive: true,
-            controller: controllerPosition,
+            controller: _controllerPosition,
             child: SingleChildScrollView(
-              key: positionsKey,
+              key: ObjectKey(state.locusShowed),
               scrollDirection: Axis.horizontal,
-              controller: controllerPosition,
+              controller: _controllerPosition,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: SingleChildScrollView(
-                  key: typesKey,
-                  controller: controllerFeatures,
+                  key: ObjectKey(state.locusShowed),
+                  controller: _controllerFeatures,
                   child: SizedBox(
                     width: screenWidthScale,
                     height: typesHeight + 0.1,
@@ -204,6 +210,7 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
                       featuresTypes: featuresTypes,
                       screenWidthScale: screenWidthScale,
                       scale: scale,
+                      state: state,
                     ),
                   ),
                 ),
@@ -232,4 +239,28 @@ class LocusFeaturesScaleWidget extends StatelessWidget {
         },
         child: child,
       );
+
+  void _setScrollControllers({required Locus locus}) {
+    if (_mapControllers.containsKey(locus)) {
+      _controllerScale = _mapControllers[locus]!.elementAt(0);
+      _controllerPosition = _mapControllers[locus]!.elementAt(1);
+      _controllerLabels = _mapControllers[locus]!.elementAt(2);
+      _controllerFeatures = _mapControllers[locus]!.elementAt(3);
+    } else {
+      final controllersScalePosition = LinkedScrollControllerGroup();
+      _controllerScale = controllersScalePosition.addAndGet();
+      _controllerPosition = controllersScalePosition.addAndGet();
+      final controllersLabelsFeatures = LinkedScrollControllerGroup();
+      _controllerLabels = controllersLabelsFeatures.addAndGet();
+      _controllerFeatures = controllersLabelsFeatures.addAndGet();
+      _mapControllers = {
+        locus: [
+          _controllerScale,
+          _controllerPosition,
+          _controllerLabels,
+          _controllerFeatures,
+        ],
+      };
+    }
+  }
 }

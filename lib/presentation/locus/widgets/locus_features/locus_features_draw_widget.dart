@@ -10,45 +10,42 @@ class LocusFeaturesDrawWidget extends StatelessWidget {
   final Map<String, List<Feature>> featuresTypes;
   final double screenWidthScale;
   final double scale;
+  final LocusState state;
 
   const LocusFeaturesDrawWidget({
     required this.featuresTypes,
     required this.screenWidthScale,
     required this.scale,
+    required this.state,
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => BlocBuilder<LocusBloc, LocusState>(
-        buildWhen: (oldState, newState) =>
-            oldState.locusShowed.features != newState.locusShowed.features ||
-            oldState.locusFeatureShowed != newState.locusFeatureShowed,
-        builder: (context, state) {
-          var nextLine = -20.0;
+  Widget build(BuildContext context) {
+    var nextLine = -20.0;
 
-          return Stack(
-            children: [
-              for (var features in featuresTypes.values)
-                Positioned(
-                  top: double.tryParse((nextLine += 40).toString()),
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: CanvasTouchDetector(
-                    builder: (context) => CustomPaint(
-                      painter: DrawLocusFeature(
-                        screenWidthScale: screenWidthScale,
-                        context: context,
-                        features: features,
-                        scale: scale,
-                        locusBloc: context.read<LocusBloc>(),
-                        locusState: state,
-                      ),
-                    ),
-                  ),
+    return Stack(
+      children: [
+        for (var features in featuresTypes.values)
+          Positioned(
+            top: double.tryParse((nextLine += 40).toString()),
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: CanvasTouchDetector(
+              builder: (context) => CustomPaint(
+                painter: DrawLocusFeature(
+                  screenWidthScale: screenWidthScale,
+                  context: context,
+                  features: features,
+                  scale: scale,
+                  locusBloc: context.read<LocusBloc>(),
+                  locusState: state,
                 ),
-            ],
-          );
-        },
-      );
+              ),
+            ),
+          ),
+      ],
+    );
+  }
 }
