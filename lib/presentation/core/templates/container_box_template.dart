@@ -6,6 +6,7 @@ class ContainerBoxTemplate extends StatelessWidget {
   final double? width;
   final BoxBorder? border;
   final Color? boxShadowColor;
+  final BoxConstraints? constraints;
 
   const ContainerBoxTemplate({
     required this.child,
@@ -13,11 +14,13 @@ class ContainerBoxTemplate extends StatelessWidget {
     this.width,
     this.border,
     this.boxShadowColor = Colors.grey,
+    this.constraints,
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Container(
+        constraints: constraints,
         width: width,
         height: height,
         decoration: BoxDecoration(

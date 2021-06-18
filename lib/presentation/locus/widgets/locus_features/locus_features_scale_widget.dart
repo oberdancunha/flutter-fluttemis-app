@@ -5,9 +5,9 @@ import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import '../../../../application/locus/locus_bloc.dart';
 import '../../../../domain/locus/feature.dart';
 import '../../../../domain/locus/locus.dart';
-import 'locus_features_draw_scale_widget.dart';
-import 'locus_features_draw_widget.dart';
-import 'locus_features_types_list_widget.dart';
+import 'locus_features_draw/locus_features_draw_scale_widget.dart';
+import 'locus_features_draw/locus_features_draw_types_list_widget.dart';
+import 'locus_features_draw/locus_features_draw_widget.dart';
 
 class LocusFeaturesScaleWidget extends StatefulWidget {
   const LocusFeaturesScaleWidget({Key? key}) : super(key: key);
@@ -72,7 +72,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
             width: screenWidthScale,
             child: Stack(
               children: [
-                _buildLocusScale(
+                _drawLocusScale(
                   screenWidthScale: screenWidthScale,
                   height: height,
                   scale: scale,
@@ -80,12 +80,12 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
                   locusLengthByCharacters: locusLengthByCharacters,
                   state: state,
                 ),
-                _buildLocusFeaturesTypes(
+                _drawLocusFeaturesTypes(
                   context: context,
                   typesHeight: typesHeight,
                   state: state,
                 ),
-                _buildLocusFeatures(
+                _drawLocusFeatures(
                   context: context,
                   state: state,
                   screenWidthScale: screenWidthScale,
@@ -98,7 +98,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
         },
       );
 
-  Widget _buildLocusScale({
+  Widget _drawLocusScale({
     required double screenWidthScale,
     required double height,
     required double scale,
@@ -128,7 +128,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
         ),
       );
 
-  Widget _buildLocusFeaturesTypes({
+  Widget _drawLocusFeaturesTypes({
     required BuildContext context,
     required double typesHeight,
     required LocusState state,
@@ -149,8 +149,8 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
               key: ObjectKey(state.locusShowed),
               controller: _controllerLabels,
               child: SizedBox(
-                height: typesHeight + 0.1,
-                child: LocusFeaturesTypesListWidget(
+                height: typesHeight,
+                child: LocusFeaturesDrawTypesListWidget(
                   featuresTypes: state.locusShowed.featuresTypesList,
                 ),
               ),
@@ -159,7 +159,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
         ),
       );
 
-  Widget _buildLocusFeatures({
+  Widget _drawLocusFeatures({
     required BuildContext context,
     required LocusState state,
     required double screenWidthScale,
@@ -185,17 +185,20 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
               controller: _controllerPosition,
               child: Padding(
                 padding: const EdgeInsets.only(bottom: 20),
-                child: SingleChildScrollView(
-                  key: ObjectKey(state.locusShowed),
-                  controller: _controllerFeatures,
-                  child: SizedBox(
-                    width: screenWidthScale,
-                    height: typesHeight + 0.1,
-                    child: LocusFeaturesDrawWidget(
-                      featuresTypes: state.locusShowed.featuresTypesList,
-                      screenWidthScale: screenWidthScale,
-                      scale: scale,
-                      state: state,
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                  child: SingleChildScrollView(
+                    key: ObjectKey(state.locusShowed),
+                    controller: _controllerFeatures,
+                    child: SizedBox(
+                      width: screenWidthScale,
+                      height: typesHeight,
+                      child: LocusFeaturesDrawWidget(
+                        featuresTypes: state.locusShowed.featuresTypesList,
+                        screenWidthScale: screenWidthScale,
+                        scale: scale,
+                        state: state,
+                      ),
                     ),
                   ),
                 ),

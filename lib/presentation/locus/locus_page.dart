@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/locus/locus_bloc.dart';
+import '../core/templates/background_template.dart';
 import 'widgets/locus_body_widget.dart';
 import 'widgets/locus_features/locus_features_body_widget.dart';
 import 'widgets/locus_header_widget.dart';
@@ -20,18 +21,7 @@ class LocusPage extends StatelessWidget {
           BlocProvider(create: (_) => locusBloc..add(const LocusEvent.getLocus())),
         ],
         child: Scaffold(
-          body: Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.grey.shade100,
-                  Colors.blueGrey.shade100,
-                ],
-              ),
-            ),
+          body: BackgroundTemplate(
             child: BlocBuilder<LocusBloc, LocusState>(
               buildWhen: (oldState, newState) =>
                   oldState.locusFailureOrSuccess != newState.locusFailureOrSuccess,

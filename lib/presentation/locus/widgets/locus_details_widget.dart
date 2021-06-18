@@ -112,12 +112,13 @@ class LocusDetailsWidget extends StatelessWidget {
     final scrollController = ScrollController();
 
     return ContainerBoxTemplate(
-      height: 100,
+      constraints: const BoxConstraints(
+        maxHeight: 100,
+      ),
       width: MediaQuery.of(context).size.width / 7,
       child: Scrollbar(
+        key: Key(DateTime.now().toString()),
         isAlwaysShown: true,
-        showTrackOnHover: true,
-        interactive: true,
         controller: scrollController,
         child: SingleChildScrollView(
           controller: scrollController,

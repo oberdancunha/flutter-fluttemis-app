@@ -38,45 +38,46 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
                         label: 'Start',
                         value: state.locusFeatureShowed!.start,
                       ),
-                      const SizedBox(height: 10),
                       _printFeatureDetail(
                         label: 'End',
                         value: state.locusFeatureShowed!.end,
                       ),
-                      const SizedBox(height: 10),
                       _printFeatureDetail(
                         label: 'Strand',
                         value: state.locusFeatureShowed!.strand == 0 ? '+' : '-',
                       ),
-                      const SizedBox(height: 10),
                       _printFeatureDetail(
                         label: 'Gene',
-                        value: state.locusFeatureShowed!.name ?? 'Not assigned',
+                        value: state.locusFeatureShowed!.name ?? '.',
                       ),
-                      const SizedBox(height: 10),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: _printFeatureDetail(
                           label: 'Product',
-                          value: state.locusFeatureShowed!.product,
+                          value: state.locusFeatureShowed!.product ?? '.',
                         ),
                       ),
-                      const SizedBox(height: 10),
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         child: _printFeatureDetail(
                           label: 'Note',
-                          value: state.locusFeatureShowed!.note ?? '_',
+                          value: state.locusFeatureShowed!.note ?? '.',
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: _printFeatureDetail(
-                          label: 'Aminoácids',
-                          value: state.locusFeatureShowed!.aminoacids,
-                        ),
-                      ),
+                      if (state.locusFeatureShowed!.aminoacids != null)
+                        Column(
+                          children: [
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: _printFeatureDetail(
+                                label: 'Aminoácids',
+                                value: state.locusFeatureShowed!.aminoacids,
+                              ),
+                            ),
+                          ],
+                        )
+                      else
+                        const SizedBox.shrink(),
                     ],
                   ),
                 ),

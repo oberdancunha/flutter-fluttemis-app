@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:touchable/touchable.dart';
 
-import '../../../../application/locus/locus_bloc.dart';
-import '../../../../domain/locus/feature.dart';
-import '../../draw/draw_locus_feature.dart';
+import '../../../../../application/locus/locus_bloc.dart';
+import '../../../../../domain/locus/feature.dart';
+import '../../../draw/draw_locus_features.dart';
 
 class LocusFeaturesDrawWidget extends StatelessWidget {
   final Map<String, List<Feature>> featuresTypes;
@@ -34,7 +34,7 @@ class LocusFeaturesDrawWidget extends StatelessWidget {
             right: 0,
             child: CanvasTouchDetector(
               builder: (context) => CustomPaint(
-                painter: DrawLocusFeature(
+                painter: DrawLocusFeatures(
                   screenWidthScale: screenWidthScale,
                   context: context,
                   features: features,

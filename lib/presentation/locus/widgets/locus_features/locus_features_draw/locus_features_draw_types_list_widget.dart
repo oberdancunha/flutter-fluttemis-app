@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../domain/locus/feature.dart';
+import '../../../../../domain/locus/feature.dart';
 
-class LocusFeaturesTypesListWidget extends StatelessWidget {
+class LocusFeaturesDrawTypesListWidget extends StatelessWidget {
   final Map<String, List<Feature>> featuresTypes;
 
-  const LocusFeaturesTypesListWidget({
+  const LocusFeaturesDrawTypesListWidget({
     required this.featuresTypes,
     Key? key,
   }) : super(key: key);

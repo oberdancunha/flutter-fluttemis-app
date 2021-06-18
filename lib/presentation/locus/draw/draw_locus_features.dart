@@ -6,7 +6,7 @@ import 'package:touchable/touchable.dart';
 import '../../../application/locus/locus_bloc.dart';
 import '../../../domain/locus/feature.dart';
 
-class DrawLocusFeature extends CustomPainter {
+class DrawLocusFeatures extends CustomPainter {
   final double screenWidthScale;
   final BuildContext context;
   final List<Feature> features;
@@ -15,7 +15,7 @@ class DrawLocusFeature extends CustomPainter {
   final LocusState locusState;
   final minimalLengthToDrawAdjust = 12;
 
-  DrawLocusFeature({
+  DrawLocusFeatures({
     required this.screenWidthScale,
     required this.context,
     required this.features,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../draw/draw_locus_scale.dart';
+import '../../../draw/draw_locus_scale.dart';
 
 class LocusFeaturesDrawScaleWidget extends StatelessWidget {
   final int locusLength;
