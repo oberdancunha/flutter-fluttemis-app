@@ -35,8 +35,11 @@ class LocusFeaturesDrawScrollControllers {
   }
 
   ScrollController get controllerScale => _controllerScale;
+
   ScrollController get controllerPosition => _controllerPosition;
+
   ScrollController get controllerLabels => _controllerLabels;
+
   ScrollController get controllerFeatures => _controllerFeatures;
 
   void dispose() {
