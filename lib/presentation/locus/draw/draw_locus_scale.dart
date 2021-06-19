@@ -45,7 +45,7 @@ class DrawLocusScale extends CustomPainter {
 
   void _drawMarker(Canvas canvas, Paint paint) {
     for (int marker = markingPoints;
-        marker + (markingPoints * scale) < (locusLength - markingPoints);
+        marker + markingPoints <= locusLength;
         marker += markingPoints) {
       const markerTopPosition = 35.0;
       const markerBottomPosition = 45.0;

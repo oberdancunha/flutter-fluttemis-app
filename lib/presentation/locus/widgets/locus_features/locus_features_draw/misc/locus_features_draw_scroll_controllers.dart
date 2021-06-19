@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 
 import '../../../../../../domain/locus/locus.dart';
 
-class LocusFeaturesDrawScrollControllers {
+class LocusFeaturesDrawScrollControllers extends Disposable {
   late Map<Locus, List<ScrollController>> _mapControllers = {};
   late ScrollController _controllerScale;
   late ScrollController _controllerPosition;
@@ -42,6 +43,7 @@ class LocusFeaturesDrawScrollControllers {
 
   ScrollController get controllerFeatures => _controllerFeatures;
 
+  @override
   void dispose() {
     _controllerScale.dispose();
     _controllerPosition.dispose();

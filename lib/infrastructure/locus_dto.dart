@@ -48,9 +48,7 @@ abstract class LocusDto with _$LocusDto {
               ),
             ),
         featuresTypesProductsOverview: features
-            .where(
-              (feature) => feature.show && feature.product != null && feature.product!.isNotEmpty,
-            )
+            .where((feature) => feature.show)
             .groupSetsBy((feature) => feature.color)
             .map((featureColor, featureColorData) => MapEntry(
                   productDictionaryLabel[featureColor].toString(),

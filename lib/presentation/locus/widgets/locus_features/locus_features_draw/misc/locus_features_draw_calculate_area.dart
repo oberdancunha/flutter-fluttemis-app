@@ -28,7 +28,8 @@ class LocusFeaturesDrawCalculateArea {
     return pixelsPerCharacter;
   }
 
-  double get scale => (screenWidth / locusLength) * (pixelsPerCharacter / 3);
+  double get scale =>
+      (screenWidth / locusLength) * (pixelsPerCharacter * (locusLengthByCharacters / 10));
 
   double get screenWidthScale => locusLength * scale;
 

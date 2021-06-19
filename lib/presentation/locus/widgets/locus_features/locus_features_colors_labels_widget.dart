@@ -36,7 +36,7 @@ class LocusFeaturesColorsLabelsWidget extends StatelessWidget {
   Widget _printLabel({required Color backgroundColor}) => Column(
         children: [
           Text(
-            '${productDictionaryLabel[backgroundColor] ?? 'Not'} product',
+            '${productDictionaryLabel[backgroundColor]} product',
             style: const TextStyle(fontSize: 13),
           ),
           const SizedBox(height: 5),
