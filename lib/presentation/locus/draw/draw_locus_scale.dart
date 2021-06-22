@@ -69,7 +69,7 @@ class DrawLocusScale extends CustomPainter {
     required String text,
     required double textAlign,
   }) {
-    final span = TextSpan(
+    final textSpan = TextSpan(
       style: TextStyle(
         color: Colors.blue.shade900,
         fontSize: 15,
@@ -78,10 +78,14 @@ class DrawLocusScale extends CustomPainter {
     );
     const textHeight = 10.0;
     TextPainter(
-      text: span,
+      text: textSpan,
       textDirection: TextDirection.rtl,
+      maxLines: 1,
     )
-      ..layout()
+      ..layout(
+        minWidth: 1,
+        maxWidth: 80,
+      )
       ..paint(
         canvas,
         Offset(textAlign, textHeight),

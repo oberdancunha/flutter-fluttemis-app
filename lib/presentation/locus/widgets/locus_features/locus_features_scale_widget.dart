@@ -77,14 +77,21 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
           key: ObjectKey(locusState.locusShowed),
           controller: _scrollControllers.controllerScale,
           scrollDirection: Axis.horizontal,
-          child: SizedBox(
-            width: calculateArea.screenWidthScale,
-            child: LocusFeaturesDrawScaleWidget(
-              screenWidthScale: calculateArea.screenWidthScale,
-              locusLength: locusState.locusShowed.length,
-              scale: calculateArea.scale,
-              pixelsPerCharacter: calculateArea.pixelsPerCharacter,
-              locusLengthByCharacters: calculateArea.locusLengthByCharacters,
+          physics: const NeverScrollableScrollPhysics(),
+          child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            child: SingleChildScrollView(
+              key: ObjectKey(locusState.locusShowed),
+              child: SizedBox(
+                width: calculateArea.screenWidthScale,
+                child: LocusFeaturesDrawScaleWidget(
+                  screenWidthScale: calculateArea.screenWidthScale,
+                  locusLength: locusState.locusShowed.length,
+                  scale: calculateArea.scale,
+                  pixelsPerCharacter: calculateArea.pixelsPerCharacter,
+                  locusLengthByCharacters: calculateArea.locusLengthByCharacters,
+                ),
+              ),
             ),
           ),
         ),
