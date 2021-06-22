@@ -10,13 +10,13 @@ class LocusFeaturesDrawWidget extends StatelessWidget {
   final Map<String, List<Feature>> featuresTypes;
   final double screenWidthScale;
   final double scale;
-  final LocusState state;
+  final LocusState locusState;
 
   const LocusFeaturesDrawWidget({
     required this.featuresTypes,
     required this.screenWidthScale,
     required this.scale,
-    required this.state,
+    required this.locusState,
     Key? key,
   }) : super(key: key);
 
@@ -40,7 +40,7 @@ class LocusFeaturesDrawWidget extends StatelessWidget {
                   features: features,
                   scale: scale,
                   locusBloc: context.read<LocusBloc>(),
-                  locusState: state,
+                  locusState: locusState,
                 ),
               ),
             ),
