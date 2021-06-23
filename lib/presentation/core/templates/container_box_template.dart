@@ -13,7 +13,7 @@ class ContainerBoxTemplate extends StatelessWidget {
     this.height,
     this.width,
     this.border,
-    this.boxShadowColor = Colors.grey,
+    this.boxShadowColor,
     this.constraints,
     Key? key,
   }) : super(key: key);
@@ -29,13 +29,13 @@ class ContainerBoxTemplate extends StatelessWidget {
           border: border,
           boxShadow: [
             BoxShadow(
-              color: boxShadowColor!.withOpacity(0.3),
+              color: (boxShadowColor ?? Colors.grey).withOpacity(0.3),
               spreadRadius: 1,
               blurRadius: 1,
               offset: const Offset(0, 2),
             ),
           ],
         ),
-        child: child,
+        child: SingleChildScrollView(child: child),
       );
 }

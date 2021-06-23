@@ -38,14 +38,20 @@ class LocusPage extends StatelessWidget {
                       ? const CircularProgressIndicator()
                       : Padding(
                           padding: const EdgeInsets.all(8),
-                          child: Column(
-                            children: const [
-                              LocusHeaderWidget(),
-                              SizedBox(height: 15),
-                              LocusFeaturesBodyWidget(),
-                              SizedBox(height: 10),
-                              LocusBodyWidget(),
-                            ],
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                            width: MediaQuery.of(context).size.width,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: const [
+                                  LocusHeaderWidget(),
+                                  SizedBox(height: 15),
+                                  LocusFeaturesBodyWidget(),
+                                  SizedBox(height: 10),
+                                  LocusBodyWidget(),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                 ),

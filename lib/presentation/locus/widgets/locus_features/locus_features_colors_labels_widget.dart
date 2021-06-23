@@ -7,30 +7,33 @@ class LocusFeaturesColorsLabelsWidget extends StatelessWidget {
   const LocusFeaturesColorsLabelsWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Product color label',
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
+  Widget build(BuildContext context) => SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Product color label',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              _printLabel(backgroundColor: colorLocusFeatureKnownProduct),
-              const SizedBox(width: 15),
-              _printLabel(backgroundColor: colorLocusFeatureHypotheticalProduct),
-              const SizedBox(width: 15),
-              _printLabel(backgroundColor: colorLocusFeaturePutativeProduct),
-              const SizedBox(width: 15),
-              _printLabel(backgroundColor: colorLocusFeatureUnknownProduct),
-              const SizedBox(width: 15),
-              _printLabel(backgroundColor: colorLocusFeatureNotProduct),
-            ],
-          ),
-        ],
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                _printLabel(backgroundColor: colorLocusFeatureKnownProduct),
+                const SizedBox(width: 15),
+                _printLabel(backgroundColor: colorLocusFeatureHypotheticalProduct),
+                const SizedBox(width: 15),
+                _printLabel(backgroundColor: colorLocusFeaturePutativeProduct),
+                const SizedBox(width: 15),
+                _printLabel(backgroundColor: colorLocusFeatureUnknownProduct),
+                const SizedBox(width: 15),
+                _printLabel(backgroundColor: colorLocusFeatureNotProduct),
+              ],
+            ),
+          ],
+        ),
       );
 
   Widget _printLabel({required Color backgroundColor}) => Column(

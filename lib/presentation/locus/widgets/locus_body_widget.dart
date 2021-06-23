@@ -7,12 +7,19 @@ class LocusBodyWidget extends StatelessWidget {
   const LocusBodyWidget({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          LocusDetailsWidget(),
-          LocusFeaturesDetailsWidget(),
-        ],
+  Widget build(BuildContext context) => SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        physics: const NeverScrollableScrollPhysics(),
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              LocusDetailsWidget(),
+              SizedBox(width: 3),
+              LocusFeaturesDetailsWidget(),
+            ],
+          ),
+        ),
       );
 }
