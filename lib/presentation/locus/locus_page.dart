@@ -43,11 +43,12 @@ class LocusPage extends StatelessWidget {
                             width: MediaQuery.of(context).size.width,
                             child: SingleChildScrollView(
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: const [
                                   LocusHeaderWidget(),
-                                  SizedBox(height: 15),
+                                  SizedBox(height: 5),
                                   LocusFeaturesBodyWidget(),
-                                  SizedBox(height: 10),
+                                  SizedBox(height: 5),
                                   LocusBodyWidget(),
                                 ],
                               ),

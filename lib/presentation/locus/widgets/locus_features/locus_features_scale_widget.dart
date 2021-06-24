@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../application/locus/locus_bloc.dart';
 import '../../../../domain/locus/feature.dart';
+import '../../misc/locus_features_draw_calculate_area.dart';
+import '../../misc/locus_features_draw_scroll_controllers.dart';
 import 'locus_features_draw/locus_features_draw_scale_widget.dart';
 import 'locus_features_draw/locus_features_draw_types_list_widget.dart';
 import 'locus_features_draw/locus_features_draw_widget.dart';
-import 'locus_features_draw/misc/locus_features_draw_calculate_area.dart';
-import 'locus_features_draw/misc/locus_features_draw_scroll_controllers.dart';
 
 class LocusFeaturesScaleWidget extends StatefulWidget {
   const LocusFeaturesScaleWidget({Key? key}) : super(key: key);
