@@ -18,6 +18,7 @@ class LocusFeaturesScaleWidget extends StatefulWidget {
 
 class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
   final _scrollControllers = LocusFeaturesDrawScrollControllers();
+  static const minimalWidth = 1200;
 
   @override
   void dispose() {
@@ -32,7 +33,9 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
             oldState.locusFeatureShowed != newState.locusFeatureShowed,
         builder: (context, state) {
           final calculateArea = LocusFeaturesDrawCalculateArea(
-            screenWidth: MediaQuery.of(context).size.width,
+            screenWidth: MediaQuery.of(context).size.width > minimalWidth
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width * 4,
             screenHeight: MediaQuery.of(context).size.height,
             locusLength: state.locusShowed.length,
             minPixelsPerCharacter: 10,

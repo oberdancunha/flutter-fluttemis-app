@@ -36,6 +36,6 @@ class ContainerBoxTemplate extends StatelessWidget {
             ),
           ],
         ),
-        child: SingleChildScrollView(child: child),
+        child: child,
       );
 }

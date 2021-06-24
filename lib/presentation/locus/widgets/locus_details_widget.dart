@@ -117,16 +117,16 @@ class LocusDetailsWidget extends StatelessWidget {
   }) {
     final scrollController = ScrollController();
 
-    return Scrollbar(
-      isAlwaysShown: true,
-      controller: scrollController,
-      child: SingleChildScrollView(
+    return ContainerBoxTemplate(
+      constraints: const BoxConstraints(
+        maxHeight: 100,
+        minWidth: 150,
+      ),
+      child: Scrollbar(
+        isAlwaysShown: true,
         controller: scrollController,
-        child: ContainerBoxTemplate(
-          constraints: const BoxConstraints(
-            maxHeight: 100,
-            minWidth: 150,
-          ),
+        child: SingleChildScrollView(
+          controller: scrollController,
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
