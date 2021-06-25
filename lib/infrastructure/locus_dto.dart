@@ -41,18 +41,32 @@ abstract class LocusDto with _$LocusDto {
                 (a, b) => b.value.length.compareTo(a.value.length),
               ),
         ),
-        featuresTypesOverview: features.groupSetsBy((feature) => feature.type).map(
-              (featureType, featureTypesData) => MapEntry(
-                featureType,
-                featureTypesData.length,
+        featuresTypesOverview: Map.fromEntries(
+          features
+              .groupSetsBy((feature) => feature.type)
+              .map(
+                (featureType, featureTypesData) => MapEntry(
+                  featureType,
+                  featureTypesData.length,
+                ),
+              )
+              .entries
+              .sorted(
+                (a, b) => b.value.compareTo(a.value),
               ),
-            ),
-        featuresTypesProductsOverview: features
-            .where((feature) => feature.show)
-            .groupSetsBy((feature) => feature.color)
-            .map((featureColor, featureColorData) => MapEntry(
-                  productDictionaryLabel[featureColor].toString(),
-                  featureColorData.length,
-                )),
+        ),
+        featuresTypesProductsOverview: Map.fromEntries(
+          features
+              .where((feature) => feature.show)
+              .groupSetsBy((feature) => feature.color)
+              .map((featureColor, featureColorData) => MapEntry(
+                    productDictionaryLabel[featureColor].toString(),
+                    featureColorData.length,
+                  ))
+              .entries
+              .sorted(
+                (a, b) => b.value.compareTo(a.value),
+              ),
+        ),
       );
 }
