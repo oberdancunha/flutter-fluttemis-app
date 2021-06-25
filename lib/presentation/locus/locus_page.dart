@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/locus/locus_bloc.dart';
 import '../core/templates/background_template.dart';
+import '../core/widgets/stack_menu_widget.dart';
 import 'widgets/locus_body_widget.dart';
 import 'widgets/locus_features/locus_features_body_widget.dart';
 import 'widgets/locus_header_widget.dart';
@@ -38,19 +39,21 @@ class LocusPage extends StatelessWidget {
                       ? const CircularProgressIndicator()
                       : Padding(
                           padding: const EdgeInsets.all(8),
-                          child: SizedBox(
-                            height: MediaQuery.of(context).size.height,
-                            width: MediaQuery.of(context).size.width,
-                            child: SingleChildScrollView(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  LocusHeaderWidget(),
-                                  SizedBox(height: 5),
-                                  LocusFeaturesBodyWidget(),
-                                  SizedBox(height: 5),
-                                  LocusBodyWidget(),
-                                ],
+                          child: StackMenuWidget(
+                            child: SizedBox(
+                              height: MediaQuery.of(context).size.height,
+                              width: MediaQuery.of(context).size.width,
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    LocusHeaderWidget(),
+                                    SizedBox(height: 5),
+                                    LocusFeaturesBodyWidget(),
+                                    SizedBox(height: 5),
+                                    LocusBodyWidget(),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

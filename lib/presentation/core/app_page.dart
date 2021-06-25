@@ -14,6 +14,8 @@ class AppPage extends StatelessWidget {
     const minHeight = 600.0;
     final width = screenWidth > minWidth ? screenWidth : minWidth;
     final height = screenHeight > minHeight ? screenHeight : minHeight;
+    final itemWidth = width / 8;
+    final itemHeight = width / 8;
 
     return Scaffold(
       body: BackgroundTemplate(
@@ -23,11 +25,12 @@ class AppPage extends StatelessWidget {
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: MenuWidget(
-                width: width / 5,
-                height: height,
-                fontSize: width / 80,
-                iconWidth: width / 12,
-                gridAxisCount: 1,
+                width: width / 2,
+                height: height / 2,
+                itemWidth: itemWidth,
+                itemHeight: itemHeight,
+                fontSize: itemWidth / 12,
+                iconWidth: itemWidth,
                 showLabel: true,
               ),
             ),

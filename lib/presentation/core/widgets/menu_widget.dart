@@ -8,18 +8,24 @@ import '../templates/container_box_template.dart';
 class MenuWidget extends StatelessWidget {
   final double width;
   final double height;
-  final double? fontSize;
+  final double itemWidth;
+  final double itemHeight;
   final double iconWidth;
-  final int gridAxisCount;
+  final double? fontSize;
   final bool showLabel;
+  final bool showTooltip;
+  final double? borderRadius;
 
   const MenuWidget({
     required this.width,
     required this.height,
+    required this.itemWidth,
+    required this.itemHeight,
     required this.iconWidth,
-    required this.gridAxisCount,
-    required this.showLabel,
     this.fontSize,
+    this.showLabel = false,
+    this.showTooltip = false,
+    this.borderRadius = 30,
     Key? key,
   }) : super(key: key);
 
@@ -28,12 +34,10 @@ class MenuWidget extends StatelessWidget {
         width: width,
         height: height,
         child: Center(
-          child: GridView.count(
-            crossAxisCount: gridAxisCount,
-            padding: const EdgeInsets.all(20),
-            mainAxisSpacing: 4,
-            crossAxisSpacing: 4,
-            shrinkWrap: true,
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            runSpacing: 10,
+            spacing: 30,
             children: [
               GestureDetector(
                 onTap: () async {
@@ -51,7 +55,8 @@ class MenuWidget extends StatelessWidget {
                 child: _buildMenuOptions(
                   context: context,
                   icon: 'assets/images/genbank_logo.png',
-                  label: 'Genbank file (.genbank, .gb or .gbk)',
+                  label: 'Open genbank file (.genbank, .gb or .gbk)',
+                  color: const Color(0xFF003333),
                 ),
               ),
             ],
@@ -63,33 +68,58 @@ class MenuWidget extends StatelessWidget {
     required BuildContext context,
     required String icon,
     required String label,
+    required Color color,
   }) =>
-      ContainerBoxTemplate(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  icon,
-                  width: iconWidth,
-                ),
-                if (showLabel)
-                  Column(
-                    children: [
-                      const SizedBox(height: 15),
-                      SizedBox(
-                        child: Text(
-                          label,
-                          style: TextStyle(fontSize: fontSize),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
+      _showTooltip(
+        message: label,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ContainerBoxTemplate(
+                width: itemWidth,
+                height: itemHeight,
+                color: color,
+                borderRadius: borderRadius,
+                child: Center(
+                  child: Image.asset(
+                    icon,
+                    width: iconWidth,
                   ),
-              ],
-            ),
+                ),
+              ),
+              if (showLabel)
+                Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      child: Text(
+                        label,
+                        style: TextStyle(
+                          fontSize: fontSize,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+            ],
           ),
         ),
       );
+
+  Widget _showTooltip({
+    required String message,
+    required Widget child,
+  }) =>
+      showTooltip
+          ? Tooltip(
+              message: message,
+              preferBelow: true,
+              verticalOffset: 30,
+              child: child,
+            )
+          : Container(
+              child: child,
+            );
 }
