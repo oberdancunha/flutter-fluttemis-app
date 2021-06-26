@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/locus/locus_bloc.dart';
 import '../core/templates/background_template.dart';
+import '../core/widgets/loading_widget.dart';
 import '../core/widgets/stack_menu_widget.dart';
 import 'widgets/locus_body_widget.dart';
 import 'widgets/locus_features/locus_features_body_widget.dart';
@@ -25,19 +26,20 @@ class LocusPage extends StatelessWidget {
           body: BackgroundTemplate(
             child: BlocBuilder<LocusBloc, LocusState>(
               buildWhen: (oldState, newState) =>
-                  oldState.locusFailureOrSuccess != newState.locusFailureOrSuccess,
-              builder: (context, state) => state.locusFailureOrSuccess.foldRight(
-                Container(),
-                (data, _) => data.fold(
-                  (failure) => failure.when(
-                    fileNotFound: () => const Text('File not found'),
-                    fileParserError: (_) => const Text('Parser error'),
-                    fileIsEmpty: () => const Text('File is empty'),
-                    fileFormatIncorrect: () => const Text('File format incorrect'),
-                  ),
-                  (_) => state.isSearching
-                      ? const CircularProgressIndicator()
-                      : Padding(
+                  oldState.locusFailureOrSuccess != newState.locusFailureOrSuccess ||
+                  oldState.isSearching != newState.isSearching,
+              builder: (context, state) => state.isSearching
+                  ? const LoadingWidget()
+                  : state.locusFailureOrSuccess.foldRight(
+                      Container(),
+                      (data, _) => data.fold(
+                        (failure) => failure.when(
+                          fileNotFound: () => const Text('File not found'),
+                          fileParserError: (_) => const Text('Parser error'),
+                          fileIsEmpty: () => const Text('File is empty'),
+                          fileFormatIncorrect: () => const Text('File format incorrect'),
+                        ),
+                        (_) => Padding(
                           padding: const EdgeInsets.all(8),
                           child: StackMenuWidget(
                             child: SizedBox(
@@ -58,8 +60,8 @@ class LocusPage extends StatelessWidget {
                             ),
                           ),
                         ),
-                ),
-              ),
+                      ),
+                    ),
             ),
           ),
         ),

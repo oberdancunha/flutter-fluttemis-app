@@ -5,7 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../infrastructure/locus_data_source_genbank_file.dart';
 import '../templates/container_box_template.dart';
 
-class MenuWidget extends StatelessWidget {
+class MenuWidget extends StatefulWidget {
   final double width;
   final double height;
   final double itemWidth;
@@ -30,9 +30,16 @@ class MenuWidget extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _MenuWidgetState createState() => _MenuWidgetState();
+}
+
+class _MenuWidgetState extends State<MenuWidget> {
+  double rotateAngle = 0;
+
+  @override
   Widget build(BuildContext context) => SizedBox(
-        width: width,
-        height: height,
+        width: widget.width,
+        height: widget.height,
         child: Center(
           child: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -41,7 +48,7 @@ class MenuWidget extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () async {
-                  final result = await FilePicker.platform.pickFiles().catchError((_) => null);
+                  final result = await _openFile();
                   if (result != null) {
                     final file = result.files.single.path!;
                     final dataSourceInstance = LocusDataSourceGenbankFile(genbankFile: file);
@@ -73,46 +80,65 @@ class MenuWidget extends StatelessWidget {
       _showTooltip(
         message: label,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ContainerBoxTemplate(
-                width: itemWidth,
-                height: itemHeight,
-                color: color,
-                borderRadius: borderRadius,
-                child: Center(
-                  child: Image.asset(
-                    icon,
-                    width: iconWidth,
+          child: Transform(
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.001)
+              ..rotateY(rotateAngle),
+            child: Column(
+              children: [
+                ContainerBoxTemplate(
+                  width: widget.itemWidth,
+                  height: widget.itemHeight,
+                  color: color,
+                  borderRadius: widget.borderRadius,
+                  child: Center(
+                    child: Image.asset(
+                      icon,
+                      width: widget.iconWidth,
+                    ),
                   ),
                 ),
-              ),
-              if (showLabel)
-                Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      child: Text(
-                        label,
-                        style: TextStyle(
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.bold,
+                if (widget.showLabel)
+                  Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        child: Text(
+                          label,
+                          style: TextStyle(
+                            fontSize: widget.fontSize,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ),
-                  ],
-                ),
-            ],
+                    ],
+                  ),
+              ],
+            ),
           ),
         ),
       );
+
+  Future<FilePickerResult?> _openFile() async {
+    setState(() {
+      rotateAngle = 50.0;
+    });
+
+    return FilePicker.platform.pickFiles().catchError(
+      (_) {
+        setState(() {
+          rotateAngle = 0;
+        });
+      },
+    );
+  }
 
   Widget _showTooltip({
     required String message,
     required Widget child,
   }) =>
-      showTooltip
+      widget.showTooltip
           ? Tooltip(
               message: message,
               preferBelow: true,
