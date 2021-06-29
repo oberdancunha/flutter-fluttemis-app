@@ -2,7 +2,7 @@ import 'package:animated_stack/animated_stack.dart';
 import 'package:flutter/material.dart';
 
 import '../templates/background_template.dart';
-import 'menu_widget.dart';
+import '../app_main_menu_widget.dart';
 
 class StackMenuWidget extends StatelessWidget {
   final Widget child;
@@ -17,7 +17,7 @@ class StackMenuWidget extends StatelessWidget {
         fabBackgroundColor: Colors.redAccent.shade700,
         backgroundColor: Colors.red.shade50,
         columnWidget: SizedBox(
-          child: MenuWidget(
+          child: AppMainMenuWidget(
             width: MediaQuery.of(context).size.width,
             height: 60,
             iconWidth: 60,

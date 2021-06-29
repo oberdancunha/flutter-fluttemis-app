@@ -2,9 +2,9 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../infrastructure/locus_data_source_genbank_file.dart';
+import '../../infrastructure/locus_data_source_genbank_file.dart';
 
-class MenuWidget extends StatefulWidget {
+class AppMainMenuWidget extends StatefulWidget {
   final double width;
   final double height;
   final double iconWidth;
@@ -13,7 +13,7 @@ class MenuWidget extends StatefulWidget {
   final bool showTooltip;
   final double? borderRadius;
 
-  const MenuWidget({
+  const AppMainMenuWidget({
     required this.width,
     required this.height,
     required this.iconWidth,
@@ -25,10 +25,10 @@ class MenuWidget extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _MenuWidgetState createState() => _MenuWidgetState();
+  _AppMainMenuWidgetState createState() => _AppMainMenuWidgetState();
 }
 
-class _MenuWidgetState extends State<MenuWidget> {
+class _AppMainMenuWidgetState extends State<AppMainMenuWidget> {
   double rotateAngle = 0;
 
   @override

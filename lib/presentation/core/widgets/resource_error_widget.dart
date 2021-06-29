@@ -24,28 +24,26 @@ class ResourceErrorWidget extends StatelessWidget {
             minHeight: 600,
           ),
           child: Stack(
-            alignment: Alignment.center,
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
                     image,
-                    fit: BoxFit.cover,
                   ),
                   const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        resourceName,
+                        resourceType,
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.red.shade900,
                         ),
                       ),
                       Text(
-                        ' $resourceType',
+                        ' $resourceName',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.red.shade900,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/templates/background_template.dart';
-import 'widgets/menu_widget.dart';
+import 'app_main_menu_widget.dart';
 
 class AppPage extends StatelessWidget {
   const AppPage({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class AppPage extends StatelessWidget {
           child: Center(
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: MenuWidget(
+              child: AppMainMenuWidget(
                 width: width / 2,
                 height: height / 2,
                 fontSize: itemWidth / 12,
