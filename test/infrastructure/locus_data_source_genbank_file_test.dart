@@ -44,32 +44,64 @@ void main() {
       test(
         'Should return a Failure.fileNotFound when file not exists',
         () async {
-          final genbankFileNotFound = path.join(basePath, 'test/data/sequence1.gb');
+          const fileName = 'sequence1.gb';
+          final genbankFileNotFound = path.join(basePath, 'test/data/$fileName');
           locusDataSourceGenbankFile = LocusDataSourceGenbankFile(genbankFile: genbankFileNotFound);
           final listLocus = await locusDataSourceGenbankFileGet();
-          expect(listLocus, equals(left(const Failure.fileNotFound())));
+          expect(
+            listLocus,
+            equals(
+              left(
+                const Failure.fileNotFound(
+                  fileName: fileName,
+                  fileType: 'genbank',
+                ),
+              ),
+            ),
+          );
         },
       );
 
       test(
         'Should return a Failure.fileIsEmpty when file is empty',
         () async {
-          final genbankFileEmpty = path.join(basePath, 'test/data/sequence_empty.gb');
+          const fileName = 'sequence_empty.gb';
+          final genbankFileEmpty = path.join(basePath, 'test/data/$fileName');
           locusDataSourceGenbankFile = LocusDataSourceGenbankFile(genbankFile: genbankFileEmpty);
           final listLocus = await locusDataSourceGenbankFileGet();
-          expect(listLocus, equals(left(const Failure.fileIsEmpty())));
+          expect(
+            listLocus,
+            equals(
+              left(
+                const Failure.fileIsEmpty(
+                  fileName: fileName,
+                  fileType: 'genbank',
+                ),
+              ),
+            ),
+          );
         },
       );
 
       test(
         'Should return a Failure.fileFormatIncorrect when file format is not a genbank',
         () async {
-          final genbankFileInvalidFormat =
-              path.join(basePath, 'test/data/sequence_invalid_format.gb');
+          const fileName = 'sequence_invalid_format.gb';
+          final genbankFileInvalidFormat = path.join(basePath, 'test/data/$fileName');
           locusDataSourceGenbankFile =
               LocusDataSourceGenbankFile(genbankFile: genbankFileInvalidFormat);
           final listLocus = await locusDataSourceGenbankFileGet();
-          expect(listLocus, equals(left(const Failure.fileFormatIncorrect())));
+          expect(
+            listLocus,
+            equals(
+              left(
+                const Failure.fileFormatIncorrect(
+                  fileName: fileName,
+                  fileType: 'genbank',
+                ),
+              ),
+            ),
+          );
         },
       );
     },

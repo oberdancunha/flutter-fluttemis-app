@@ -97,7 +97,10 @@ void main() {
         () {
           void setUpMockGetFailure() {
             when(() => mockLocusRepository.getLocus())
-                .thenAnswer((_) async => left(const Failure.fileNotFound()));
+                .thenAnswer((_) async => left(const Failure.fileNotFound(
+                      fileName: '',
+                      fileType: '',
+                    )));
           }
 
           test(
@@ -107,7 +110,12 @@ void main() {
               setUpMockEvent();
               await untilCalled(() => mockLocusRepository.getLocus());
               final locus = await mockLocusRepository.getLocus();
-              expect(locus, equals(left(const Failure.fileNotFound())));
+              expect(
+                  locus,
+                  equals(left(const Failure.fileNotFound(
+                    fileName: '',
+                    fileType: '',
+                  ))));
             },
           );
 
@@ -125,7 +133,10 @@ void main() {
                   locusFeatureShowed: Feature.empty(),
                 ),
                 LocusState(
-                  locusFailureOrSuccess: optionOf(left(const Failure.fileNotFound())),
+                  locusFailureOrSuccess: optionOf(left(const Failure.fileNotFound(
+                    fileName: '',
+                    fileType: '',
+                  ))),
                   isSearching: false,
                   locusList: const KtList.empty(),
                   locusShowed: Locus.empty(),

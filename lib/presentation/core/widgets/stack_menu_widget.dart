@@ -20,9 +20,7 @@ class StackMenuWidget extends StatelessWidget {
           child: MenuWidget(
             width: MediaQuery.of(context).size.width,
             height: 60,
-            itemWidth: 60,
-            itemHeight: 60,
-            iconWidth: 50,
+            iconWidth: 60,
             showTooltip: true,
             borderRadius: 15,
           ),

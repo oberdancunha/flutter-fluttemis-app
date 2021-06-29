@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../infrastructure/locus_data_source_genbank_file.dart';
-import '../templates/container_box_template.dart';
 
 class MenuWidget extends StatefulWidget {
   final double width;
   final double height;
-  final double itemWidth;
-  final double itemHeight;
   final double iconWidth;
   final double? fontSize;
   final bool showLabel;
@@ -19,8 +16,6 @@ class MenuWidget extends StatefulWidget {
   const MenuWidget({
     required this.width,
     required this.height,
-    required this.itemWidth,
-    required this.itemHeight,
     required this.iconWidth,
     this.fontSize,
     this.showLabel = false,
@@ -61,9 +56,8 @@ class _MenuWidgetState extends State<MenuWidget> {
                 },
                 child: _buildMenuOptions(
                   context: context,
-                  icon: 'assets/images/genbank_logo.png',
-                  label: 'Open genbank file (.genbank, .gb or .gbk)',
-                  color: const Color(0xFF003333),
+                  icon: 'assets/images/genbank_icon_app.png',
+                  label: 'Open genbank file',
                 ),
               ),
             ],
@@ -75,7 +69,6 @@ class _MenuWidgetState extends State<MenuWidget> {
     required BuildContext context,
     required String icon,
     required String label,
-    required Color color,
   }) =>
       _showTooltip(
         message: label,
@@ -86,22 +79,14 @@ class _MenuWidgetState extends State<MenuWidget> {
               ..rotateY(rotateAngle),
             child: Column(
               children: [
-                ContainerBoxTemplate(
-                  width: widget.itemWidth,
-                  height: widget.itemHeight,
-                  color: color,
-                  borderRadius: widget.borderRadius,
-                  child: Center(
-                    child: Image.asset(
-                      icon,
-                      width: widget.iconWidth,
-                    ),
-                  ),
+                Image.asset(
+                  icon,
+                  width: widget.iconWidth,
+                  filterQuality: FilterQuality.high,
                 ),
                 if (widget.showLabel)
                   Column(
                     children: [
-                      const SizedBox(height: 10),
                       SizedBox(
                         child: Text(
                           label,

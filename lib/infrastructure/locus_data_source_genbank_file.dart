@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bio/seqio/genbank.dart';
 import 'package:dartz/dartz.dart';
 import 'package:kt_dart/kt.dart';
@@ -9,7 +11,7 @@ import 'feature_dto.dart';
 import 'locus_dto.dart';
 
 class LocusDataSourceGenbankFile implements ILocusDataSource {
-  late final String? genbankFile;
+  late final String genbankFile;
   final genbank = Genbank();
 
   LocusDataSourceGenbankFile({
@@ -18,15 +20,33 @@ class LocusDataSourceGenbankFile implements ILocusDataSource {
 
   @override
   Future<Either<Failure, KtList<Locus>>> getLocus() async {
-    final locus = await genbank.open(genbankFile!);
+    final locus = await genbank.open(genbankFile);
 
     return locus.when(
-      failure: (failure) => failure.when(
-        fileNotFound: () => left(const Failure.fileNotFound()),
-        fileParserError: (error) => left(Failure.fileParserError(error: error)),
-        fileIsEmpty: () => left(const Failure.fileIsEmpty()),
-        fileFormatIncorrect: () => left(const Failure.fileFormatIncorrect()),
-      ),
+      failure: (failure) {
+        final genbankFileName = File(genbankFile).path.split('/').last;
+        const fileType = 'genbank';
+
+        return failure.when(
+          fileNotFound: () => left(Failure.fileNotFound(
+            fileName: genbankFileName,
+            fileType: fileType,
+          )),
+          fileParserError: (error) => left(Failure.fileParserError(
+            fileName: genbankFileName,
+            fileType: fileType,
+            error: error,
+          )),
+          fileIsEmpty: () => left(Failure.fileIsEmpty(
+            fileName: genbankFileName,
+            fileType: fileType,
+          )),
+          fileFormatIncorrect: () => left(Failure.fileFormatIncorrect(
+            fileName: genbankFileName,
+            fileType: fileType,
+          )),
+        );
+      },
       data: (genbankData) => right(
         genbankData
             .asList()

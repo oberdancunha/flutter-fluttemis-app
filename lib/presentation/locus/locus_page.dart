@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/locus/locus_bloc.dart';
 import '../core/templates/background_template.dart';
 import '../core/widgets/loading_widget.dart';
+import '../core/widgets/resource_error_widget.dart';
 import '../core/widgets/stack_menu_widget.dart';
 import 'widgets/locus_body_widget.dart';
 import 'widgets/locus_features/locus_features_body_widget.dart';
@@ -34,10 +35,30 @@ class LocusPage extends StatelessWidget {
                       Container(),
                       (data, _) => data.fold(
                         (failure) => failure.when(
-                          fileNotFound: () => const Text('File not found'),
-                          fileParserError: (_) => const Text('Parser error'),
-                          fileIsEmpty: () => const Text('File is empty'),
-                          fileFormatIncorrect: () => const Text('File format incorrect'),
+                          fileNotFound: (fileName, fileType) => ResourceErrorWidget(
+                            image: 'assets/images/file_not_found.png',
+                            resourceName: fileName,
+                            resourceType: fileType,
+                            message: 'file not found',
+                          ),
+                          fileParserError: (fileName, fileType, _) => ResourceErrorWidget(
+                            image: 'assets/images/file_unexpected_error.png',
+                            resourceName: fileName,
+                            resourceType: fileType,
+                            message: 'file had an unexpected error',
+                          ),
+                          fileIsEmpty: (fileName, fileType) => ResourceErrorWidget(
+                            image: 'assets/images/file_empty.png',
+                            resourceName: fileName,
+                            resourceType: fileType,
+                            message: 'file is empty',
+                          ),
+                          fileFormatIncorrect: (fileName, fileType) => ResourceErrorWidget(
+                            image: 'assets/images/file_format_error.png',
+                            resourceName: fileName,
+                            resourceType: fileType,
+                            message: 'file format is incorrect',
+                          ),
                         ),
                         (_) => Padding(
                           padding: const EdgeInsets.all(8),

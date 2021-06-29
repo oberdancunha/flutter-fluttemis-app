@@ -4,21 +4,17 @@ class ContainerBoxTemplate extends StatelessWidget {
   final Widget child;
   final double? height;
   final double? width;
-  final Color? color;
   final BoxBorder? border;
   final Color? boxShadowColor;
   final BoxConstraints? constraints;
-  final double? borderRadius;
 
   const ContainerBoxTemplate({
     required this.child,
     this.height,
     this.width,
-    this.color = Colors.white,
     this.border,
     this.boxShadowColor,
     this.constraints,
-    this.borderRadius = 10,
     Key? key,
   }) : super(key: key);
 
@@ -28,8 +24,8 @@ class ContainerBoxTemplate extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(borderRadius!),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
           border: border,
           boxShadow: [
             BoxShadow(
