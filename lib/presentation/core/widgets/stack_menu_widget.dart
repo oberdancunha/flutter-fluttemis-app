@@ -1,8 +1,8 @@
 import 'package:animated_stack/animated_stack.dart';
 import 'package:flutter/material.dart';
 
-import '../templates/background_template.dart';
 import '../app_main_menu_widget.dart';
+import '../templates/background_template.dart';
 
 class StackMenuWidget extends StatelessWidget {
   final Widget child;

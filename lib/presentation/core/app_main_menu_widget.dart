@@ -56,7 +56,7 @@ class _AppMainMenuWidgetState extends State<AppMainMenuWidget> {
                 },
                 child: _buildMenuOptions(
                   context: context,
-                  icon: 'assets/images/genbank_icon_app.png',
+                  icon: 'assets/icons/genbank_app.png',
                   label: 'Open genbank file',
                 ),
               ),
