@@ -2,14 +2,13 @@ import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart';
 import 'package:fluttemis/domain/core/failures.dart';
-import 'package:fluttemis/domain/locus/locus.dart';
 import 'package:fluttemis/infrastructure/locus_data_source_genbank_file.dart';
+import 'package:fluttemis/infrastructure/locus_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:kt_dart/collection.dart';
 import 'package:path/path.dart' as path;
 import "package:path/path.dart" show dirname;
 
-import '../data/genbank_data.dart';
+import '../data/genbank_dto.dart';
 
 void main() {
   late LocusDataSourceGenbankFile locusDataSourceGenbankFile;
@@ -19,20 +18,20 @@ void main() {
     basePath = path.fromUri(dirname(Platform.script.toString()));
   });
 
-  Future<Either<Failure, KtList<Locus>>> locusDataSourceGenbankFileGet() =>
+  Future<Either<Failure, List<LocusDto>>> locusDataSourceGenbankFileGet() =>
       locusDataSourceGenbankFile.getLocus();
 
   group(
     'Success | ',
     () {
       test(
-        'Should return a immutable locus entity list (right(KtList<Locus>))',
+        'Should return locusDto list (right(List<LocusDto>))',
         () async {
           final genbankFile = path.join(basePath, 'test/data/sequence.gb');
           locusDataSourceGenbankFile = LocusDataSourceGenbankFile(genbankFile: genbankFile);
-          final listLocusMocked = getLocus();
+          final listLocusDtoMocked = getLocusDto();
           final listLocus = await locusDataSourceGenbankFileGet();
-          expect(listLocus, equals(right(listLocusMocked)));
+          expect(listLocus.toString(), equals(right(listLocusDtoMocked).toString()));
         },
       );
     },

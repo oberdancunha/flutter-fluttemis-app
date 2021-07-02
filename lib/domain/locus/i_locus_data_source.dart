@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:kt_dart/collection.dart';
 
+import '../../infrastructure/locus_dto.dart';
 import '../core/failures.dart';
-import 'locus.dart';
 
 abstract class ILocusDataSource {
-  Future<Either<Failure, KtList<Locus>>> getLocus();
+  Future<Either<Failure, List<LocusDto>>> getLocus();
 }

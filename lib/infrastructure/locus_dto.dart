@@ -1,9 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
-import '../../domain/locus/feature.dart';
 import '../../utils/product_dictionary.dart';
 import '../domain/locus/locus.dart';
+import 'feature_dto.dart';
 
 part 'locus_dto.freezed.dart';
 
@@ -16,7 +16,7 @@ abstract class LocusDto with _$LocusDto {
     required int length,
     required String type,
     required String organism,
-    required List<Feature> features,
+    required List<FeatureDto> features,
     String? shape,
     String? releaseDate,
     String? sequence,
@@ -30,10 +30,14 @@ abstract class LocusDto with _$LocusDto {
         shape: shape,
         releaseDate: releaseDate,
         sequence: sequence,
-        features: features.toImmutableList(),
-        featuresToShow: features.where((feature) => feature.show).toImmutableList(),
+        features: features.map((feature) => feature.toDomain()).toImmutableList(),
+        featuresToShow: features
+            .map((feature) => feature.toDomain())
+            .where((feature) => feature.show)
+            .toImmutableList(),
         featuresTypesList: Map.fromEntries(
           features
+              .map((feature) => feature.toDomain())
               .where((feature) => feature.show)
               .groupListsBy((feature) => feature.type)
               .entries
@@ -57,6 +61,7 @@ abstract class LocusDto with _$LocusDto {
         ),
         featuresTypesProductsOverview: Map.fromEntries(
           features
+              .map((feature) => feature.toDomain())
               .where((feature) => feature.show)
               .groupSetsBy((feature) => feature.color)
               .map((featureColor, featureColorData) => MapEntry(

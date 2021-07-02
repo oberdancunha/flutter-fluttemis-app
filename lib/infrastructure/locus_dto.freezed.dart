@@ -21,7 +21,7 @@ class _$LocusDtoTearOff {
       required int length,
       required String type,
       required String organism,
-      required List<Feature> features,
+      required List<FeatureDto> features,
       String? shape,
       String? releaseDate,
       String? sequence}) {
@@ -47,7 +47,7 @@ mixin _$LocusDto {
   int get length => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get organism => throw _privateConstructorUsedError;
-  List<Feature> get features => throw _privateConstructorUsedError;
+  List<FeatureDto> get features => throw _privateConstructorUsedError;
   String? get shape => throw _privateConstructorUsedError;
   String? get releaseDate => throw _privateConstructorUsedError;
   String? get sequence => throw _privateConstructorUsedError;
@@ -66,7 +66,7 @@ abstract class $LocusDtoCopyWith<$Res> {
       int length,
       String type,
       String organism,
-      List<Feature> features,
+      List<FeatureDto> features,
       String? shape,
       String? releaseDate,
       String? sequence});
@@ -111,7 +111,7 @@ class _$LocusDtoCopyWithImpl<$Res> implements $LocusDtoCopyWith<$Res> {
       features: features == freezed
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
-              as List<Feature>,
+              as List<FeatureDto>,
       shape: shape == freezed
           ? _value.shape
           : shape // ignore: cast_nullable_to_non_nullable
@@ -138,7 +138,7 @@ abstract class _$LocusDtoCopyWith<$Res> implements $LocusDtoCopyWith<$Res> {
       int length,
       String type,
       String organism,
-      List<Feature> features,
+      List<FeatureDto> features,
       String? shape,
       String? releaseDate,
       String? sequence});
@@ -184,7 +184,7 @@ class __$LocusDtoCopyWithImpl<$Res> extends _$LocusDtoCopyWithImpl<$Res>
       features: features == freezed
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
-              as List<Feature>,
+              as List<FeatureDto>,
       shape: shape == freezed
           ? _value.shape
           : shape // ignore: cast_nullable_to_non_nullable
@@ -224,7 +224,7 @@ class _$_LocusDto extends _LocusDto {
   @override
   final String organism;
   @override
-  final List<Feature> features;
+  final List<FeatureDto> features;
   @override
   final String? shape;
   @override
@@ -287,7 +287,7 @@ abstract class _LocusDto extends LocusDto {
       required int length,
       required String type,
       required String organism,
-      required List<Feature> features,
+      required List<FeatureDto> features,
       String? shape,
       String? releaseDate,
       String? sequence}) = _$_LocusDto;
@@ -302,7 +302,7 @@ abstract class _LocusDto extends LocusDto {
   @override
   String get organism => throw _privateConstructorUsedError;
   @override
-  List<Feature> get features => throw _privateConstructorUsedError;
+  List<FeatureDto> get features => throw _privateConstructorUsedError;
   @override
   String? get shape => throw _privateConstructorUsedError;
   @override

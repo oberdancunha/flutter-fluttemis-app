@@ -14,5 +14,14 @@ class LocusRepository implements ILocusRepository {
   });
 
   @override
-  Future<Either<Failure, KtList<Locus>>> getLocus() => locusDataSource.getLocus();
+  Future<Either<Failure, KtList<Locus>>> getLocus() async {
+    final locus = await locusDataSource.getLocus();
+
+    return locus.fold(
+      left,
+      (locusList) => right(
+        locusList.map((locusData) => locusData.toDomain()).toImmutableList(),
+      ),
+    );
+  }
 }
