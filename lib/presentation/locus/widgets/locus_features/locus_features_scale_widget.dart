@@ -125,6 +125,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
                 height: typesHeight,
                 child: LocusFeaturesDrawTypesListWidget(
                   featuresTypes: locusState.locusShowed.featuresTypesList,
+                  featuresTypesOverview: locusState.locusShowed.featuresTypesOverview,
                 ),
               ),
             ),

@@ -21,6 +21,7 @@ class _$FeatureDtoTearOff {
       required int end,
       required String type,
       required int strand,
+      String? typeByOverlap,
       String? name,
       String? product,
       String? nucleotides,
@@ -31,6 +32,7 @@ class _$FeatureDtoTearOff {
       end: end,
       type: type,
       strand: strand,
+      typeByOverlap: typeByOverlap,
       name: name,
       product: product,
       nucleotides: nucleotides,
@@ -49,6 +51,7 @@ mixin _$FeatureDto {
   int get end => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   int get strand => throw _privateConstructorUsedError;
+  String? get typeByOverlap => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get product => throw _privateConstructorUsedError;
   String? get nucleotides => throw _privateConstructorUsedError;
@@ -70,6 +73,7 @@ abstract class $FeatureDtoCopyWith<$Res> {
       int end,
       String type,
       int strand,
+      String? typeByOverlap,
       String? name,
       String? product,
       String? nucleotides,
@@ -91,6 +95,7 @@ class _$FeatureDtoCopyWithImpl<$Res> implements $FeatureDtoCopyWith<$Res> {
     Object? end = freezed,
     Object? type = freezed,
     Object? strand = freezed,
+    Object? typeByOverlap = freezed,
     Object? name = freezed,
     Object? product = freezed,
     Object? nucleotides = freezed,
@@ -114,6 +119,10 @@ class _$FeatureDtoCopyWithImpl<$Res> implements $FeatureDtoCopyWith<$Res> {
           ? _value.strand
           : strand // ignore: cast_nullable_to_non_nullable
               as int,
+      typeByOverlap: typeByOverlap == freezed
+          ? _value.typeByOverlap
+          : typeByOverlap // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -149,6 +158,7 @@ abstract class _$FeatureDtoCopyWith<$Res> implements $FeatureDtoCopyWith<$Res> {
       int end,
       String type,
       int strand,
+      String? typeByOverlap,
       String? name,
       String? product,
       String? nucleotides,
@@ -172,6 +182,7 @@ class __$FeatureDtoCopyWithImpl<$Res> extends _$FeatureDtoCopyWithImpl<$Res>
     Object? end = freezed,
     Object? type = freezed,
     Object? strand = freezed,
+    Object? typeByOverlap = freezed,
     Object? name = freezed,
     Object? product = freezed,
     Object? nucleotides = freezed,
@@ -195,6 +206,10 @@ class __$FeatureDtoCopyWithImpl<$Res> extends _$FeatureDtoCopyWithImpl<$Res>
           ? _value.strand
           : strand // ignore: cast_nullable_to_non_nullable
               as int,
+      typeByOverlap: typeByOverlap == freezed
+          ? _value.typeByOverlap
+          : typeByOverlap // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -227,6 +242,7 @@ class _$_FeatureDto extends _FeatureDto {
       required this.end,
       required this.type,
       required this.strand,
+      this.typeByOverlap,
       this.name,
       this.product,
       this.nucleotides,
@@ -243,6 +259,8 @@ class _$_FeatureDto extends _FeatureDto {
   @override
   final int strand;
   @override
+  final String? typeByOverlap;
+  @override
   final String? name;
   @override
   final String? product;
@@ -255,7 +273,7 @@ class _$_FeatureDto extends _FeatureDto {
 
   @override
   String toString() {
-    return 'FeatureDto(start: $start, end: $end, type: $type, strand: $strand, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
+    return 'FeatureDto(start: $start, end: $end, type: $type, strand: $strand, typeByOverlap: $typeByOverlap, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
   }
 
   @override
@@ -270,6 +288,9 @@ class _$_FeatureDto extends _FeatureDto {
                 const DeepCollectionEquality().equals(other.type, type)) &&
             (identical(other.strand, strand) ||
                 const DeepCollectionEquality().equals(other.strand, strand)) &&
+            (identical(other.typeByOverlap, typeByOverlap) ||
+                const DeepCollectionEquality()
+                    .equals(other.typeByOverlap, typeByOverlap)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.product, product) ||
@@ -292,6 +313,7 @@ class _$_FeatureDto extends _FeatureDto {
       const DeepCollectionEquality().hash(end) ^
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(strand) ^
+      const DeepCollectionEquality().hash(typeByOverlap) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(product) ^
       const DeepCollectionEquality().hash(nucleotides) ^
@@ -310,6 +332,7 @@ abstract class _FeatureDto extends FeatureDto {
       required int end,
       required String type,
       required int strand,
+      String? typeByOverlap,
       String? name,
       String? product,
       String? nucleotides,
@@ -325,6 +348,8 @@ abstract class _FeatureDto extends FeatureDto {
   String get type => throw _privateConstructorUsedError;
   @override
   int get strand => throw _privateConstructorUsedError;
+  @override
+  String? get typeByOverlap => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
   @override

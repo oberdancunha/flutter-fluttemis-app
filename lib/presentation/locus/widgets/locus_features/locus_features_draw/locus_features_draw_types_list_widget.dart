@@ -4,9 +4,11 @@ import '../../../../../domain/locus/feature.dart';
 
 class LocusFeaturesDrawTypesListWidget extends StatelessWidget {
   final Map<String, List<Feature>> featuresTypes;
+  final Map<String, int> featuresTypesOverview;
 
   const LocusFeaturesDrawTypesListWidget({
     required this.featuresTypes,
+    required this.featuresTypesOverview,
     Key? key,
   }) : super(key: key);
 
@@ -23,7 +25,9 @@ class LocusFeaturesDrawTypesListWidget extends StatelessWidget {
             left: 0,
             right: 0,
             child: Text(
-              '$featuresType (${featuresTypes[featuresType]!.length})',
+              !RegExp('#').hasMatch(featuresType)
+                  ? '$featuresType (${featuresTypesOverview[featuresType]})'
+                  : '',
               style: const TextStyle(fontSize: 12),
             ),
           ),

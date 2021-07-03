@@ -24,6 +24,7 @@ class _$FeatureTearOff {
       required int strand,
       required Color color,
       required bool show,
+      required String typeByOverlap,
       String? name,
       String? product,
       String? nucleotides,
@@ -37,6 +38,7 @@ class _$FeatureTearOff {
       strand: strand,
       color: color,
       show: show,
+      typeByOverlap: typeByOverlap,
       name: name,
       product: product,
       nucleotides: nucleotides,
@@ -58,6 +60,7 @@ mixin _$Feature {
   int get strand => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
   bool get show => throw _privateConstructorUsedError;
+  String get typeByOverlap => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get product => throw _privateConstructorUsedError;
   String? get nucleotides => throw _privateConstructorUsedError;
@@ -80,6 +83,7 @@ abstract class $FeatureCopyWith<$Res> {
       int strand,
       Color color,
       bool show,
+      String typeByOverlap,
       String? name,
       String? product,
       String? nucleotides,
@@ -104,6 +108,7 @@ class _$FeatureCopyWithImpl<$Res> implements $FeatureCopyWith<$Res> {
     Object? strand = freezed,
     Object? color = freezed,
     Object? show = freezed,
+    Object? typeByOverlap = freezed,
     Object? name = freezed,
     Object? product = freezed,
     Object? nucleotides = freezed,
@@ -139,6 +144,10 @@ class _$FeatureCopyWithImpl<$Res> implements $FeatureCopyWith<$Res> {
           ? _value.show
           : show // ignore: cast_nullable_to_non_nullable
               as bool,
+      typeByOverlap: typeByOverlap == freezed
+          ? _value.typeByOverlap
+          : typeByOverlap // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -176,6 +185,7 @@ abstract class _$FeatureCopyWith<$Res> implements $FeatureCopyWith<$Res> {
       int strand,
       Color color,
       bool show,
+      String typeByOverlap,
       String? name,
       String? product,
       String? nucleotides,
@@ -201,6 +211,7 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
     Object? strand = freezed,
     Object? color = freezed,
     Object? show = freezed,
+    Object? typeByOverlap = freezed,
     Object? name = freezed,
     Object? product = freezed,
     Object? nucleotides = freezed,
@@ -236,6 +247,10 @@ class __$FeatureCopyWithImpl<$Res> extends _$FeatureCopyWithImpl<$Res>
           ? _value.show
           : show // ignore: cast_nullable_to_non_nullable
               as bool,
+      typeByOverlap: typeByOverlap == freezed
+          ? _value.typeByOverlap
+          : typeByOverlap // ignore: cast_nullable_to_non_nullable
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -271,6 +286,7 @@ class _$_Feature extends _Feature {
       required this.strand,
       required this.color,
       required this.show,
+      required this.typeByOverlap,
       this.name,
       this.product,
       this.nucleotides,
@@ -293,6 +309,8 @@ class _$_Feature extends _Feature {
   @override
   final bool show;
   @override
+  final String typeByOverlap;
+  @override
   final String? name;
   @override
   final String? product;
@@ -305,7 +323,7 @@ class _$_Feature extends _Feature {
 
   @override
   String toString() {
-    return 'Feature(id: $id, start: $start, end: $end, type: $type, strand: $strand, color: $color, show: $show, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
+    return 'Feature(id: $id, start: $start, end: $end, type: $type, strand: $strand, color: $color, show: $show, typeByOverlap: $typeByOverlap, name: $name, product: $product, nucleotides: $nucleotides, aminoacids: $aminoacids, note: $note)';
   }
 
   @override
@@ -326,6 +344,9 @@ class _$_Feature extends _Feature {
                 const DeepCollectionEquality().equals(other.color, color)) &&
             (identical(other.show, show) ||
                 const DeepCollectionEquality().equals(other.show, show)) &&
+            (identical(other.typeByOverlap, typeByOverlap) ||
+                const DeepCollectionEquality()
+                    .equals(other.typeByOverlap, typeByOverlap)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.product, product) ||
@@ -351,6 +372,7 @@ class _$_Feature extends _Feature {
       const DeepCollectionEquality().hash(strand) ^
       const DeepCollectionEquality().hash(color) ^
       const DeepCollectionEquality().hash(show) ^
+      const DeepCollectionEquality().hash(typeByOverlap) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(product) ^
       const DeepCollectionEquality().hash(nucleotides) ^
@@ -372,6 +394,7 @@ abstract class _Feature extends Feature {
       required int strand,
       required Color color,
       required bool show,
+      required String typeByOverlap,
       String? name,
       String? product,
       String? nucleotides,
@@ -393,6 +416,8 @@ abstract class _Feature extends Feature {
   Color get color => throw _privateConstructorUsedError;
   @override
   bool get show => throw _privateConstructorUsedError;
+  @override
+  String get typeByOverlap => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
   @override

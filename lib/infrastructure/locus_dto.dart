@@ -35,11 +35,26 @@ abstract class LocusDto with _$LocusDto {
           features
               .map((feature) => feature.toDomain())
               .where((feature) => feature.show)
-              .groupListsBy((feature) => feature.type)
+              .groupListsBy((feature) => feature.typeByOverlap)
               .entries
               .sorted(
-                (a, b) => b.value.length.compareTo(a.value.length),
-              ),
+                (aType, bType) => bType.value.length.compareTo(aType.value.length),
+              )
+              .sorted(
+            (aType, bType) {
+              final aTypeSplit = aType.key.split('#');
+              final bTypeSplit = bType.key.split('#');
+              final aTypeName = aTypeSplit.first.toString();
+              final bTypeName = bTypeSplit.first.toString();
+              final compareTypesNames = aTypeName.compareTo(bTypeName);
+              if (compareTypesNames == 0) {
+                final aTypePosition = int.tryParse(aTypeSplit.last.toString()) ?? 0;
+                final bTypePosition = int.tryParse(bTypeSplit.last.toString()) ?? 0;
+                return aTypePosition.compareTo(bTypePosition);
+              }
+              return compareTypesNames;
+            },
+          ),
         ),
         featuresTypesOverview: Map.fromEntries(
           features
@@ -52,7 +67,7 @@ abstract class LocusDto with _$LocusDto {
               )
               .entries
               .sorted(
-                (a, b) => b.value.compareTo(a.value),
+                (aType, bType) => bType.value.compareTo(aType.value),
               ),
         ),
         featuresTypesProductsOverview: Map.fromEntries(
@@ -60,13 +75,15 @@ abstract class LocusDto with _$LocusDto {
               .map((feature) => feature.toDomain())
               .where((feature) => feature.show)
               .groupSetsBy((feature) => feature.color)
-              .map((featureColor, featureColorData) => MapEntry(
-                    productDictionaryLabel[featureColor].toString(),
-                    featureColorData.length,
-                  ))
+              .map(
+                (featureColor, featureColorData) => MapEntry(
+                  productDictionaryLabel[featureColor].toString(),
+                  featureColorData.length,
+                ),
+              )
               .entries
               .sorted(
-                (a, b) => b.value.compareTo(a.value),
+                (aTypeProduct, bTypeProduct) => bTypeProduct.value.compareTo(aTypeProduct.value),
               ),
         ),
       );
