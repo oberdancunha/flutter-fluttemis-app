@@ -22,7 +22,6 @@ class _$LocusTearOff {
       required String type,
       required String organism,
       required KtList<Feature> features,
-      required KtList<Feature> featuresToShow,
       required Map<String, List<Feature>> featuresTypesList,
       required Map<String, int> featuresTypesOverview,
       required Map<String, int> featuresTypesProductsOverview,
@@ -35,7 +34,6 @@ class _$LocusTearOff {
       type: type,
       organism: organism,
       features: features,
-      featuresToShow: featuresToShow,
       featuresTypesList: featuresTypesList,
       featuresTypesOverview: featuresTypesOverview,
       featuresTypesProductsOverview: featuresTypesProductsOverview,
@@ -56,7 +54,6 @@ mixin _$Locus {
   String get type => throw _privateConstructorUsedError;
   String get organism => throw _privateConstructorUsedError;
   KtList<Feature> get features => throw _privateConstructorUsedError;
-  KtList<Feature> get featuresToShow => throw _privateConstructorUsedError;
   Map<String, List<Feature>> get featuresTypesList =>
       throw _privateConstructorUsedError;
   Map<String, int> get featuresTypesOverview =>
@@ -81,7 +78,6 @@ abstract class $LocusCopyWith<$Res> {
       String type,
       String organism,
       KtList<Feature> features,
-      KtList<Feature> featuresToShow,
       Map<String, List<Feature>> featuresTypesList,
       Map<String, int> featuresTypesOverview,
       Map<String, int> featuresTypesProductsOverview,
@@ -105,7 +101,6 @@ class _$LocusCopyWithImpl<$Res> implements $LocusCopyWith<$Res> {
     Object? type = freezed,
     Object? organism = freezed,
     Object? features = freezed,
-    Object? featuresToShow = freezed,
     Object? featuresTypesList = freezed,
     Object? featuresTypesOverview = freezed,
     Object? featuresTypesProductsOverview = freezed,
@@ -133,10 +128,6 @@ class _$LocusCopyWithImpl<$Res> implements $LocusCopyWith<$Res> {
       features: features == freezed
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
-              as KtList<Feature>,
-      featuresToShow: featuresToShow == freezed
-          ? _value.featuresToShow
-          : featuresToShow // ignore: cast_nullable_to_non_nullable
               as KtList<Feature>,
       featuresTypesList: featuresTypesList == freezed
           ? _value.featuresTypesList
@@ -177,7 +168,6 @@ abstract class _$LocusCopyWith<$Res> implements $LocusCopyWith<$Res> {
       String type,
       String organism,
       KtList<Feature> features,
-      KtList<Feature> featuresToShow,
       Map<String, List<Feature>> featuresTypesList,
       Map<String, int> featuresTypesOverview,
       Map<String, int> featuresTypesProductsOverview,
@@ -202,7 +192,6 @@ class __$LocusCopyWithImpl<$Res> extends _$LocusCopyWithImpl<$Res>
     Object? type = freezed,
     Object? organism = freezed,
     Object? features = freezed,
-    Object? featuresToShow = freezed,
     Object? featuresTypesList = freezed,
     Object? featuresTypesOverview = freezed,
     Object? featuresTypesProductsOverview = freezed,
@@ -230,10 +219,6 @@ class __$LocusCopyWithImpl<$Res> extends _$LocusCopyWithImpl<$Res>
       features: features == freezed
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
-              as KtList<Feature>,
-      featuresToShow: featuresToShow == freezed
-          ? _value.featuresToShow
-          : featuresToShow // ignore: cast_nullable_to_non_nullable
               as KtList<Feature>,
       featuresTypesList: featuresTypesList == freezed
           ? _value.featuresTypesList
@@ -272,7 +257,6 @@ class _$_Locus extends _Locus {
       required this.type,
       required this.organism,
       required this.features,
-      required this.featuresToShow,
       required this.featuresTypesList,
       required this.featuresTypesOverview,
       required this.featuresTypesProductsOverview,
@@ -292,8 +276,6 @@ class _$_Locus extends _Locus {
   @override
   final KtList<Feature> features;
   @override
-  final KtList<Feature> featuresToShow;
-  @override
   final Map<String, List<Feature>> featuresTypesList;
   @override
   final Map<String, int> featuresTypesOverview;
@@ -308,7 +290,7 @@ class _$_Locus extends _Locus {
 
   @override
   String toString() {
-    return 'Locus(name: $name, length: $length, type: $type, organism: $organism, features: $features, featuresToShow: $featuresToShow, featuresTypesList: $featuresTypesList, featuresTypesOverview: $featuresTypesOverview, featuresTypesProductsOverview: $featuresTypesProductsOverview, shape: $shape, releaseDate: $releaseDate, sequence: $sequence)';
+    return 'Locus(name: $name, length: $length, type: $type, organism: $organism, features: $features, featuresTypesList: $featuresTypesList, featuresTypesOverview: $featuresTypesOverview, featuresTypesProductsOverview: $featuresTypesProductsOverview, shape: $shape, releaseDate: $releaseDate, sequence: $sequence)';
   }
 
   @override
@@ -327,9 +309,6 @@ class _$_Locus extends _Locus {
             (identical(other.features, features) ||
                 const DeepCollectionEquality()
                     .equals(other.features, features)) &&
-            (identical(other.featuresToShow, featuresToShow) ||
-                const DeepCollectionEquality()
-                    .equals(other.featuresToShow, featuresToShow)) &&
             (identical(other.featuresTypesList, featuresTypesList) ||
                 const DeepCollectionEquality()
                     .equals(other.featuresTypesList, featuresTypesList)) &&
@@ -359,7 +338,6 @@ class _$_Locus extends _Locus {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(organism) ^
       const DeepCollectionEquality().hash(features) ^
-      const DeepCollectionEquality().hash(featuresToShow) ^
       const DeepCollectionEquality().hash(featuresTypesList) ^
       const DeepCollectionEquality().hash(featuresTypesOverview) ^
       const DeepCollectionEquality().hash(featuresTypesProductsOverview) ^
@@ -380,7 +358,6 @@ abstract class _Locus extends Locus {
       required String type,
       required String organism,
       required KtList<Feature> features,
-      required KtList<Feature> featuresToShow,
       required Map<String, List<Feature>> featuresTypesList,
       required Map<String, int> featuresTypesOverview,
       required Map<String, int> featuresTypesProductsOverview,
@@ -399,8 +376,6 @@ abstract class _Locus extends Locus {
   String get organism => throw _privateConstructorUsedError;
   @override
   KtList<Feature> get features => throw _privateConstructorUsedError;
-  @override
-  KtList<Feature> get featuresToShow => throw _privateConstructorUsedError;
   @override
   Map<String, List<Feature>> get featuresTypesList =>
       throw _privateConstructorUsedError;

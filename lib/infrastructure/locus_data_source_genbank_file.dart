@@ -45,35 +45,37 @@ class LocusDataSourceGenbankFile implements ILocusDataSource {
           )),
         );
       },
-      data: (genbankData) => right(genbankData
-          .asList()
-          .map(
-            (data) => LocusDto(
-              name: data.locus.name,
-              length: data.locus.length,
-              type: data.locus.type,
-              shape: data.locus.shape,
-              organism: data.locusDetails.source!,
-              releaseDate: data.locus.releaseDate,
-              sequence: data.locus.sequence,
-              features: data.features
-                  .asList()
-                  .map(
-                    (feature) => FeatureDto(
-                      start: feature.start,
-                      end: feature.end,
-                      type: feature.type,
-                      strand: feature.strand,
-                      aminoacids: feature.aminoacids,
-                      name: feature.name,
-                      note: feature.note,
-                      product: feature.product,
-                    ),
-                  )
-                  .toList(),
-            ),
-          )
-          .toList()),
+      data: (genbankData) => right(
+        genbankData
+            .asList()
+            .map(
+              (data) => LocusDto(
+                name: data.locus.name,
+                length: data.locus.length,
+                type: data.locus.type,
+                shape: data.locus.shape,
+                organism: data.locusDetails.source!,
+                releaseDate: data.locus.releaseDate,
+                sequence: data.locus.sequence,
+                features: data.features
+                    .asList()
+                    .map(
+                      (feature) => FeatureDto(
+                        start: feature.start,
+                        end: feature.end,
+                        type: feature.type,
+                        strand: feature.strand,
+                        aminoacids: feature.aminoacids,
+                        name: feature.name,
+                        note: feature.note,
+                        product: feature.product,
+                      ),
+                    )
+                    .toList(),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }

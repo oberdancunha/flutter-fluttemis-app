@@ -31,10 +31,6 @@ abstract class LocusDto with _$LocusDto {
         releaseDate: releaseDate,
         sequence: sequence,
         features: features.map((feature) => feature.toDomain()).toImmutableList(),
-        featuresToShow: features
-            .map((feature) => feature.toDomain())
-            .where((feature) => feature.show)
-            .toImmutableList(),
         featuresTypesList: Map.fromEntries(
           features
               .map((feature) => feature.toDomain())
