@@ -2,13 +2,13 @@ import 'dart:io' show Platform;
 
 import 'package:dartz/dartz.dart';
 import 'package:fluttemis/domain/core/failures.dart';
-import 'package:fluttemis/infrastructure/locus_data_source_genbank_file.dart';
-import 'package:fluttemis/infrastructure/locus_dto.dart';
+import 'package:fluttemis/external/locus/locus_data_source_genbank_file.dart';
+import 'package:fluttemis/infrastructure/locus/locus_dto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:path/path.dart' as path;
 import "package:path/path.dart" show dirname;
 
-import '../data/genbank_dto.dart';
+import '../../data/genbank_dto.dart';
 
 void main() {
   late LocusDataSourceGenbankFile locusDataSourceGenbankFile;

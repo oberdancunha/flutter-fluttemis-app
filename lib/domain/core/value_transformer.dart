@@ -18,3 +18,6 @@ Color colorLocusFeatureByProduct(String product) {
 
   return productColor;
 }
+
+bool shouldDrawFeature(String type) =>
+    type.toLowerCase() != 'source' && type.toLowerCase() != 'gene' && type.toLowerCase() != 'mrna';

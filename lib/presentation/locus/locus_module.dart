@@ -1,9 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../application/locus/locus_bloc.dart';
-import '../../domain/locus/i_locus_data_source.dart';
 import '../../domain/locus/i_locus_repository.dart';
-import '../../infrastructure/locus_repository.dart';
+import '../../infrastructure/locus/i_locus_data_source.dart';
+import '../../infrastructure/locus/locus_repository.dart';
 import 'locus_page.dart';
 
 class LocusModule extends Module {

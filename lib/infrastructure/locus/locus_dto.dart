@@ -1,8 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/kt.dart';
 
+import '../../domain/locus/locus.dart';
 import '../../utils/product_dictionary.dart';
-import '../domain/locus/locus.dart';
 import 'feature_dto.dart';
 
 part 'locus_dto.freezed.dart';
@@ -50,8 +50,10 @@ abstract class LocusDto with _$LocusDto {
               if (compareTypesNames == 0) {
                 final aTypePosition = int.tryParse(aTypeSplit.last.toString()) ?? 0;
                 final bTypePosition = int.tryParse(bTypeSplit.last.toString()) ?? 0;
+
                 return aTypePosition.compareTo(bTypePosition);
               }
+
               return compareTypesNames;
             },
           ),

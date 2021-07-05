@@ -2,7 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../infrastructure/locus_data_source_genbank_file.dart';
+import '../../external/locus/locus_data_source_genbank_file.dart';
 
 class AppMainMenuWidget extends StatefulWidget {
   final double width;

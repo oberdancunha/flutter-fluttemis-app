@@ -1,5 +1,5 @@
-import 'package:fluttemis/infrastructure/feature_dto.dart';
-import 'package:fluttemis/infrastructure/locus_dto.dart';
+import 'package:fluttemis/infrastructure/locus/feature_dto.dart';
+import 'package:fluttemis/infrastructure/locus/locus_dto.dart';
 
 List<LocusDto> getLocusDto() => [
       LocusDto(

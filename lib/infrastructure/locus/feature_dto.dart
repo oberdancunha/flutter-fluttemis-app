@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../domain/core/value_transformer.dart';
-import '../domain/locus/feature.dart';
+import '../../domain/locus/feature.dart';
 
 part 'feature_dto.freezed.dart';
 
@@ -34,8 +34,6 @@ class FeatureDto with _$FeatureDto {
         note: note,
         product: product,
         color: colorLocusFeatureByProduct(product ?? ''),
-        show: type.toLowerCase() != 'source' &&
-            type.toLowerCase() != 'gene' &&
-            type.toLowerCase() != 'mrna',
+        show: shouldDrawFeature(type),
       );
 }

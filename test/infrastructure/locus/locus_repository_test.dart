@@ -1,15 +1,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:fluttemis/domain/core/failures.dart';
-import 'package:fluttemis/domain/locus/i_locus_data_source.dart';
+import 'package:fluttemis/infrastructure/locus/i_locus_data_source.dart';
 import 'package:fluttemis/domain/locus/locus.dart';
-import 'package:fluttemis/infrastructure/locus_dto.dart';
-import 'package:fluttemis/infrastructure/locus_repository.dart';
+import 'package:fluttemis/infrastructure/locus/locus_dto.dart';
+import 'package:fluttemis/infrastructure/locus/locus_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:kt_dart/kt.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../data/genbank_data.dart';
-import '../data/genbank_dto.dart';
+import '../../data/genbank_data.dart';
+import '../../data/genbank_dto.dart';
 
 class LocusDataSourceMock extends Mock implements ILocusDataSource {}
 

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
-import '../../infrastructure/locus_dto.dart';
-import '../core/failures.dart';
+import '../../domain/core/failures.dart';
+import 'locus_dto.dart';
 
 abstract class ILocusDataSource {
   Future<Either<Failure, List<LocusDto>>> getLocus();

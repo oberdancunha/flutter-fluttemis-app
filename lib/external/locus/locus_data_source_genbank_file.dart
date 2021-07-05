@@ -3,10 +3,10 @@ import 'dart:io';
 import 'package:bio/seqio/genbank.dart';
 import 'package:dartz/dartz.dart';
 
-import '../domain/core/failures.dart';
-import '../domain/locus/i_locus_data_source.dart';
-import 'feature_dto.dart';
-import 'locus_dto.dart';
+import '../../domain/core/failures.dart';
+import '../../infrastructure/locus/feature_dto.dart';
+import '../../infrastructure/locus/i_locus_data_source.dart';
+import '../../infrastructure/locus/locus_dto.dart';
 
 class LocusDataSourceGenbankFile implements ILocusDataSource {
   late final String genbankFile;
