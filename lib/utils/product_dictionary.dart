@@ -21,5 +21,5 @@ Map<Color, String> productDictionaryLabel = {
   colorLocusFeatureHypotheticalProduct: 'Hypothetical',
   colorLocusFeaturePutativeProduct: 'Putative',
   colorLocusFeatureUnknownProduct: 'Uncharacterized',
-  colorLocusFeatureNotProduct: 'Not',
+  colorLocusFeatureNotProduct: 'Without',
 };

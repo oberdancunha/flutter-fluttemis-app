@@ -74,7 +74,7 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: _printFeatureDetail(
-                        label: 'Aminoácids',
+                        label: 'Aminoacids',
                         value: state.locusFeatureShowed!.aminoacids,
                       ),
                     ),

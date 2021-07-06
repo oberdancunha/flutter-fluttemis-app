@@ -13,7 +13,7 @@ class DrawLocusFeatures extends CustomPainter {
   final double scale;
   final LocusBloc locusBloc;
   final LocusState locusState;
-  final minimalLengthToDrawAdjust = 12;
+  final minimalLengthToDrawAdjust = 10;
 
   DrawLocusFeatures({
     required this.screenWidthScale,
@@ -48,24 +48,33 @@ class DrawLocusFeatures extends CustomPainter {
         }
         final featureStart = feature.start * scale;
         final featureEnd = feature.end * scale;
-        _drawLine(
-          touchyCanvas,
-          paint,
-          featureStart: featureStart,
-          featureEnd: featureEnd,
-          featureStrand: feature.strand,
-          adjustToArrowLigature: adjustToArrowLigature,
-          tapAction: tapAction,
-        );
-        _drawArrow(
-          touchyCanvas,
-          paint,
-          featureStart: featureStart,
-          featureEnd: featureEnd,
-          featureStrand: feature.strand,
-          strand: feature.strand,
-          tapAction: tapAction,
-        );
+        if ((featureEnd - featureStart) + 1 > minimalLengthToDrawAdjust ||
+            feature.product != null) {
+          _drawLine(
+            touchyCanvas,
+            paint,
+            featureStart: featureStart,
+            featureEnd: featureEnd,
+            featureStrand: feature.strand,
+            adjustToArrowLigature: adjustToArrowLigature,
+            tapAction: tapAction,
+          );
+          _drawArrow(
+            touchyCanvas,
+            paint,
+            featureStart: featureStart,
+            featureEnd: featureEnd,
+            featureStrand: feature.strand,
+            tapAction: tapAction,
+          );
+        } else {
+          _drawSmallFeatureWithoutProduct(
+            touchyCanvas,
+            paint,
+            featureEnd: featureEnd,
+            tapAction: tapAction,
+          );
+        }
       },
     );
   }
@@ -84,7 +93,7 @@ class DrawLocusFeatures extends CustomPainter {
     const bottomBasePosition = 7.0;
     var adjustLineLengthToDraw = 12;
     if ((featureEnd - featureStart) + 1 <= minimalLengthToDrawAdjust) {
-      adjustLineLengthToDraw = 10;
+      adjustLineLengthToDraw = 9;
     }
     final left = featureStrand == 0
         ? featureStart
@@ -112,14 +121,13 @@ class DrawLocusFeatures extends CustomPainter {
     required double featureStart,
     required double featureEnd,
     required int featureStrand,
-    required int strand,
     required Function(TapUpDetails) tapAction,
   }) {
     final path = Path();
     const radius = 8.0;
     const sides = 3.0;
     const angle = (math.pi * 2) / sides;
-    final radians = strand == 0 ? 0.0 : 20.0;
+    final radians = featureStrand == 0 ? 0.0 : 20.0;
     var adjustArrowLengthToDraw = 8;
     if ((featureEnd - featureStart) + 1 <= minimalLengthToDrawAdjust) {
       adjustArrowLengthToDraw = 6;
@@ -142,6 +150,22 @@ class DrawLocusFeatures extends CustomPainter {
     path.close();
     touchyCanvas.drawPath(
       path,
+      paint,
+      onTapUp: tapAction,
+    );
+  }
+
+  void _drawSmallFeatureWithoutProduct(
+    TouchyCanvas touchyCanvas,
+    Paint paint, {
+    required double featureEnd,
+    required Function(TapUpDetails) tapAction,
+  }) {
+    final center = Offset(featureEnd, 0);
+    paint.strokeWidth = 1;
+    touchyCanvas.drawLine(
+      Offset(center.dx, center.dy + 7),
+      Offset(center.dx, center.dy - 7),
       paint,
       onTapUp: tapAction,
     );
