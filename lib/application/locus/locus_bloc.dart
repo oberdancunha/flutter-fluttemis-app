@@ -29,6 +29,7 @@ class LocusBloc extends Bloc<LocusEvent, LocusState> {
           isSearching: true,
           locusList: const KtList.empty(),
           locusShowed: Locus.empty(),
+          locusFeatureShowed: Feature.empty(),
         );
         final locusFailureOrSuccess = await locusRepository.getLocus();
         KtList<Locus> locus = const KtList.empty();
