@@ -41,13 +41,13 @@ class LocusPage extends StatelessWidget {
                             resourceType: fileType,
                             message: 'file not found',
                           ),
-                          fileParserError: (fileName, fileType, _) => ResourceErrorWidget(
+                          fileParseError: (fileName, fileType, _) => ResourceErrorWidget(
                             image: 'assets/images/file_unexpected_error.png',
                             resourceName: fileName,
                             resourceType: fileType,
                             message: 'file had an unexpected error',
                           ),
-                          fileIsEmpty: (fileName, fileType) => ResourceErrorWidget(
+                          fileEmpty: (fileName, fileType) => ResourceErrorWidget(
                             image: 'assets/images/file_empty.png',
                             resourceName: fileName,
                             resourceType: fileType,

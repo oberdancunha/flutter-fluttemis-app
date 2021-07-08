@@ -30,12 +30,12 @@ class LocusDataSourceGenbankFile implements ILocusDataSource {
             fileName: genbankFileName,
             fileType: fileType,
           )),
-          fileParserError: (error) => left(Failure.fileParserError(
+          fileParseError: (error) => left(Failure.fileParseError(
             fileName: genbankFileName,
             fileType: fileType,
             error: error,
           )),
-          fileIsEmpty: () => left(Failure.fileIsEmpty(
+          fileEmpty: () => left(Failure.fileEmpty(
             fileName: genbankFileName,
             fileType: fileType,
           )),

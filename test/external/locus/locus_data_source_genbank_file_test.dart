@@ -72,7 +72,7 @@ void main() {
             listLocus,
             equals(
               left(
-                const Failure.fileIsEmpty(
+                const Failure.fileEmpty(
                   fileName: fileName,
                   fileType: 'genbank',
                 ),

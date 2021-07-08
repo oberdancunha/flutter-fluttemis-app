@@ -81,7 +81,7 @@ void main() {
         () async {
           when(locusDataSourceMock.getLocus).thenAnswer(
             (_) async => left<Failure, List<LocusDto>>(
-              const Failure.fileIsEmpty(
+              const Failure.fileEmpty(
                 fileName: fileName,
                 fileType: fileType,
               ),
@@ -92,7 +92,7 @@ void main() {
             listLocus,
             equals(
               left(
-                const Failure.fileIsEmpty(
+                const Failure.fileEmpty(
                   fileName: fileName,
                   fileType: 'genbank',
                 ),
@@ -121,6 +121,34 @@ void main() {
                 const Failure.fileFormatIncorrect(
                   fileName: fileName,
                   fileType: 'genbank',
+                ),
+              ),
+            ),
+          );
+        },
+      );
+
+      test(
+        'Should return a Failure.fileParseError when there are an unexpected error',
+        () async {
+          when(locusDataSourceMock.getLocus).thenAnswer(
+            (_) async => left<Failure, List<LocusDto>>(
+              const Failure.fileParseError(
+                fileName: fileName,
+                fileType: fileType,
+                error: {},
+              ),
+            ),
+          );
+          final listLocus = await locusRepositoryGet();
+          expect(
+            listLocus,
+            equals(
+              left(
+                const Failure.fileParseError(
+                  fileName: fileName,
+                  fileType: 'genbank',
+                  error: {},
                 ),
               ),
             ),

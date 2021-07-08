@@ -24,20 +24,19 @@ class _$FailureTearOff {
     );
   }
 
-  _ParserError fileParserError(
+  _FileParseError fileParseError(
       {required String fileName,
       required String fileType,
       required Object error}) {
-    return _ParserError(
+    return _FileParseError(
       fileName: fileName,
       fileType: fileType,
       error: error,
     );
   }
 
-  _FileIsEmpty fileIsEmpty(
-      {required String fileName, required String fileType}) {
-    return _FileIsEmpty(
+  _FileEmpty fileEmpty({required String fileName, required String fileType}) {
+    return _FileEmpty(
       fileName: fileName,
       fileType: fileType,
     );
@@ -64,8 +63,8 @@ mixin _$Failure {
   TResult when<TResult extends Object?>({
     required TResult Function(String fileName, String fileType) fileNotFound,
     required TResult Function(String fileName, String fileType, Object error)
-        fileParserError,
-    required TResult Function(String fileName, String fileType) fileIsEmpty,
+        fileParseError,
+    required TResult Function(String fileName, String fileType) fileEmpty,
     required TResult Function(String fileName, String fileType)
         fileFormatIncorrect,
   }) =>
@@ -74,8 +73,8 @@ mixin _$Failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String fileName, String fileType)? fileNotFound,
     TResult Function(String fileName, String fileType, Object error)?
-        fileParserError,
-    TResult Function(String fileName, String fileType)? fileIsEmpty,
+        fileParseError,
+    TResult Function(String fileName, String fileType)? fileEmpty,
     TResult Function(String fileName, String fileType)? fileFormatIncorrect,
     required TResult orElse(),
   }) =>
@@ -83,16 +82,16 @@ mixin _$Failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FileNotFound value) fileNotFound,
-    required TResult Function(_ParserError value) fileParserError,
-    required TResult Function(_FileIsEmpty value) fileIsEmpty,
+    required TResult Function(_FileParseError value) fileParseError,
+    required TResult Function(_FileEmpty value) fileEmpty,
     required TResult Function(_FileFormatIncorrect value) fileFormatIncorrect,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FileNotFound value)? fileNotFound,
-    TResult Function(_ParserError value)? fileParserError,
-    TResult Function(_FileIsEmpty value)? fileIsEmpty,
+    TResult Function(_FileParseError value)? fileParseError,
+    TResult Function(_FileEmpty value)? fileEmpty,
     TResult Function(_FileFormatIncorrect value)? fileFormatIncorrect,
     required TResult orElse(),
   }) =>
@@ -215,8 +214,8 @@ class _$_FileNotFound implements _FileNotFound {
   TResult when<TResult extends Object?>({
     required TResult Function(String fileName, String fileType) fileNotFound,
     required TResult Function(String fileName, String fileType, Object error)
-        fileParserError,
-    required TResult Function(String fileName, String fileType) fileIsEmpty,
+        fileParseError,
+    required TResult Function(String fileName, String fileType) fileEmpty,
     required TResult Function(String fileName, String fileType)
         fileFormatIncorrect,
   }) {
@@ -228,8 +227,8 @@ class _$_FileNotFound implements _FileNotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String fileName, String fileType)? fileNotFound,
     TResult Function(String fileName, String fileType, Object error)?
-        fileParserError,
-    TResult Function(String fileName, String fileType)? fileIsEmpty,
+        fileParseError,
+    TResult Function(String fileName, String fileType)? fileEmpty,
     TResult Function(String fileName, String fileType)? fileFormatIncorrect,
     required TResult orElse(),
   }) {
@@ -243,8 +242,8 @@ class _$_FileNotFound implements _FileNotFound {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FileNotFound value) fileNotFound,
-    required TResult Function(_ParserError value) fileParserError,
-    required TResult Function(_FileIsEmpty value) fileIsEmpty,
+    required TResult Function(_FileParseError value) fileParseError,
+    required TResult Function(_FileEmpty value) fileEmpty,
     required TResult Function(_FileFormatIncorrect value) fileFormatIncorrect,
   }) {
     return fileNotFound(this);
@@ -254,8 +253,8 @@ class _$_FileNotFound implements _FileNotFound {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FileNotFound value)? fileNotFound,
-    TResult Function(_ParserError value)? fileParserError,
-    TResult Function(_FileIsEmpty value)? fileIsEmpty,
+    TResult Function(_FileParseError value)? fileParseError,
+    TResult Function(_FileEmpty value)? fileEmpty,
     TResult Function(_FileFormatIncorrect value)? fileFormatIncorrect,
     required TResult orElse(),
   }) {
@@ -281,23 +280,24 @@ abstract class _FileNotFound implements Failure {
 }
 
 /// @nodoc
-abstract class _$ParserErrorCopyWith<$Res> implements $FailureCopyWith<$Res> {
-  factory _$ParserErrorCopyWith(
-          _ParserError value, $Res Function(_ParserError) then) =
-      __$ParserErrorCopyWithImpl<$Res>;
+abstract class _$FileParseErrorCopyWith<$Res>
+    implements $FailureCopyWith<$Res> {
+  factory _$FileParseErrorCopyWith(
+          _FileParseError value, $Res Function(_FileParseError) then) =
+      __$FileParseErrorCopyWithImpl<$Res>;
   @override
   $Res call({String fileName, String fileType, Object error});
 }
 
 /// @nodoc
-class __$ParserErrorCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
-    implements _$ParserErrorCopyWith<$Res> {
-  __$ParserErrorCopyWithImpl(
-      _ParserError _value, $Res Function(_ParserError) _then)
-      : super(_value, (v) => _then(v as _ParserError));
+class __$FileParseErrorCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$FileParseErrorCopyWith<$Res> {
+  __$FileParseErrorCopyWithImpl(
+      _FileParseError _value, $Res Function(_FileParseError) _then)
+      : super(_value, (v) => _then(v as _FileParseError));
 
   @override
-  _ParserError get _value => super._value as _ParserError;
+  _FileParseError get _value => super._value as _FileParseError;
 
   @override
   $Res call({
@@ -305,7 +305,7 @@ class __$ParserErrorCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
     Object? fileType = freezed,
     Object? error = freezed,
   }) {
-    return _then(_ParserError(
+    return _then(_FileParseError(
       fileName: fileName == freezed
           ? _value.fileName
           : fileName // ignore: cast_nullable_to_non_nullable
@@ -324,8 +324,8 @@ class __$ParserErrorCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ParserError implements _ParserError {
-  const _$_ParserError(
+class _$_FileParseError implements _FileParseError {
+  const _$_FileParseError(
       {required this.fileName, required this.fileType, required this.error});
 
   @override
@@ -337,13 +337,13 @@ class _$_ParserError implements _ParserError {
 
   @override
   String toString() {
-    return 'Failure.fileParserError(fileName: $fileName, fileType: $fileType, error: $error)';
+    return 'Failure.fileParseError(fileName: $fileName, fileType: $fileType, error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _ParserError &&
+        (other is _FileParseError &&
             (identical(other.fileName, fileName) ||
                 const DeepCollectionEquality()
                     .equals(other.fileName, fileName)) &&
@@ -363,20 +363,20 @@ class _$_ParserError implements _ParserError {
 
   @JsonKey(ignore: true)
   @override
-  _$ParserErrorCopyWith<_ParserError> get copyWith =>
-      __$ParserErrorCopyWithImpl<_ParserError>(this, _$identity);
+  _$FileParseErrorCopyWith<_FileParseError> get copyWith =>
+      __$FileParseErrorCopyWithImpl<_FileParseError>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String fileName, String fileType) fileNotFound,
     required TResult Function(String fileName, String fileType, Object error)
-        fileParserError,
-    required TResult Function(String fileName, String fileType) fileIsEmpty,
+        fileParseError,
+    required TResult Function(String fileName, String fileType) fileEmpty,
     required TResult Function(String fileName, String fileType)
         fileFormatIncorrect,
   }) {
-    return fileParserError(fileName, fileType, error);
+    return fileParseError(fileName, fileType, error);
   }
 
   @override
@@ -384,13 +384,13 @@ class _$_ParserError implements _ParserError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String fileName, String fileType)? fileNotFound,
     TResult Function(String fileName, String fileType, Object error)?
-        fileParserError,
-    TResult Function(String fileName, String fileType)? fileIsEmpty,
+        fileParseError,
+    TResult Function(String fileName, String fileType)? fileEmpty,
     TResult Function(String fileName, String fileType)? fileFormatIncorrect,
     required TResult orElse(),
   }) {
-    if (fileParserError != null) {
-      return fileParserError(fileName, fileType, error);
+    if (fileParseError != null) {
+      return fileParseError(fileName, fileType, error);
     }
     return orElse();
   }
@@ -399,34 +399,34 @@ class _$_ParserError implements _ParserError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FileNotFound value) fileNotFound,
-    required TResult Function(_ParserError value) fileParserError,
-    required TResult Function(_FileIsEmpty value) fileIsEmpty,
+    required TResult Function(_FileParseError value) fileParseError,
+    required TResult Function(_FileEmpty value) fileEmpty,
     required TResult Function(_FileFormatIncorrect value) fileFormatIncorrect,
   }) {
-    return fileParserError(this);
+    return fileParseError(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FileNotFound value)? fileNotFound,
-    TResult Function(_ParserError value)? fileParserError,
-    TResult Function(_FileIsEmpty value)? fileIsEmpty,
+    TResult Function(_FileParseError value)? fileParseError,
+    TResult Function(_FileEmpty value)? fileEmpty,
     TResult Function(_FileFormatIncorrect value)? fileFormatIncorrect,
     required TResult orElse(),
   }) {
-    if (fileParserError != null) {
-      return fileParserError(this);
+    if (fileParseError != null) {
+      return fileParseError(this);
     }
     return orElse();
   }
 }
 
-abstract class _ParserError implements Failure {
-  const factory _ParserError(
+abstract class _FileParseError implements Failure {
+  const factory _FileParseError(
       {required String fileName,
       required String fileType,
-      required Object error}) = _$_ParserError;
+      required Object error}) = _$_FileParseError;
 
   @override
   String get fileName => throw _privateConstructorUsedError;
@@ -435,35 +435,34 @@ abstract class _ParserError implements Failure {
   Object get error => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$ParserErrorCopyWith<_ParserError> get copyWith =>
+  _$FileParseErrorCopyWith<_FileParseError> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FileIsEmptyCopyWith<$Res> implements $FailureCopyWith<$Res> {
-  factory _$FileIsEmptyCopyWith(
-          _FileIsEmpty value, $Res Function(_FileIsEmpty) then) =
-      __$FileIsEmptyCopyWithImpl<$Res>;
+abstract class _$FileEmptyCopyWith<$Res> implements $FailureCopyWith<$Res> {
+  factory _$FileEmptyCopyWith(
+          _FileEmpty value, $Res Function(_FileEmpty) then) =
+      __$FileEmptyCopyWithImpl<$Res>;
   @override
   $Res call({String fileName, String fileType});
 }
 
 /// @nodoc
-class __$FileIsEmptyCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
-    implements _$FileIsEmptyCopyWith<$Res> {
-  __$FileIsEmptyCopyWithImpl(
-      _FileIsEmpty _value, $Res Function(_FileIsEmpty) _then)
-      : super(_value, (v) => _then(v as _FileIsEmpty));
+class __$FileEmptyCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
+    implements _$FileEmptyCopyWith<$Res> {
+  __$FileEmptyCopyWithImpl(_FileEmpty _value, $Res Function(_FileEmpty) _then)
+      : super(_value, (v) => _then(v as _FileEmpty));
 
   @override
-  _FileIsEmpty get _value => super._value as _FileIsEmpty;
+  _FileEmpty get _value => super._value as _FileEmpty;
 
   @override
   $Res call({
     Object? fileName = freezed,
     Object? fileType = freezed,
   }) {
-    return _then(_FileIsEmpty(
+    return _then(_FileEmpty(
       fileName: fileName == freezed
           ? _value.fileName
           : fileName // ignore: cast_nullable_to_non_nullable
@@ -478,8 +477,8 @@ class __$FileIsEmptyCopyWithImpl<$Res> extends _$FailureCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_FileIsEmpty implements _FileIsEmpty {
-  const _$_FileIsEmpty({required this.fileName, required this.fileType});
+class _$_FileEmpty implements _FileEmpty {
+  const _$_FileEmpty({required this.fileName, required this.fileType});
 
   @override
   final String fileName;
@@ -488,13 +487,13 @@ class _$_FileIsEmpty implements _FileIsEmpty {
 
   @override
   String toString() {
-    return 'Failure.fileIsEmpty(fileName: $fileName, fileType: $fileType)';
+    return 'Failure.fileEmpty(fileName: $fileName, fileType: $fileType)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _FileIsEmpty &&
+        (other is _FileEmpty &&
             (identical(other.fileName, fileName) ||
                 const DeepCollectionEquality()
                     .equals(other.fileName, fileName)) &&
@@ -511,20 +510,20 @@ class _$_FileIsEmpty implements _FileIsEmpty {
 
   @JsonKey(ignore: true)
   @override
-  _$FileIsEmptyCopyWith<_FileIsEmpty> get copyWith =>
-      __$FileIsEmptyCopyWithImpl<_FileIsEmpty>(this, _$identity);
+  _$FileEmptyCopyWith<_FileEmpty> get copyWith =>
+      __$FileEmptyCopyWithImpl<_FileEmpty>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String fileName, String fileType) fileNotFound,
     required TResult Function(String fileName, String fileType, Object error)
-        fileParserError,
-    required TResult Function(String fileName, String fileType) fileIsEmpty,
+        fileParseError,
+    required TResult Function(String fileName, String fileType) fileEmpty,
     required TResult Function(String fileName, String fileType)
         fileFormatIncorrect,
   }) {
-    return fileIsEmpty(fileName, fileType);
+    return fileEmpty(fileName, fileType);
   }
 
   @override
@@ -532,13 +531,13 @@ class _$_FileIsEmpty implements _FileIsEmpty {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String fileName, String fileType)? fileNotFound,
     TResult Function(String fileName, String fileType, Object error)?
-        fileParserError,
-    TResult Function(String fileName, String fileType)? fileIsEmpty,
+        fileParseError,
+    TResult Function(String fileName, String fileType)? fileEmpty,
     TResult Function(String fileName, String fileType)? fileFormatIncorrect,
     required TResult orElse(),
   }) {
-    if (fileIsEmpty != null) {
-      return fileIsEmpty(fileName, fileType);
+    if (fileEmpty != null) {
+      return fileEmpty(fileName, fileType);
     }
     return orElse();
   }
@@ -547,32 +546,32 @@ class _$_FileIsEmpty implements _FileIsEmpty {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FileNotFound value) fileNotFound,
-    required TResult Function(_ParserError value) fileParserError,
-    required TResult Function(_FileIsEmpty value) fileIsEmpty,
+    required TResult Function(_FileParseError value) fileParseError,
+    required TResult Function(_FileEmpty value) fileEmpty,
     required TResult Function(_FileFormatIncorrect value) fileFormatIncorrect,
   }) {
-    return fileIsEmpty(this);
+    return fileEmpty(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FileNotFound value)? fileNotFound,
-    TResult Function(_ParserError value)? fileParserError,
-    TResult Function(_FileIsEmpty value)? fileIsEmpty,
+    TResult Function(_FileParseError value)? fileParseError,
+    TResult Function(_FileEmpty value)? fileEmpty,
     TResult Function(_FileFormatIncorrect value)? fileFormatIncorrect,
     required TResult orElse(),
   }) {
-    if (fileIsEmpty != null) {
-      return fileIsEmpty(this);
+    if (fileEmpty != null) {
+      return fileEmpty(this);
     }
     return orElse();
   }
 }
 
-abstract class _FileIsEmpty implements Failure {
-  const factory _FileIsEmpty(
-      {required String fileName, required String fileType}) = _$_FileIsEmpty;
+abstract class _FileEmpty implements Failure {
+  const factory _FileEmpty(
+      {required String fileName, required String fileType}) = _$_FileEmpty;
 
   @override
   String get fileName => throw _privateConstructorUsedError;
@@ -580,7 +579,7 @@ abstract class _FileIsEmpty implements Failure {
   String get fileType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FileIsEmptyCopyWith<_FileIsEmpty> get copyWith =>
+  _$FileEmptyCopyWith<_FileEmpty> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -668,8 +667,8 @@ class _$_FileFormatIncorrect implements _FileFormatIncorrect {
   TResult when<TResult extends Object?>({
     required TResult Function(String fileName, String fileType) fileNotFound,
     required TResult Function(String fileName, String fileType, Object error)
-        fileParserError,
-    required TResult Function(String fileName, String fileType) fileIsEmpty,
+        fileParseError,
+    required TResult Function(String fileName, String fileType) fileEmpty,
     required TResult Function(String fileName, String fileType)
         fileFormatIncorrect,
   }) {
@@ -681,8 +680,8 @@ class _$_FileFormatIncorrect implements _FileFormatIncorrect {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String fileName, String fileType)? fileNotFound,
     TResult Function(String fileName, String fileType, Object error)?
-        fileParserError,
-    TResult Function(String fileName, String fileType)? fileIsEmpty,
+        fileParseError,
+    TResult Function(String fileName, String fileType)? fileEmpty,
     TResult Function(String fileName, String fileType)? fileFormatIncorrect,
     required TResult orElse(),
   }) {
@@ -696,8 +695,8 @@ class _$_FileFormatIncorrect implements _FileFormatIncorrect {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FileNotFound value) fileNotFound,
-    required TResult Function(_ParserError value) fileParserError,
-    required TResult Function(_FileIsEmpty value) fileIsEmpty,
+    required TResult Function(_FileParseError value) fileParseError,
+    required TResult Function(_FileEmpty value) fileEmpty,
     required TResult Function(_FileFormatIncorrect value) fileFormatIncorrect,
   }) {
     return fileFormatIncorrect(this);
@@ -707,8 +706,8 @@ class _$_FileFormatIncorrect implements _FileFormatIncorrect {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FileNotFound value)? fileNotFound,
-    TResult Function(_ParserError value)? fileParserError,
-    TResult Function(_FileIsEmpty value)? fileIsEmpty,
+    TResult Function(_FileParseError value)? fileParseError,
+    TResult Function(_FileEmpty value)? fileEmpty,
     TResult Function(_FileFormatIncorrect value)? fileFormatIncorrect,
     required TResult orElse(),
   }) {

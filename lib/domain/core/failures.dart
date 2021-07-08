@@ -8,15 +8,15 @@ class Failure with _$Failure {
     required String fileName,
     required String fileType,
   }) = _FileNotFound;
-  const factory Failure.fileParserError({
+  const factory Failure.fileParseError({
     required String fileName,
     required String fileType,
     required Object error,
-  }) = _ParserError;
-  const factory Failure.fileIsEmpty({
+  }) = _FileParseError;
+  const factory Failure.fileEmpty({
     required String fileName,
     required String fileType,
-  }) = _FileIsEmpty;
+  }) = _FileEmpty;
   const factory Failure.fileFormatIncorrect({
     required String fileName,
     required String fileType,
