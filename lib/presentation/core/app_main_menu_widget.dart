@@ -56,7 +56,7 @@ class _AppMainMenuWidgetState extends State<AppMainMenuWidget> {
                 },
                 child: _buildMenuOptions(
                   context: context,
-                  icon: 'assets/icons/genbank_app.png',
+                  icon: 'assets/icons/genbank_app',
                   label: 'Open genbank file',
                 ),
               ),
@@ -80,9 +80,8 @@ class _AppMainMenuWidgetState extends State<AppMainMenuWidget> {
             child: Column(
               children: [
                 Image.asset(
-                  icon,
+                  '$icon/${widget.iconWidth >= 64 ? 'icon_256.png' : 'icon_64.png'}',
                   width: widget.iconWidth,
-                  filterQuality: FilterQuality.high,
                 ),
                 if (widget.showLabel)
                   Column(
