@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../application/locus/locus_bloc.dart';
 import '../../../../../domain/locus/feature.dart';
 import '../../../misc/calculate_area_draw.dart';
-import '../../../misc/locus_features_draw_scroll_controllers.dart';
+import '../../../misc/scroll_controllers_draw.dart';
 import '../../locus_draw_ruler_widget.dart';
 import 'locus_features_draw_types_list_widget.dart';
 import 'locus_features_draw_widget.dart';
@@ -17,7 +17,7 @@ class LocusFeaturesDrawBodyWidget extends StatefulWidget {
 }
 
 class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidget> {
-  final _scrollControllers = LocusFeaturesDrawScrollControllers();
+  final _scrollControllers = ScrollControllersDraw();
   static const minimalWidth = 1200;
 
   @override

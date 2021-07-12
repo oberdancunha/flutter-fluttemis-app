@@ -4,7 +4,7 @@ import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 
 import '../../../../../../domain/locus/locus.dart';
 
-class LocusFeaturesDrawScrollControllers extends Disposable {
+class ScrollControllersDraw extends Disposable {
   late Map<Locus, List<ScrollController>> _mapControllers = {};
   late ScrollController _controllerScale;
   late ScrollController _controllerPosition;
