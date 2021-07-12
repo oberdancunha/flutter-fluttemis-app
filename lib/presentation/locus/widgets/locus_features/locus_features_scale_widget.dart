@@ -5,7 +5,7 @@ import '../../../../application/locus/locus_bloc.dart';
 import '../../../../domain/locus/feature.dart';
 import '../../misc/locus_features_draw_calculate_area.dart';
 import '../../misc/locus_features_draw_scroll_controllers.dart';
-import 'locus_features_draw/locus_features_draw_scale_widget.dart';
+import '../locus_draw_ruler_widget.dart';
 import 'locus_features_draw/locus_features_draw_types_list_widget.dart';
 import 'locus_features_draw/locus_features_draw_widget.dart';
 
@@ -87,7 +87,7 @@ class _LocusFeaturesScaleWidgetState extends State<LocusFeaturesScaleWidget> {
               key: ObjectKey(locusState.locusShowed),
               child: SizedBox(
                 width: calculateArea.screenWidthScale,
-                child: LocusFeaturesDrawScaleWidget(
+                child: LocusDrawRulerWidget(
                   screenWidthScale: calculateArea.screenWidthScale,
                   locusLength: locusState.locusShowed.length,
                   scale: calculateArea.scale,
