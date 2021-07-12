@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../draw/draw_locus_scale.dart';
+import '../draw/draw_locus_ruler.dart';
 
 class LocusDrawRulerWidget extends StatelessWidget {
   final int locusLength;
@@ -24,7 +24,7 @@ class LocusDrawRulerWidget extends StatelessWidget {
     final markingPoints = (locusLength / maxWidthPerMarker).round();
 
     return CustomPaint(
-      painter: DrawLocusScale(
+      painter: DrawLocusRuler(
         width: screenWidthScale,
         locusLength: locusLength,
         scale: scale,

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DrawLocusScale extends CustomPainter {
+class DrawLocusRuler extends CustomPainter {
   final double width;
   final int locusLength;
   final double scale;
   final int markingPoints;
   final int locusLengthByCharacters;
 
-  DrawLocusScale({
+  DrawLocusRuler({
     required this.width,
     required this.locusLength,
     required this.scale,
