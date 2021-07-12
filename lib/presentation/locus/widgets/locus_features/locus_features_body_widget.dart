@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/templates/container_box_template.dart';
 import 'locus_features_colors_labels_widget.dart';
-import 'locus_features_scale_widget.dart';
+import 'locus_features_draw/locus_features_draw_body_widget.dart';
 
 class LocusFeaturesBodyWidget extends StatelessWidget {
   const LocusFeaturesBodyWidget({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class LocusFeaturesBodyWidget extends StatelessWidget {
               SizedBox(height: 10),
               LocusFeaturesColorsLabelsWidget(),
               SizedBox(height: 15),
-              LocusFeaturesScaleWidget(),
+              LocusFeaturesDrawBodyWidget(),
             ],
           ),
         ),
