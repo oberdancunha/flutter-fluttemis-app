@@ -19,6 +19,7 @@ class LocusFeaturesDrawBodyWidget extends StatefulWidget {
 class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidget> {
   final _scrollControllers = ScrollControllersDraw();
   static const minimalWidth = 1200;
+  static const nextLinePosition = 40;
 
   @override
   void dispose() {
@@ -126,6 +127,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
                 child: LocusFeaturesDrawTypesListWidget(
                   featuresTypes: locusState.locusShowed.featuresTypesList,
                   featuresTypesOverview: locusState.locusShowed.featuresTypesOverview,
+                  nextLinePosition: nextLinePosition,
                 ),
               ),
             ),
@@ -170,6 +172,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
                         screenWidthScale: calculateArea.screenWidthScale,
                         scale: calculateArea.scale,
                         locusState: locusState,
+                        nextLinePosition: nextLinePosition,
                       ),
                     ),
                   ),

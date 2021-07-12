@@ -11,12 +11,14 @@ class LocusFeaturesDrawWidget extends StatelessWidget {
   final double screenWidthScale;
   final double scale;
   final LocusState locusState;
+  final int nextLinePosition;
 
   const LocusFeaturesDrawWidget({
     required this.featuresTypes,
     required this.screenWidthScale,
     required this.scale,
     required this.locusState,
+    required this.nextLinePosition,
     Key? key,
   }) : super(key: key);
 
@@ -28,7 +30,7 @@ class LocusFeaturesDrawWidget extends StatelessWidget {
       children: [
         for (var features in featuresTypes.values)
           Positioned(
-            top: double.tryParse((nextLine += 40).toString()),
+            top: double.tryParse((nextLine += nextLinePosition).toString()),
             bottom: 0,
             left: 0,
             right: 0,
