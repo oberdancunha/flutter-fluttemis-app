@@ -7,7 +7,7 @@ import '../../../../../domain/locus/feature.dart';
 import '../../../draw/draw_locus_features.dart';
 
 class LocusFeaturesDrawWidget extends StatelessWidget {
-  final Map<String, List<Feature>> featuresTypes;
+  final List<List<Feature>> featuresTypes;
   final double screenWidthScale;
   final double scale;
   final LocusState locusState;
@@ -28,7 +28,7 @@ class LocusFeaturesDrawWidget extends StatelessWidget {
 
     return Stack(
       children: [
-        for (var features in featuresTypes.values)
+        for (var features in featuresTypes)
           Positioned(
             top: double.tryParse((nextLine += nextLinePosition).toString()),
             bottom: 0,

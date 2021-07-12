@@ -125,7 +125,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
               child: SizedBox(
                 height: typesHeight,
                 child: LocusFeaturesDrawTypesListWidget(
-                  featuresTypes: locusState.locusShowed.featuresTypesList,
+                  featuresTypesLabels: locusState.locusShowed.featuresTypesList.keys.toList(),
                   featuresTypesOverview: locusState.locusShowed.featuresTypesOverview,
                   nextLinePosition: nextLinePosition,
                 ),
@@ -168,7 +168,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
                       width: calculateArea.screenWidthScale,
                       height: calculateArea.typesHeight,
                       child: LocusFeaturesDrawWidget(
-                        featuresTypes: locusState.locusShowed.featuresTypesList,
+                        featuresTypes: locusState.locusShowed.featuresTypesList.values.toList(),
                         screenWidthScale: calculateArea.screenWidthScale,
                         scale: calculateArea.scale,
                         locusState: locusState,
