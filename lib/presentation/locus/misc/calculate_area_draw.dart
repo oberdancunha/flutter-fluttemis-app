@@ -1,6 +1,6 @@
 import '../../../../../../domain/locus/feature.dart';
 
-class LocusFeaturesDrawCalculateArea {
+class CalculateAreaDraw {
   final double screenWidth;
   final double screenHeight;
   final int locusLength;
@@ -8,7 +8,7 @@ class LocusFeaturesDrawCalculateArea {
   final double minHeight;
   final Map<String, List<Feature>> featuresTypesList;
 
-  LocusFeaturesDrawCalculateArea({
+  CalculateAreaDraw({
     required this.screenWidth,
     required this.screenHeight,
     required this.locusLength,

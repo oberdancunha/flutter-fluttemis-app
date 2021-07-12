@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../application/locus/locus_bloc.dart';
 import '../../../../../domain/locus/feature.dart';
-import '../../../misc/locus_features_draw_calculate_area.dart';
+import '../../../misc/calculate_area_draw.dart';
 import '../../../misc/locus_features_draw_scroll_controllers.dart';
 import '../../locus_draw_ruler_widget.dart';
 import 'locus_features_draw_types_list_widget.dart';
@@ -32,7 +32,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
             oldState.locusShowed != newState.locusShowed ||
             oldState.locusFeatureShowed != newState.locusFeatureShowed,
         builder: (context, state) {
-          final calculateArea = LocusFeaturesDrawCalculateArea(
+          final calculateArea = CalculateAreaDraw(
             screenWidth: MediaQuery.of(context).size.width > minimalWidth
                 ? MediaQuery.of(context).size.width
                 : MediaQuery.of(context).size.width * 4,
@@ -69,7 +69,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
 
   Widget _drawLocusScale({
     required LocusState locusState,
-    required LocusFeaturesDrawCalculateArea calculateArea,
+    required CalculateAreaDraw calculateArea,
   }) =>
       Positioned(
         left: 125,
@@ -136,7 +136,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
   Widget _drawLocusFeatures({
     required BuildContext context,
     required LocusState locusState,
-    required LocusFeaturesDrawCalculateArea calculateArea,
+    required CalculateAreaDraw calculateArea,
   }) =>
       Positioned(
         left: 125,
