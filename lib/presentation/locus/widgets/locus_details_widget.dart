@@ -51,12 +51,12 @@ class LocusDetailsWidget extends StatelessWidget {
                   children: [
                     _buildOverview(
                       label: 'Features types',
-                      value: state.locusShowed.featuresTypesOverview.length,
+                      value: state.locusShowed.featuresReport.featuresTypesCount.length,
                     ),
                     const SizedBox(height: 10),
                     _buildFeaturesList(
                       context: context,
-                      featuresList: state.locusShowed.featuresTypesOverview,
+                      featuresList: state.locusShowed.featuresReport.featuresTypesCount,
                       colorText: false,
                     ),
                   ],
@@ -65,12 +65,12 @@ class LocusDetailsWidget extends StatelessWidget {
                   children: [
                     _buildOverview(
                       label: 'Products types',
-                      value: state.locusShowed.featuresTypesProductsOverview.length,
+                      value: state.locusShowed.featuresReport.featuresTypesProductsCount.length,
                     ),
                     const SizedBox(height: 10),
                     _buildFeaturesList(
                       context: context,
-                      featuresList: state.locusShowed.featuresTypesProductsOverview,
+                      featuresList: state.locusShowed.featuresReport.featuresTypesProductsCount,
                       colorText: true,
                     ),
                   ],

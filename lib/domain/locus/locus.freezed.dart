@@ -22,9 +22,7 @@ class _$LocusTearOff {
       required String type,
       required String organism,
       required KtList<Feature> features,
-      required Map<String, List<Feature>> featuresTypesList,
-      required Map<String, int> featuresTypesOverview,
-      required Map<String, int> featuresTypesProductsOverview,
+      required FeaturesReport featuresReport,
       String? shape,
       String? releaseDate,
       String? sequence}) {
@@ -34,9 +32,7 @@ class _$LocusTearOff {
       type: type,
       organism: organism,
       features: features,
-      featuresTypesList: featuresTypesList,
-      featuresTypesOverview: featuresTypesOverview,
-      featuresTypesProductsOverview: featuresTypesProductsOverview,
+      featuresReport: featuresReport,
       shape: shape,
       releaseDate: releaseDate,
       sequence: sequence,
@@ -54,12 +50,7 @@ mixin _$Locus {
   String get type => throw _privateConstructorUsedError;
   String get organism => throw _privateConstructorUsedError;
   KtList<Feature> get features => throw _privateConstructorUsedError;
-  Map<String, List<Feature>> get featuresTypesList =>
-      throw _privateConstructorUsedError;
-  Map<String, int> get featuresTypesOverview =>
-      throw _privateConstructorUsedError;
-  Map<String, int> get featuresTypesProductsOverview =>
-      throw _privateConstructorUsedError;
+  FeaturesReport get featuresReport => throw _privateConstructorUsedError;
   String? get shape => throw _privateConstructorUsedError;
   String? get releaseDate => throw _privateConstructorUsedError;
   String? get sequence => throw _privateConstructorUsedError;
@@ -78,9 +69,7 @@ abstract class $LocusCopyWith<$Res> {
       String type,
       String organism,
       KtList<Feature> features,
-      Map<String, List<Feature>> featuresTypesList,
-      Map<String, int> featuresTypesOverview,
-      Map<String, int> featuresTypesProductsOverview,
+      FeaturesReport featuresReport,
       String? shape,
       String? releaseDate,
       String? sequence});
@@ -101,9 +90,7 @@ class _$LocusCopyWithImpl<$Res> implements $LocusCopyWith<$Res> {
     Object? type = freezed,
     Object? organism = freezed,
     Object? features = freezed,
-    Object? featuresTypesList = freezed,
-    Object? featuresTypesOverview = freezed,
-    Object? featuresTypesProductsOverview = freezed,
+    Object? featuresReport = freezed,
     Object? shape = freezed,
     Object? releaseDate = freezed,
     Object? sequence = freezed,
@@ -129,18 +116,10 @@ class _$LocusCopyWithImpl<$Res> implements $LocusCopyWith<$Res> {
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
               as KtList<Feature>,
-      featuresTypesList: featuresTypesList == freezed
-          ? _value.featuresTypesList
-          : featuresTypesList // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<Feature>>,
-      featuresTypesOverview: featuresTypesOverview == freezed
-          ? _value.featuresTypesOverview
-          : featuresTypesOverview // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
-      featuresTypesProductsOverview: featuresTypesProductsOverview == freezed
-          ? _value.featuresTypesProductsOverview
-          : featuresTypesProductsOverview // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
+      featuresReport: featuresReport == freezed
+          ? _value.featuresReport
+          : featuresReport // ignore: cast_nullable_to_non_nullable
+              as FeaturesReport,
       shape: shape == freezed
           ? _value.shape
           : shape // ignore: cast_nullable_to_non_nullable
@@ -168,9 +147,7 @@ abstract class _$LocusCopyWith<$Res> implements $LocusCopyWith<$Res> {
       String type,
       String organism,
       KtList<Feature> features,
-      Map<String, List<Feature>> featuresTypesList,
-      Map<String, int> featuresTypesOverview,
-      Map<String, int> featuresTypesProductsOverview,
+      FeaturesReport featuresReport,
       String? shape,
       String? releaseDate,
       String? sequence});
@@ -192,9 +169,7 @@ class __$LocusCopyWithImpl<$Res> extends _$LocusCopyWithImpl<$Res>
     Object? type = freezed,
     Object? organism = freezed,
     Object? features = freezed,
-    Object? featuresTypesList = freezed,
-    Object? featuresTypesOverview = freezed,
-    Object? featuresTypesProductsOverview = freezed,
+    Object? featuresReport = freezed,
     Object? shape = freezed,
     Object? releaseDate = freezed,
     Object? sequence = freezed,
@@ -220,18 +195,10 @@ class __$LocusCopyWithImpl<$Res> extends _$LocusCopyWithImpl<$Res>
           ? _value.features
           : features // ignore: cast_nullable_to_non_nullable
               as KtList<Feature>,
-      featuresTypesList: featuresTypesList == freezed
-          ? _value.featuresTypesList
-          : featuresTypesList // ignore: cast_nullable_to_non_nullable
-              as Map<String, List<Feature>>,
-      featuresTypesOverview: featuresTypesOverview == freezed
-          ? _value.featuresTypesOverview
-          : featuresTypesOverview // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
-      featuresTypesProductsOverview: featuresTypesProductsOverview == freezed
-          ? _value.featuresTypesProductsOverview
-          : featuresTypesProductsOverview // ignore: cast_nullable_to_non_nullable
-              as Map<String, int>,
+      featuresReport: featuresReport == freezed
+          ? _value.featuresReport
+          : featuresReport // ignore: cast_nullable_to_non_nullable
+              as FeaturesReport,
       shape: shape == freezed
           ? _value.shape
           : shape // ignore: cast_nullable_to_non_nullable
@@ -257,9 +224,7 @@ class _$_Locus extends _Locus {
       required this.type,
       required this.organism,
       required this.features,
-      required this.featuresTypesList,
-      required this.featuresTypesOverview,
-      required this.featuresTypesProductsOverview,
+      required this.featuresReport,
       this.shape,
       this.releaseDate,
       this.sequence})
@@ -276,11 +241,7 @@ class _$_Locus extends _Locus {
   @override
   final KtList<Feature> features;
   @override
-  final Map<String, List<Feature>> featuresTypesList;
-  @override
-  final Map<String, int> featuresTypesOverview;
-  @override
-  final Map<String, int> featuresTypesProductsOverview;
+  final FeaturesReport featuresReport;
   @override
   final String? shape;
   @override
@@ -290,7 +251,7 @@ class _$_Locus extends _Locus {
 
   @override
   String toString() {
-    return 'Locus(name: $name, length: $length, type: $type, organism: $organism, features: $features, featuresTypesList: $featuresTypesList, featuresTypesOverview: $featuresTypesOverview, featuresTypesProductsOverview: $featuresTypesProductsOverview, shape: $shape, releaseDate: $releaseDate, sequence: $sequence)';
+    return 'Locus(name: $name, length: $length, type: $type, organism: $organism, features: $features, featuresReport: $featuresReport, shape: $shape, releaseDate: $releaseDate, sequence: $sequence)';
   }
 
   @override
@@ -309,17 +270,9 @@ class _$_Locus extends _Locus {
             (identical(other.features, features) ||
                 const DeepCollectionEquality()
                     .equals(other.features, features)) &&
-            (identical(other.featuresTypesList, featuresTypesList) ||
+            (identical(other.featuresReport, featuresReport) ||
                 const DeepCollectionEquality()
-                    .equals(other.featuresTypesList, featuresTypesList)) &&
-            (identical(other.featuresTypesOverview, featuresTypesOverview) ||
-                const DeepCollectionEquality().equals(
-                    other.featuresTypesOverview, featuresTypesOverview)) &&
-            (identical(other.featuresTypesProductsOverview,
-                    featuresTypesProductsOverview) ||
-                const DeepCollectionEquality().equals(
-                    other.featuresTypesProductsOverview,
-                    featuresTypesProductsOverview)) &&
+                    .equals(other.featuresReport, featuresReport)) &&
             (identical(other.shape, shape) ||
                 const DeepCollectionEquality().equals(other.shape, shape)) &&
             (identical(other.releaseDate, releaseDate) ||
@@ -338,9 +291,7 @@ class _$_Locus extends _Locus {
       const DeepCollectionEquality().hash(type) ^
       const DeepCollectionEquality().hash(organism) ^
       const DeepCollectionEquality().hash(features) ^
-      const DeepCollectionEquality().hash(featuresTypesList) ^
-      const DeepCollectionEquality().hash(featuresTypesOverview) ^
-      const DeepCollectionEquality().hash(featuresTypesProductsOverview) ^
+      const DeepCollectionEquality().hash(featuresReport) ^
       const DeepCollectionEquality().hash(shape) ^
       const DeepCollectionEquality().hash(releaseDate) ^
       const DeepCollectionEquality().hash(sequence);
@@ -358,9 +309,7 @@ abstract class _Locus extends Locus {
       required String type,
       required String organism,
       required KtList<Feature> features,
-      required Map<String, List<Feature>> featuresTypesList,
-      required Map<String, int> featuresTypesOverview,
-      required Map<String, int> featuresTypesProductsOverview,
+      required FeaturesReport featuresReport,
       String? shape,
       String? releaseDate,
       String? sequence}) = _$_Locus;
@@ -377,14 +326,7 @@ abstract class _Locus extends Locus {
   @override
   KtList<Feature> get features => throw _privateConstructorUsedError;
   @override
-  Map<String, List<Feature>> get featuresTypesList =>
-      throw _privateConstructorUsedError;
-  @override
-  Map<String, int> get featuresTypesOverview =>
-      throw _privateConstructorUsedError;
-  @override
-  Map<String, int> get featuresTypesProductsOverview =>
-      throw _privateConstructorUsedError;
+  FeaturesReport get featuresReport => throw _privateConstructorUsedError;
   @override
   String? get shape => throw _privateConstructorUsedError;
   @override

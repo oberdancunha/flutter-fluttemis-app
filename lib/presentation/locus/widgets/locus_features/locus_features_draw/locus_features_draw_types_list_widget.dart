@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class LocusFeaturesDrawTypesListWidget extends StatelessWidget {
   final List<String> featuresTypesLabels;
-  final Map<String, int> featuresTypesOverview;
+  final Map<String, int> featuresTypesCount;
   final int nextLinePosition;
 
   const LocusFeaturesDrawTypesListWidget({
     required this.featuresTypesLabels,
-    required this.featuresTypesOverview,
+    required this.featuresTypesCount,
     required this.nextLinePosition,
     Key? key,
   }) : super(key: key);
@@ -26,7 +26,7 @@ class LocusFeaturesDrawTypesListWidget extends StatelessWidget {
             right: 0,
             child: Text(
               !RegExp('#').hasMatch(featureTypeLabel)
-                  ? '$featureTypeLabel (${featuresTypesOverview[featureTypeLabel]})'
+                  ? '$featureTypeLabel (${featuresTypesCount[featureTypeLabel]})'
                   : '',
               style: const TextStyle(fontSize: 12),
             ),

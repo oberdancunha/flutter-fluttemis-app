@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kt_dart/collection.dart';
 
 import 'feature.dart';
+import 'features_report.dart';
 
 part 'locus.freezed.dart';
 
@@ -15,22 +16,18 @@ class Locus with _$Locus {
     required String type,
     required String organism,
     required KtList<Feature> features,
-    required Map<String, List<Feature>> featuresTypesList,
-    required Map<String, int> featuresTypesOverview,
-    required Map<String, int> featuresTypesProductsOverview,
+    required FeaturesReport featuresReport,
     String? shape,
     String? releaseDate,
     String? sequence,
   }) = _Locus;
 
-  factory Locus.empty() => const Locus(
+  factory Locus.empty() => Locus(
         name: '',
         length: 0,
         type: '',
         organism: '',
-        features: KtList.empty(),
-        featuresTypesList: {},
-        featuresTypesOverview: {},
-        featuresTypesProductsOverview: {},
+        features: const KtList.empty(),
+        featuresReport: FeaturesReport.empty(),
       );
 }
