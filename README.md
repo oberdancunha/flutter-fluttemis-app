@@ -53,7 +53,7 @@ Windows 10 (executado no VirtualBox)
 
 ### Observação
 
-Em termos de performance, em comparação com o macOS, que é o sistema operacional nativo do computador, há uma sensível queda no linux e uma considerável queda no windows, provavelmente porque ambos foram executados usando o VirtualBox.
+Em termos de performance, em comparação com o macOS, que é o sistema operacional nativo do computador, há uma sensível queda no linux e uma considerável queda no windows. No caso do linux é provável que o motivo seja o uso do VirtualBox. No caso do windows, cuja queda é mais acentuada, torna-se necessário um entendimento maior do(s) motivo(s) do que somente a pressuposição da máquina virtual.
 
 Visualmente e em termos comportamentais, a comparação entre as três plataformas não apresentou distinção entre elas.
 
