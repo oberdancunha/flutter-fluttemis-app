@@ -111,7 +111,7 @@ Caso a leitura do arquivo apresente um erro inesperado e/ou desconhecido.
     border= "1px solid black"
   />
 
-### Imagens dos erros
+### Imagens dos erros e do ícone da aplicação
 
 <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
 
