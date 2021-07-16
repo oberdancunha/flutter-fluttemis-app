@@ -53,7 +53,7 @@ Windows 10 (executado no VirtualBox)
 
 Em termos de performance, em comparação com o macOS, que é o sistema operacional nativo do computador, há uma considerável queda no linux e principalmente no windows, provavelmente porque ambos foram executados usando o VirtualBox.
 
-Visualmente e em termos comportamentais, a comparação entre as três plataformas apresentou um alto nível de fidelidade entre elas, mostrando que não é apenas no mobile que o flutter faz um belíssimo trabalho de cross-platform, mas no desktop também.
+Visualmente e em termos comportamentais, a comparação entre as três plataformas não apresentou distinção entre elas, mostrando que não é apenas no mobile que o flutter faz um belíssimo trabalho de cross-platform, mas no desktop também.
 
 ## Erros
 
