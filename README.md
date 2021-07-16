@@ -51,7 +51,7 @@ Linux (Ubuntu 21.04 executado no VirtualBox)
 Windows 10 (executado no VirtualBox)
 ![Alt Text](images/change_file_windows.gif)
 
-###Observação
+### Observação
 
 Em termos de performance, em comparação com o macOS, que é o sistema operacional nativo do computador, há uma sensível queda no linux e uma considerável queda no windows, provavelmente porque ambos foram executados usando o VirtualBox.
 
