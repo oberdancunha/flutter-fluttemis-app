@@ -15,40 +15,57 @@ class MockLocusRepository extends Mock implements ILocusRepository {}
 void main() {
   late MockLocusRepository mockLocusRepository;
   late LocusBloc locusBloc;
+  late KtList<Locus> mockLocus;
 
   setUpAll(() {
     mockLocusRepository = MockLocusRepository();
     locusBloc = LocusBloc(locusRepository: mockLocusRepository);
+    mockLocus = getLocus();
   });
 
-  test(
-    'Should be initial state',
-    () {
-      expect(locusBloc.state, equals(LocusState.initial()));
-    },
-  );
-
-  void setUpMockEvent() {
-    locusBloc.add(const LocusEvent.getLocus());
+  void setUpMockGetSuccess() {
+    when(() => mockLocusRepository.getLocus()).thenAnswer((_) async => right(mockLocus));
   }
 
+  List<LocusState> setUpMockGetLocusStatesSuccess(KtList<Locus> mockLocus) => [
+        LocusState(
+          locusFailureOrSuccess: none(),
+          isSearching: true,
+          locusList: const KtList.empty(),
+          locusShowed: Locus.empty(),
+          locusFeatureShowed: Feature.empty(),
+        ),
+        LocusState(
+          locusFailureOrSuccess: optionOf(right(mockLocus)),
+          isSearching: false,
+          locusList: mockLocus,
+          locusShowed: mockLocus.first(),
+          locusFeatureShowed: Feature.empty(),
+        ),
+      ];
+
   group(
-    'Get | ',
+    'Get locus | ',
     () {
+      test(
+        'Should be initial state',
+        () {
+          expect(locusBloc.state, equals(LocusState.initial()));
+        },
+      );
+
+      void setUpMockGetLocusEvent() {
+        locusBloc.add(const LocusEvent.getLocus());
+      }
+
       group(
         'Get success | ',
         () {
-          final mockLocus = getLocus();
-
-          void setUpMockGetSuccess() {
-            when(() => mockLocusRepository.getLocus()).thenAnswer((_) async => right(mockLocus));
-          }
-
           test(
             'Should get locus',
             () async {
               setUpMockGetSuccess();
-              setUpMockEvent();
+              setUpMockGetLocusEvent();
               await untilCalled(() => mockLocusRepository.getLocus());
               verify(() => mockLocusRepository.getLocus());
             },
@@ -58,7 +75,7 @@ void main() {
             'Should obtain locus list success',
             () async {
               setUpMockGetSuccess();
-              setUpMockEvent();
+              setUpMockGetLocusEvent();
               await untilCalled(() => mockLocusRepository.getLocus());
               final locus = await mockLocusRepository.getLocus();
               expect(locus, equals(right(mockLocus)));
@@ -69,23 +86,8 @@ void main() {
             'Should verify list locus success state',
             () async {
               setUpMockGetSuccess();
-              setUpMockEvent();
-              final expectedStates = [
-                LocusState(
-                  locusFailureOrSuccess: none(),
-                  isSearching: true,
-                  locusList: const KtList.empty(),
-                  locusShowed: Locus.empty(),
-                  locusFeatureShowed: Feature.empty(),
-                ),
-                LocusState(
-                  locusFailureOrSuccess: optionOf(right(mockLocus)),
-                  isSearching: false,
-                  locusList: mockLocus,
-                  locusShowed: mockLocus.first(),
-                  locusFeatureShowed: Feature.empty(),
-                ),
-              ];
+              setUpMockGetLocusEvent();
+              final expectedStates = setUpMockGetLocusStatesSuccess(mockLocus);
               await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
             },
           );
@@ -107,7 +109,7 @@ void main() {
             'Should obtain a failure',
             () async {
               setUpMockGetFailure();
-              setUpMockEvent();
+              setUpMockGetLocusEvent();
               await untilCalled(() => mockLocusRepository.getLocus());
               final locus = await mockLocusRepository.getLocus();
               expect(
@@ -123,7 +125,7 @@ void main() {
             'Should verify list locus failure state',
             () async {
               setUpMockGetFailure();
-              setUpMockEvent();
+              setUpMockGetLocusEvent();
               final expectedStates = [
                 LocusState(
                   locusFailureOrSuccess: none(),
@@ -146,6 +148,106 @@ void main() {
               await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
             },
           );
+        },
+      );
+    },
+  );
+
+  group(
+    'Show locus | ',
+    () {
+      final mockLocusList = getMoreOneLocus();
+
+      void setUpMockGetLocusList() {
+        when(() => mockLocusRepository.getLocus()).thenAnswer((_) async => right(mockLocusList));
+      }
+
+      test(
+        'Should return first locus when locus searching is empty',
+        () async {
+          setUpMockGetLocusList();
+
+          locusBloc
+            ..add(const LocusEvent.getLocus())
+            ..add(const LocusEvent.showLocus(locusSearching: ''));
+
+          final expectedStates = setUpMockGetLocusStatesSuccess(mockLocusList)
+            ..add(LocusState(
+              locusFailureOrSuccess: optionOf(right(mockLocusList)),
+              isSearching: true,
+              locusList: mockLocusList,
+              locusShowed: mockLocusList.first(),
+              locusFeatureShowed: Feature.empty(),
+            ))
+            ..add(
+              LocusState(
+                locusFailureOrSuccess: optionOf(right(mockLocusList)),
+                isSearching: false,
+                locusList: mockLocusList,
+                locusShowed: mockLocusList.first(),
+                locusFeatureShowed: Feature.empty(),
+              ),
+            );
+          await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
+        },
+      );
+
+      test(
+        'Should search SCU49845_1 locus',
+        () async {
+          setUpMockGetLocusList();
+
+          locusBloc
+            ..add(const LocusEvent.getLocus())
+            ..add(const LocusEvent.showLocus(locusSearching: 'SCU49845_1'));
+
+          final expectedStates = setUpMockGetLocusStatesSuccess(mockLocusList)
+            ..add(LocusState(
+              locusFailureOrSuccess: optionOf(right(mockLocusList)),
+              isSearching: true,
+              locusList: mockLocusList,
+              locusShowed: mockLocusList.first(),
+              locusFeatureShowed: Feature.empty(),
+            ))
+            ..add(
+              LocusState(
+                locusFailureOrSuccess: optionOf(right(mockLocusList)),
+                isSearching: false,
+                locusList: mockLocusList,
+                locusShowed: mockLocusList.last(),
+                locusFeatureShowed: Feature.empty(),
+              ),
+            );
+          await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
+        },
+      );
+    },
+  );
+
+  group(
+    'Show locus feature | ',
+    () {
+      final mockLocus = getLocus();
+      final mockLocusFirstFeature = getFirstFeature();
+
+      test(
+        'Should show first locus feature',
+        () async {
+          setUpMockGetSuccess();
+
+          locusBloc
+            ..add(const LocusEvent.getLocus())
+            ..add(LocusEvent.showLocusFeature(locusFeature: mockLocusFirstFeature));
+
+          final expectedStates = setUpMockGetLocusStatesSuccess(mockLocus)
+            ..add(LocusState(
+              locusFailureOrSuccess: optionOf(right(mockLocus)),
+              isSearching: false,
+              locusList: mockLocus,
+              locusShowed: mockLocus.first(),
+              locusFeatureShowed: mockLocusFirstFeature,
+            ));
+          await expectLater(locusBloc.stream, emitsInOrder(expectedStates));
         },
       );
     },
