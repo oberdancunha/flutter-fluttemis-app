@@ -121,9 +121,8 @@ Caso a leitura do arquivo apresente um erro inesperado e/ou desconhecido.
 
 ## Lista de tarefas
 
-- Mostrar os exons de genomas de eucariotos
-- Obter as sequências de nucleotideos das features
-- Implementar a leitura de dados de arquivos GFF 2/GTF e GFF 3.
+- Obter as sequências de nucleotideos das features. :heavy_check_mark:
+- Criar um botão para copiar as sequências de nucleotídeos/aminoácidos da feature selecionada.
 - Download de sequências no formato fasta de:
   1. Nucleotídeos dos locus
   2. Nucleotídeos de todas as features
@@ -134,4 +133,6 @@ Caso a leitura do arquivo apresente um erro inesperado e/ou desconhecido.
   1. Produto
   2. Um intervalo dado pela posição inicial e final
   3. Nome de gene
+- Implementar a leitura de dados de arquivos GFF 2/GTF e GFF 3.
+- Mostrar os exons de genomas de eucariotos
 - Refatoração constante
