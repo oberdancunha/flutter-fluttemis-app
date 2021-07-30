@@ -66,6 +66,7 @@ class LocusDataSourceGenbankFile implements ILocusDataSource {
                         type: feature.type,
                         strand: feature.strand,
                         aminoacids: feature.aminoacids,
+                        nucleotides: feature.nucleotides,
                         name: feature.name,
                         note: feature.note,
                         product: feature.product,

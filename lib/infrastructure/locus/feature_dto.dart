@@ -30,6 +30,7 @@ class FeatureDto with _$FeatureDto {
         type: type,
         typeByOverlap: typeByOverlap ?? type,
         aminoacids: aminoacids,
+        nucleotides: nucleotides,
         name: name,
         note: note,
         product: product,

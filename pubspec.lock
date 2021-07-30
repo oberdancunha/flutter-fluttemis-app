@@ -55,7 +55,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "245da44e74e96c37111cb1fcf772b55220baedcf"
+      resolved-ref: "3f8df500398597ec8661d8cd48169793c3e5e90a"
       url: "https://github.com/oberdancunha/dart-bio-package.git"
     source: git
     version: "0.0.1"

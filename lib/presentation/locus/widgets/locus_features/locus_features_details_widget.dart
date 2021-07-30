@@ -70,6 +70,14 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
                       value: state.locusFeatureShowed!.note ?? '.',
                     ),
                   ),
+                  if (state.locusFeatureShowed!.nucleotides != null)
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: _printFeatureDetail(
+                        label: 'Nucleotides',
+                        value: state.locusFeatureShowed!.nucleotides,
+                      ),
+                    ),
                   if (state.locusFeatureShowed!.aminoacids != null)
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
