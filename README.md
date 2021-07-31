@@ -122,7 +122,7 @@ Caso a leitura do arquivo apresente um erro inesperado e/ou desconhecido.
 ## Lista de tarefas
 
 - Obter as sequências de nucleotideos das features. :heavy_check_mark:
-- Criar um botão para copiar as sequências de nucleotídeos/aminoácidos da feature selecionada.
+- Criar um botão para copiar as sequências de nucleotídeos/aminoácidos da feature selecionada. :heavy_check_mark:
 - Download de sequências no formato fasta de:
   1. Nucleotídeos dos locus
   2. Nucleotídeos de todas as features
