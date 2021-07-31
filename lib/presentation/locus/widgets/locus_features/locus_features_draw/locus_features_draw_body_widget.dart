@@ -18,8 +18,8 @@ class LocusFeaturesDrawBodyWidget extends StatefulWidget {
 
 class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidget> {
   final _scrollControllers = ScrollControllersDraw();
-  static const minimalWidth = 1200;
-  static const nextLinePosition = 40;
+  static const _minimalWidth = 1200;
+  static const _nextLinePosition = 40;
 
   @override
   void dispose() {
@@ -34,7 +34,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
             oldState.locusFeatureShowed != newState.locusFeatureShowed,
         builder: (context, state) {
           final calculateArea = CalculateAreaDraw(
-            screenWidth: MediaQuery.of(context).size.width > minimalWidth
+            screenWidth: MediaQuery.of(context).size.width > _minimalWidth
                 ? MediaQuery.of(context).size.width
                 : MediaQuery.of(context).size.width * 4,
             screenHeight: MediaQuery.of(context).size.height,
@@ -128,7 +128,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
                   featuresTypesLabels:
                       locusState.locusShowed.featuresReport.featuresTypesList.keys.toList(),
                   featuresTypesCount: locusState.locusShowed.featuresReport.featuresTypesCount,
-                  nextLinePosition: nextLinePosition,
+                  nextLinePosition: _nextLinePosition,
                 ),
               ),
             ),
@@ -174,7 +174,7 @@ class _LocusFeaturesDrawBodyWidgetState extends State<LocusFeaturesDrawBodyWidge
                         screenWidthScale: calculateArea.screenWidthScale,
                         scale: calculateArea.scale,
                         locusState: locusState,
-                        nextLinePosition: nextLinePosition,
+                        nextLinePosition: _nextLinePosition,
                       ),
                     ),
                   ),

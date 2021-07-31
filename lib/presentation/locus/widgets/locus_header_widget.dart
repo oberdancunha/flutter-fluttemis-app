@@ -9,7 +9,7 @@ class LocusHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = ScrollController();
+    final controller = ScrollController();
     const width = 800.0;
 
     return BlocBuilder<LocusBloc, LocusState>(
@@ -19,12 +19,12 @@ class LocusHeaderWidget extends StatelessWidget {
           child: Center(
             child: Scrollbar(
               isAlwaysShown: MediaQuery.of(context).size.width < width,
-              controller: _controller,
+              controller: controller,
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
-                  controller: _controller,
+                  controller: controller,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
