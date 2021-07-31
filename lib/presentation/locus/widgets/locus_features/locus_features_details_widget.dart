@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../application/locus/locus_bloc.dart';
 import '../../../core/templates/container_box_details_template.dart';
 
-class LocusFeaturesDetailsWidget extends StatelessWidget {
+class LocusFeaturesDetailsWidget extends StatefulWidget {
   const LocusFeaturesDetailsWidget({Key? key}) : super(key: key);
+
+  @override
+  _LocusFeaturesDetailsWidgetState createState() => _LocusFeaturesDetailsWidgetState();
+}
+
+class _LocusFeaturesDetailsWidgetState extends State<LocusFeaturesDetailsWidget> {
+  late dynamic _copiedValue = '';
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,7 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
                 color: state.locusFeatureShowed!.color,
               ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Center(
@@ -71,20 +79,16 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
                     ),
                   ),
                   if (state.locusFeatureShowed!.nucleotides != null)
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: _printFeatureDetail(
-                        label: 'Nucleotides',
-                        value: state.locusFeatureShowed!.nucleotides,
-                      ),
+                    _printFeatureDetailWithCopyButton(
+                      width: width,
+                      label: 'Nucleotides',
+                      value: state.locusFeatureShowed!.nucleotides,
                     ),
                   if (state.locusFeatureShowed!.aminoacids != null)
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: _printFeatureDetail(
-                        label: 'Aminoacids',
-                        value: state.locusFeatureShowed!.aminoacids,
-                      ),
+                    _printFeatureDetailWithCopyButton(
+                      width: width,
+                      label: 'Aminoacids',
+                      value: state.locusFeatureShowed!.aminoacids,
                     ),
                 ],
               ),
@@ -113,6 +117,51 @@ class LocusFeaturesDetailsWidget extends StatelessWidget {
           value.toString(),
           style: const TextStyle(
             fontSize: fontSize,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _printFeatureDetailWithCopyButton({
+    required double width,
+    required String label,
+    required value,
+  }) {
+    final isValueCopied = _copiedValue == value;
+
+    return Row(
+      children: [
+        Container(
+          constraints: BoxConstraints(
+            maxWidth: width - 75,
+          ),
+          child: ClipRRect(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: _printFeatureDetail(
+                label: label,
+                value: value,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 15),
+        SizedBox(
+          height: 20,
+          width: 20,
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            iconSize: 20,
+            icon: const Icon(Icons.copy),
+            tooltip: isValueCopied ? 'Copied' : 'Copy',
+            color: isValueCopied ? Colors.grey : Colors.black,
+            onPressed: () async {
+              setState(() {
+                _copiedValue = value;
+              });
+              Clipboard.setData(ClipboardData(text: value.toString()));
+            },
           ),
         ),
       ],
