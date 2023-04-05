@@ -24,7 +24,9 @@ dependencies:
   flutter:
     sdk: flutter
   bio:
-    git: https://github.com/oberdancunha/dart-bio-package.git
+    git: 
+      url: https://github.com/oberdancunha/dart-bio-package.git
+      ref: 1.0.0
   animated_stack: ^0.2.0
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.2
